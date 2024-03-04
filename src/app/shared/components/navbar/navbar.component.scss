@@ -1,0 +1,56 @@
+@import '../../../../assets/scss/colors';
+
+.nav-container{
+  padding: 0 2rem;
+  .logo-text{
+    color: #29A354;
+    margin-left: 10px;
+    font-weight: 700;
+  }
+  .navbar-nav{
+    align-items: center;
+    .nav-item{
+      font-size: 20px;
+      color: #827A7A !important;
+      min-width: 130px;
+      text-align: end;
+    }
+    .nav-item:last-child{
+      margin-left: 35px;
+    }
+    .auth-btns{
+      .login ,.logout{
+        border: 1px solid $main-color;
+        padding: 7px 30px;
+        color: $secondary-color;
+        border-radius: 14px;
+        -webkit-border-radius: 14px;
+        -moz-border-radius: 14px;
+        -ms-border-radius: 14px;
+        -o-border-radius: 14px;
+        font-weight: 500;
+        &:hover {
+          background-color: $main-color;
+          color: #fff;
+        }
+}
+      .logout{
+        margin-left: 20px;
+        background-color: $main-color;
+        color: #fff;
+      }
+    }
+  }
+
+  @media (max-width:991px) {
+    .navbar-nav{
+      align-items: start;
+      .nav-item{
+        text-align: start;
+      }
+      .nav-item:last-child{
+        margin-left: 0;
+      }
+    }
+  }
+}

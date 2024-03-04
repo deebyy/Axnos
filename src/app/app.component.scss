@@ -102,15 +102,19 @@ a{
   }
 }
 
-
+.asd{
+  font-size: 1304px;
+}
 
 .card {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
+  margin-top: 15px;
   border: none;
   transition: all .3s ease;
   letter-spacing: .5px;
   border-radius: 15px;
   box-shadow: 0 4px 30px #5f5ee712
+
 }
 
 .card:hover {
@@ -154,7 +158,7 @@ a{
   right: 35px;
   top: 33px;
   display: inline-block;
-  float: right;
+  // float: right;
   padding: 0;
   position: absolute;
   background-color: #fff;
@@ -470,4 +474,8 @@ a{
       position:relative;
       padding-bottom: 42px
   }
+}
+.asd2{
+  color: red;
+  background-color: black;
 }

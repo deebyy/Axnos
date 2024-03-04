@@ -13,11 +13,7 @@ import {
 } from '@ngx-translate/core';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
-
-
-
-
-
+import { SharedModule } from './shared/shared.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '../../assets/i18n/', '.json');
@@ -43,6 +39,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
     FeatherModule.pick(allIcons),
+    SharedModule
 
   ],
   providers: [],
@@ -53,15 +50,15 @@ export class AppModule {
     private translateService: TranslateService,
 
   ) {
-    const appLang = localStorage.getItem('app-lang') ?? 'ar';
-    this.translateService.setDefaultLang('ar');
-    this.translateService.use(appLang);
+    // const appLang = localStorage.getItem('app-lang') ?? 'ar';
+    // this.translateService.setDefaultLang('ar');
+    // this.translateService.use(appLang);
 
-    this.translateService.onLangChange.subscribe((event) => {
-      document.documentElement.dir = event.lang === 'ar' ? 'rtl' : 'ltr';
-      document.documentElement.lang = event.lang;
-      localStorage.setItem('app-lang', event.lang);
+    // this.translateService.onLangChange.subscribe((event) => {
+    //   document.documentElement.dir = event.lang === 'ar' ? 'rtl' : 'ltr';
+    //   document.documentElement.lang = event.lang;
+    //   localStorage.setItem('app-lang', event.lang);
 
-    });
+    // });
   }
  }
