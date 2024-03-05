@@ -1,0 +1,79 @@
+.footer {
+  background-color: #F9F7FF;
+  padding: 70px 0 20px 0;
+}
+.footer .col-6 > div {
+  width: 200px;
+  margin-bottom: 15px;
+}
+.footer .social-details {
+  text-align: start;
+}
+.footer .social-details .logo-text {
+  color: #29A354;
+  margin-left: 10px;
+  font-weight: 700;
+}
+.footer .social-details .social {
+  padding-inline-start: 0;
+  list-style-type: none;
+}
+.footer .social-details .social .follow {
+  color: #212121;
+  font-weight: 700;
+  margin-top: 12px;
+}
+.footer .social-details .social .card-social {
+  padding-inline-start: 0;
+  gap: 15px;
+  margin-top: 10px;
+}
+.footer .social-details .social .card-social li {
+  width: 25px;
+  height: 25px;
+  background: #06052E;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.7s ease;
+  -webkit-transition: all 0.7s ease;
+  -moz-transition: all 0.7s ease;
+  -ms-transition: all 0.7s ease;
+  -o-transition: all 0.7s ease;
+}
+.footer .social-details .social .card-social li:hover {
+  transform: scale(1.5) rotate(360deg);
+  -webkit-transform: scale(1.5) rotate(360deg);
+  -moz-transform: scale(1.5) rotate(360deg);
+  -ms-transform: scale(1.5) rotate(360deg);
+  -o-transform: scale(1.5) rotate(360deg);
+}
+.footer .social-details .social .card-social li a {
+  color: #FFFFFF;
+}
+.footer .social-details .social .card-social li a i {
+  font-size: 15px;
+}
+.footer .footer-details ul {
+  padding-inline-start: 0;
+  list-style-type: none;
+}
+.footer .footer-details ul h4 {
+  color: #212121;
+  font-weight: 700;
+}
+.footer .footer-details ul li a {
+  color: #212121;
+}
+.footer .copy-write span {
+  display: inline-block;
+  background-color: #212121;
+  width: 80%;
+  height: 1px;
+}
+.footer .copy-write .Copyright {
+  margin-top: 10px;
+  color: #212121;
+}/*# sourceMappingURL=footer.component.css.map */

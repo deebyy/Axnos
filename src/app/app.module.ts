@@ -15,12 +15,14 @@ import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 import { SharedModule } from './shared/shared.module';
 
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '../../assets/i18n/', '.json');
 }
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     BrowserModule,

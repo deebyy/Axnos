@@ -1,0 +1,107 @@
+.sec > div {
+  height: calc(100vh - 62px);
+  background-color: #F9F7FF;
+}
+
+.clip-container {
+  position: relative;
+}
+
+.clip1 {
+  -webkit-clip-path: polygon(52% 0, 100% 0, 51% 100%, 1% 100%);
+          clip-path: polygon(52% 0, 100% 0, 51% 100%, 1% 100%);
+  background-color: #29A354;
+  width: 500px;
+  height: 100%;
+  position: absolute;
+  right: 170px;
+}
+
+.clip2 {
+  -webkit-clip-path: polygon(66% 0, 100% 0, 100% 100%, 17% 100%);
+          clip-path: polygon(66% 0, 100% 0, 100% 100%, 17% 100%);
+  background-color: #FF6F06;
+  width: 500px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+}
+
+.img {
+  width: 75%;
+  position: absolute;
+  z-index: 1;
+}
+
+@media (max-width: 1115px) {
+  .clip1 {
+    -webkit-clip-path: polygon(52% 0, 100% 0, 51% 100%, 1% 100%);
+            clip-path: polygon(52% 0, 100% 0, 51% 100%, 1% 100%);
+    background-color: #29A354;
+    width: 500px;
+    height: 100%;
+    position: absolute;
+    right: 47px;
+  }
+  .clip2 {
+    -webkit-clip-path: polygon(77% 0, 100% 0, 100% 100%, 33% 100%);
+            clip-path: polygon(77% 0, 100% 0, 100% 100%, 33% 100%);
+    background-color: #FF6F06;
+    width: 500px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+  }
+}
+@media (max-width: 992px) {
+  .clip1 {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    width: 50%;
+    left: 0;
+  }
+  .clip2 {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    width: 50%;
+    right: 0;
+  }
+  .img {
+    height: 100%;
+    width: auto;
+    position: absolute;
+    z-index: 1;
+  }
+}
+@media (max-width: 767px) {
+  .col-lg-5.clip-container {
+    display: none !important;
+  }
+}
+/* bio  */
+.lamp img {
+  width: 45px;
+}
+
+.details .Empower {
+  font-weight: bold;
+  color: #0C0531;
+  font-size: 39px;
+}
+.details .Collaborate {
+  font-weight: bold;
+  font-size: 39px;
+  background-image: linear-gradient(to right, rgb(50, 173, 94), rgb(255, 108, 0));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.details .content {
+  margin-top: 12px;
+  font-size: 14px;
+}
+.details .explore {
+  background-color: #29A354;
+  color: #FFFFFF;
+  font-weight: 500;
+}/*# sourceMappingURL=hero.component.css.map */

@@ -1,0 +1,62 @@
+@import '../../../../../assets/scss/colors';
+.benefits{
+  padding: 60px 0;
+  .benefit-image{
+    padding: 0 30px;
+    img{
+      width: 85%;
+    }
+  }
+  .benefits-details{
+    margin-top: 30px;
+    .benefits-head{
+      color: $mainBlue-color;
+      font-size: 37px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 25px;
+    }
+    .benefits-items{
+      padding: 0 15px;
+      .item{
+        width: 85%;
+        gap: 10px;
+        margin-top: 15px;
+        .item-img img{
+          width: 35px;
+        }
+        .item-details{
+          .details-title{
+            color: $mainBlue-color;
+            font-size: 17px;
+            font-weight: 700;
+          }
+          .details-desc{
+            color: $secondary-color;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+@media (max-width:991px) {
+  .benefit-image{
+    padding: 0;
+    img{
+      width: 100%;
+    }
+  }
+  .benefits-details{
+    .benefits-head{
+      font-size: 28px;
+    }
+    .benefits-items{
+      padding: 0 0 0 15px;
+      .item{
+        width: 100%;
+
+      }
+    }
+  }
+}
+}

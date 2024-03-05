@@ -1,7 +1,13 @@
 @import '../../../../assets/scss/colors';
+nav{
+  background-color: $wight-color;
+}
 
 .nav-container{
   padding: 0 2rem;
+  .navbar-toggler:focus{
+    box-shadow: none;
+  }
   .logo-text{
     color: #29A354;
     margin-left: 10px;
@@ -16,7 +22,7 @@
       text-align: end;
     }
     .nav-item:last-child{
-      margin-left: 35px;
+      margin-left: 25px;
     }
     .auth-btns{
       .login ,.logout{

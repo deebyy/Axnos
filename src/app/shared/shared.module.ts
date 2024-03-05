@@ -8,10 +8,12 @@ import {
   TranslateModule,
   TranslateService,
 } from '@ngx-translate/core';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,
@@ -19,8 +21,8 @@ import {
     TranslateModule
   ],
   exports:[
-    NavbarComponent
-
+    NavbarComponent,
+    UserProfileComponent
   ]
 })
 export class SharedModule { }

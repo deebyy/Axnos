@@ -1,0 +1,31 @@
+<section class="benefits">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+          <div class="benefit-image">
+              <img src="assets/images/home/benift.png" loading="lazy" alt="" >
+          </div>
+      </div>
+      <div class="col-md-6">
+        <div class="benefits-details">
+            <h1 class="benefits-head">
+              Benefit from our online Learning Expert
+            </h1>
+            <div class="benefits-items">
+              <div class="item d-flex" *ngFor="let benefit of benefits">
+                  <div class="item-img">
+                      <img [src]="benefit.image" alt="">
+                  </div>
+                <div class="item-details">
+                  <h4 class="details-title">{{benefit.title}}</h4>
+                  <p class="details-desc mb-0">{{benefit.content}}</p>
+                </div>
+              </div>
+            </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
