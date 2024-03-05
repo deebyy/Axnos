@@ -1,14 +1,13 @@
 @import '../../../../../assets/scss/colors';
 .footer{
-
   &{
     background-color: $gray-color;
     padding: 70px 0 20px 0;
   }
-.col-6 > div{
-  width: 200px;
-  margin-bottom: 15px;
-}
+  .col-6 > div{
+    width: 200px;
+    margin-bottom: 15px;
+  }
   .social-details{
   text-align: start;
   .logo-text{
@@ -74,17 +73,17 @@
       }
     }
   }
-.copy-write{
-  span{
-    display: inline-block;
-    background-color: $secondblack-color;
-    width: 80%;
-    height: 1px;
+  .copy-write{
+    span{
+      display: inline-block;
+      background-color: $secondblack-color;
+      width: 80%;
+      height: 1px;
+    }
+    .Copyright{
+      margin-top: 10px;
+      color: $secondblack-color;
+    }
   }
-  .Copyright{
-    margin-top: 10px;
-    color: $secondblack-color;
-  }
-}
 
 }
