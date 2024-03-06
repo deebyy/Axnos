@@ -1,0 +1,14 @@
+<div class="form-group has-float-label">
+  <ng-multiselect-dropdown
+    [placeholder]="placeholder"
+    [settings]="settings"
+    [data]="data"
+    formControlName="{{ formControlName }}"
+    [disabled]="disabled"
+    (onSelect)="onSelectionChange($event)"
+    (onDeSelect)="onSelectionChange($event)"
+    (onSelectAll)="onSelectionChange($event)"
+    (onDeSelectAll)="onSelectionChange([])"
+  ></ng-multiselect-dropdown>
+  <label for="{{ formControlName }}" class="label">{{ labelText }}</label>
+</div>

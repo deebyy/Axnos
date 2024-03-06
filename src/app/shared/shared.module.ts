@@ -9,21 +9,34 @@ import {
   TranslateService,
 } from '@ngx-translate/core';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
-
+import { TutorCardComponent } from './components/tutor-card/tutor-card.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RatingModule } from 'ngx-bootstrap/rating';
+import { CustomMultiselectComponent } from './components/custom-multiselect/custom-multiselect.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    TutorCardComponent,
+    CustomMultiselectComponent,
+
   ],
   imports: [
     CommonModule,
     SharedRoutingModule,
     TranslateModule,
+    RatingModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   exports:[
     NavbarComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    TutorCardComponent,
+    CustomMultiselectComponent
   ]
 })
 export class SharedModule { }

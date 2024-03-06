@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
-  isLogged:boolean = false;
+  isLogged:boolean = true;
   isLoginActive: boolean = true;
   isSignupActive: boolean = false;
   constructor() {

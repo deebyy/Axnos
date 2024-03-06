@@ -60,9 +60,12 @@
   padding-inline-start: 0;
   list-style-type: none;
 }
-.footer .footer-details ul h4 {
+.footer .footer-details ul .link-head {
   color: #212121;
   font-weight: 700;
+}
+.footer .footer-details ul li {
+  margin-bottom: 15px;
 }
 .footer .footer-details ul li a {
   color: #212121;
@@ -76,4 +79,14 @@
 .footer .copy-write .Copyright {
   margin-top: 10px;
   color: #212121;
+}
+
+.link-head {
+  color: #212121;
+  font-weight: 700;
+}
+
+.icon-link {
+  display: flex;
+  text-decoration: none;
 }/*# sourceMappingURL=footer.component.css.map */

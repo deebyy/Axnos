@@ -1,0 +1,73 @@
+<section class="mt-4">
+  <div class="container">
+    <form [formGroup]="myForm" class="form"  (ngSubmit)="onFormSubmit()" >
+         <div class="row justify-content-center">
+                <div class="element mb-4 ">
+
+                  <app-custom-multiselect
+                  [labelText]="'Country name'"
+                  [placeholder]="'Select Country'"
+                  [settings]="dropdownSettings"
+                  [data]="Countries"
+                  formControlName="Country"
+                  [disabled]="false"
+                  (selectionChange)="handleUniversitySelection($event)"
+                ></app-custom-multiselect>
+                </div>
+                <div class="element mb-4 ">
+
+                  <app-custom-multiselect
+                  [labelText]="'University name'"
+                  [placeholder]="'Select University'"
+                  [settings]="dropdownSettings"
+                  [data]="Universites"
+                  formControlName="University"
+                  [disabled]="false"
+                  (selectionChange)="handleUniversitySelection($event)"
+                ></app-custom-multiselect>
+                </div>
+                <div class="element mb-4 ">
+
+                  <app-custom-multiselect
+                  [labelText]="'Faculity name'"
+                  [placeholder]="'Select Faculity'"
+                  [settings]="dropdownSettings"
+                  [data]="Faculites"
+                  formControlName="Faculity"
+                  [disabled]="false"
+                  (selectionChange)="handleUniversitySelection($event)"
+                ></app-custom-multiselect>
+                </div>
+                <div class="element mb-4 ">
+
+                  <app-custom-multiselect
+                  [labelText]="'Subject name'"
+                  [placeholder]="'Select Subject'"
+                  [settings]="dropdownSettings"
+                  [data]="Subjects"
+                  formControlName="Subject"
+                  [disabled]="false"
+                  (selectionChange)="handleUniversitySelection($event)"
+                ></app-custom-multiselect>
+                </div>
+                <div class="element mb-4 ">
+                    <button class="search" type="submit">Search</button>
+                </div>
+        </div>
+    </form>
+
+
+  </div>
+</section>
+
+
+<section class="pb-4 pt-5">
+  <div class="container ">
+      <div class="row">
+          <div class="col-lg-4 col-md-6 col-12" *ngFor="let tutor of tutors">
+           <app-tutor-card [tutor]="tutor"></app-tutor-card>
+          </div>
+      </div>
+  </div>
+
+</section>

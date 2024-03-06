@@ -1,3 +1,7 @@
+h4 {
+  margin-bottom: 0;
+}
+
 .benefits {
   padding: 60px 0;
 }
@@ -16,6 +20,7 @@
   font-weight: 700;
   letter-spacing: 1px;
   margin-bottom: 25px;
+  line-height: 1.2;
 }
 .benefits .benefits-details .benefits-items {
   padding: 0 15px;

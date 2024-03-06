@@ -16,10 +16,13 @@ nav{
   .navbar-nav{
     align-items: center;
     .nav-item{
-      font-size: 20px;
+      font-size: 17px !important;
       color: #827A7A !important;
       min-width: 130px;
       text-align: end;
+      .nav-link{
+        font-size: 17px !important;
+      }
     }
     .nav-item:last-child{
       margin-left: 25px;

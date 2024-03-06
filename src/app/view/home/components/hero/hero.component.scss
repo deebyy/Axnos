@@ -82,6 +82,7 @@
   }
 }
 .details {
+  line-height: 1.2888;
   .Empower {
     font-weight: bold;
     color: #0C0531;
@@ -98,11 +99,18 @@
   .content{
 
     margin-top: 12px;
-    font-size: 14px;
+    font-size: 15px;
+    letter-spacing: 1.1px;
+    color: $secondary-color;
   }
   .explore{
     background-color: $main-color;
     color: $wight-color;
     font-weight: 500;
+  }
+}
+@media (max-width:600px) {
+  .Empower ,.Collaborate{
+    font-size: 28px !important;
   }
 }

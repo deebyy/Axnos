@@ -83,6 +83,9 @@
   width: 45px;
 }
 
+.details {
+  line-height: 1.2888;
+}
 .details .Empower {
   font-weight: bold;
   color: #0C0531;
@@ -98,10 +101,18 @@
 }
 .details .content {
   margin-top: 12px;
-  font-size: 14px;
+  font-size: 15px;
+  letter-spacing: 1.1px;
+  color: #827A7A;
 }
 .details .explore {
   background-color: #29A354;
   color: #FFFFFF;
   font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .Empower, .Collaborate {
+    font-size: 28px !important;
+  }
 }/*# sourceMappingURL=hero.component.css.map */
