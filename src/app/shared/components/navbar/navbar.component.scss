@@ -39,9 +39,22 @@ nav{
           background-color: $main-color;
           color: #fff;
         }
-}
+      }
       .logout{
         margin-left: 20px;
+        // background-color: $main-color;
+        // color: #fff;
+      }
+      .active {
+        border: 1px solid $main-color;
+        padding: 7px 30px;
+        color: $secondary-color;
+        border-radius: 14px;
+        -webkit-border-radius: 14px;
+        -moz-border-radius: 14px;
+        -ms-border-radius: 14px;
+        -o-border-radius: 14px;
+        font-weight: 500;
         background-color: $main-color;
         color: #fff;
       }

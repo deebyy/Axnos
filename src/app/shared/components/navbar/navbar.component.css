@@ -42,6 +42,17 @@ nav {
 }
 .nav-container .navbar-nav .auth-btns .logout {
   margin-left: 20px;
+}
+.nav-container .navbar-nav .auth-btns .active {
+  border: 1px solid #29A354;
+  padding: 7px 30px;
+  color: #827A7A;
+  border-radius: 14px;
+  -webkit-border-radius: 14px;
+  -moz-border-radius: 14px;
+  -ms-border-radius: 14px;
+  -o-border-radius: 14px;
+  font-weight: 500;
   background-color: #29A354;
   color: #fff;
 }

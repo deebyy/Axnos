@@ -21,8 +21,12 @@
         </li>
         <li class="nav-item" *ngIf="!isLogged">
           <div class="auth-btns">
-            <button type="button" class="btn  login">Log in</button>
-            <button type="button" class="btn  logout">Sign Up</button>
+            <button type="button" class="btn  login"
+                   [ngClass]="{ 'active': isLoginActive }" (click)="toggleActiveButton('login')"
+                   [routerLink]="['', 'auth', 'Login']">Log in</button>
+            <button type="button" class="btn  logout"
+                  [ngClass]="{ 'active': isSignupActive }" (click)="toggleActiveButton('signup')"
+                  [routerLink]="['', 'auth', 'Signup']">Sign Up</button>
           </div>
         </li>
         <li  class="nav-item" *ngIf="isLogged">

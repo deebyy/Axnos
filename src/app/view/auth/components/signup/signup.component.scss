@@ -1,0 +1,135 @@
+@import '../../../../../assets/scss/colors';
+@import '../../../../../assets/scss/fonts';
+.container{
+   height: calc(100vh - 59px);
+}
+.parent-container{
+  background-color: $gray-color;
+  box-shadow: 0px 0px 17px 0 #9d9393;
+  border-radius: 18px;
+    margin-top: 15px;
+    position: relative;
+    .personimage{
+      position: absolute;
+      left: 32px;
+      bottom: 0;
+      width: 390px;
+    }
+    .welcome{
+      margin:110px 85px 0 20px;
+      .start{
+       color:$mainBlue-color;
+       font-family: 'ReemKufi', sans-serif;
+       font-size: 25px;
+      }
+      .UniMates{
+        color: #29A354;
+        font-weight: 700;
+        font-family: 'ReemKufi', sans-serif;
+        font-size: 30px;
+      }
+    }
+    .sign-up{
+      width: 60%;
+
+      background-color: $wight-color;
+      padding: 50px 60px 40px 60px;
+      border-radius: 15px;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      -ms-border-radius: 15px;
+      -o-border-radius: 15px;
+
+      h1{
+        font-size: 25px;
+        font-weight: 700;
+        color: $black-color;
+      }
+
+      .sginup-google{
+        padding: 10px 25px;
+        background: transparent;
+        border: 1px solid #35CCED;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        img{
+          width: 25px;
+        }
+        span{
+          color: $black-color;
+          font-size: 15px;
+          margin-left: 10px;
+        }
+
+
+      }
+      .OR{
+        width: 20px;
+        color: $second-gray-color;
+        position: relative;
+        &::before{
+          content: "";
+          position: absolute;
+          width: 10px;
+          height: 2px;
+          background-color: $second-gray-color;
+          left: -15px;
+          bottom: 50%;
+        }
+        &::after{
+          content: "";
+          position: absolute;
+          width: 10px;
+          height: 2px;
+          background-color: $second-gray-color;
+          right: -15px;
+          bottom: 50%;
+
+        }
+      }
+      .signUp-form{
+        .submit-btn{
+          background-color: #FF6F06;
+          color: $wight-color;
+          font-weight: 700;
+          border-radius: 10px;
+        }
+        .haveAcount{
+          span{
+            color: $second-gray-color;
+          }
+          a{
+            text-decoration: none;
+            color: #35CCED;
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+
+    @media (max-width:768px) {
+
+      &{
+        padding: 0;
+       // padding: 50px 40px 40px 40px;
+      }
+      .personimage{
+        display: none;
+      }
+      .welcome{
+        display: none;
+      }
+      .sign-up{
+        width: 100%;
+        padding: 50px 40px 40px 40px;
+      }
+    }
+
+}
+@media (max-width:768px) {
+  .parent-row{
+    padding: 15px;
+  }
+
+}

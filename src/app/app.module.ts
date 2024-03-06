@@ -41,8 +41,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
     FeatherModule.pick(allIcons),
-    SharedModule
-
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

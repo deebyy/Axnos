@@ -1,0 +1,54 @@
+
+<div class="container">
+  <div class="row parent-row">
+      <div class="parent-container d-flex">
+        <div class="welcome">
+            <p class="start">Welcome back!</p>
+            <p class="UniMates">UniMates </p>
+        </div>
+        <div class="sign-up">
+            <h1>Login</h1>
+            <button class="sginup-google">
+              <img src="assets/images/auth/google.png" alt="">
+              <span>Sign In with Google</span>
+            </button>
+            <div class="d-flex justify-content-center">
+              <p class="OR mt-4 text-center ">OR</p>
+            </div>
+            <div class="signUp-form">
+              <form (ngSubmit)="submitForm()" #form="ngForm" class="d-flex flex-column">
+                <mat-form-field class="form-group">
+                  <mat-label>User Name</mat-label>
+                  <input matInput id="fullName" name="fullName" ngModel required>
+                </mat-form-field>
+
+
+                <mat-form-field class="form-group">
+                  <mat-label>Password</mat-label>
+                  <input matInput type="password" id="password" name="password" [type]="hide ? 'password' : 'text'" ngModel required>
+                  <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+                    <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                  </button>
+                </mat-form-field>
+                <div class="form-check  mb-3" style="z-index: 99999;">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">
+                   Keep me logged in
+                  </label>
+                </div>
+
+                <button mat-raised-button class="submit-btn" type="submit" [disabled]="!form.valid">Log In</button>
+                <div class="mt-2 haveAcount">
+                  <span>Are you new?</span>
+                  <a [routerLink]="['', 'auth', 'Signup']">Create An Account</a>
+                </div>
+
+              </form>
+
+
+            </div>
+          </div>
+          <img src="assets/images/auth/Saly.png" alt="" class="personimage">
+      </div>
+  </div>
+</div>

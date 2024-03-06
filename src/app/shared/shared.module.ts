@@ -10,6 +10,7 @@ import {
 } from '@ngx-translate/core';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
+
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -18,7 +19,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
   imports: [
     CommonModule,
     SharedRoutingModule,
-    TranslateModule
+    TranslateModule,
   ],
   exports:[
     NavbarComponent,
