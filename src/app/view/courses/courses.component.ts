@@ -6,11 +6,11 @@ interface City {
   code: string;
 }
 @Component({
-  selector: 'app-tutors',
-  templateUrl: './tutors.component.html',
-  styleUrls: ['./tutors.component.scss']
+  selector: 'app-courses',
+  templateUrl: './courses.component.html',
+  styleUrls: ['./courses.component.scss']
 })
-export class TutorsComponent {
+export class CoursesComponent {
 
   myForm!:FormGroup;
   disabled = false;
@@ -31,9 +31,9 @@ export class TutorsComponent {
 
 
 
-  tutors=[
+  courses = [
     {
-      image: 'assets/images/tutors/tutor1.png',
+      image: 'assets/images/courses/tutor1.png',
       tutor:'Mohamed Hassan',
       country:'Egypt',
       university:'Mansoura University',
@@ -42,11 +42,15 @@ export class TutorsComponent {
       students:'15 Student',
       rate:5,
       reviewers:'13',
-      tutorLanguages:'EN,AR',
+      courseName:'DataBase',
+      coursePrice:'10$/Hour',
+      professorName:'Youssef Ahmed',
+      professorLanguages:'EN,AR',
+
     },
     {
-      image: 'assets/images/tutors/tutor2.png',
-      tutor:'tutor name',
+      image: 'assets/images/courses/tutor2.png',
+      tutor:'Mohamed Hassan',
       country:'Egypt',
       university:'Mansoura University',
       faculity:'Computer Science',
@@ -54,11 +58,15 @@ export class TutorsComponent {
       students:'15 Student',
       rate:5,
       reviewers:'13',
-      tutorLanguages:'EN,AR',
+      courseName:'DataBase',
+      coursePrice:'10$/Hour',
+      professorName:'Youssef Ahmed',
+      professorLanguages:'EN,AR',
+
     },
     {
-      image: 'assets/images/tutors/tutor3.png',
-      tutor:'tutor name',
+      image: 'assets/images/courses/tutor3.png',
+      tutor:'Mohamed Hassan',
       country:'Egypt',
       university:'Mansoura University',
       faculity:'Computer Science',
@@ -66,11 +74,15 @@ export class TutorsComponent {
       students:'15 Student',
       rate:5,
       reviewers:'13',
-      tutorLanguages:'EN,AR',
+      courseName:'DataBase',
+      coursePrice:'10$/Hour',
+      professorName:'Youssef Ahmed',
+      professorLanguages:'EN,AR',
+
     },
     {
-      image: 'assets/images/tutors/tutor4.png',
-      tutor:'tutor name',
+      image: 'assets/images/courses/tutor4.png',
+      tutor:'Mohamed Hassan',
       country:'Egypt',
       university:'Mansoura University',
       faculity:'Computer Science',
@@ -78,11 +90,15 @@ export class TutorsComponent {
       students:'15 Student',
       rate:5,
       reviewers:'13',
-      tutorLanguages:'EN,AR',
+      courseName:'DataBase',
+      coursePrice:'10$/Hour',
+      professorName:'Youssef Ahmed',
+      professorLanguages:'EN,AR',
+
     },
     {
-      image: 'assets/images/tutors/tutor5.png',
-      tutor:'tutor name',
+      image: 'assets/images/courses/tutor5.png',
+      tutor:'Mohamed Hassan',
       country:'Egypt',
       university:'Mansoura University',
       faculity:'Computer Science',
@@ -90,11 +106,15 @@ export class TutorsComponent {
       students:'15 Student',
       rate:5,
       reviewers:'13',
-      tutorLanguages:'EN,AR',
+      courseName:'DataBase',
+      coursePrice:'10$/Hour',
+      professorName:'Youssef Ahmed',
+      professorLanguages:'EN,AR',
+
     },
     {
-      image: 'assets/images/tutors/tutor6.png',
-      tutor:'tutor name',
+      image: 'assets/images/courses/tutor6.png',
+      tutor:'Mohamed Hassan',
       country:'Egypt',
       university:'Mansoura University',
       faculity:'Computer Science',
@@ -102,11 +122,15 @@ export class TutorsComponent {
       students:'15 Student',
       rate:5,
       reviewers:'13',
-      tutorLanguages:'EN,AR',
+      courseName:'DataBase',
+      coursePrice:'10$/Hour',
+      professorName:'Youssef Ahmed',
+      professorLanguages:'EN,AR',
+
     },
     {
-      image: 'assets/images/tutors/tutor7.png',
-      tutor:'tutor name',
+      image: 'assets/images/courses/tutor7.png',
+      tutor:'Mohamed Hassan',
       country:'Egypt',
       university:'Mansoura University',
       faculity:'Computer Science',
@@ -114,11 +138,15 @@ export class TutorsComponent {
       students:'15 Student',
       rate:5,
       reviewers:'13',
-      tutorLanguages:'EN,AR',
+      courseName:'DataBase',
+      coursePrice:'10$/Hour',
+      professorName:'Youssef Ahmed',
+      professorLanguages:'EN,AR',
+
     },
     {
-      image: 'assets/images/tutors/tutor8.png',
-      tutor:'tutor name',
+      image: 'assets/images/courses/tutor8.png',
+      tutor:'Mohamed Hassan',
       country:'Egypt',
       university:'Mansoura University',
       faculity:'Computer Science',
@@ -126,11 +154,15 @@ export class TutorsComponent {
       students:'15 Student',
       rate:5,
       reviewers:'13',
-      tutorLanguages:'EN,AR',
+      courseName:'DataBase',
+      coursePrice:'10$/Hour',
+      professorName:'Youssef Ahmed',
+      professorLanguages:'EN,AR',
+
     },
     {
-      image: 'assets/images/tutors/tutor9.png',
-      tutor:'tutor name',
+      image: 'assets/images/courses/tutor9.png',
+      tutor:'Mohamed Hassan',
       country:'Egypt',
       university:'Mansoura University',
       faculity:'Computer Science',
@@ -138,46 +170,14 @@ export class TutorsComponent {
       students:'15 Student',
       rate:5,
       reviewers:'13',
-      tutorLanguages:'EN,AR',
-    },
-    {
-      image: 'assets/images/tutors/tutor10.png',
-      tutor:'tutor name',
-      country:'Egypt',
-      university:'Mansoura University',
-      faculity:'Computer Science',
-      coursesNumber:'3 courses',
-      students:'15 Student',
-      rate:5,
-      reviewers:'13',
-      tutorLanguages:'EN,AR',
-    },
-    {
-      image: 'assets/images/tutors/tutor11.png',
-      tutor:'tutor name',
-      country:'Egypt',
-      university:'Mansoura University',
-      faculity:'Computer Science',
-      coursesNumber:'3 courses',
-      students:'15 Student',
-      rate:5,
-      reviewers:'13',
-      tutorLanguages:'EN,AR',
-    },
-    {
-      image: 'assets/images/tutors/tutor12.png',
-      tutor:'tutor name',
-      country:'Egypt',
-      university:'Mansoura University',
-      faculity:'Computer Science',
-      coursesNumber:'3 courses',
-      students:'15 Student',
-      rate:5,
-      reviewers:'13',
-      tutorLanguages:'EN,AR',
+      courseName:'DataBase',
+      coursePrice:'10$/Hour',
+      professorName:'Youssef Ahmed',
+      professorLanguages:'EN,AR',
+
     },
 
-  ]
+  ];
   constructor(private fb: FormBuilder) {
     this.myForm = new FormGroup({
       Subject: new FormControl(),
@@ -251,4 +251,6 @@ export class TutorsComponent {
 
 
 }
+
+
 

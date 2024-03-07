@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { CustomMultiselectComponent } from './components/custom-multiselect/custom-multiselect.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { CourseCardComponent } from './components/course-card/course-card.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     UserProfileComponent,
     TutorCardComponent,
     CustomMultiselectComponent,
+    CourseCardComponent,
 
   ],
   imports: [
@@ -36,7 +38,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     NavbarComponent,
     UserProfileComponent,
     TutorCardComponent,
-    CustomMultiselectComponent
+    CustomMultiselectComponent,
+    CourseCardComponent
   ]
 })
 export class SharedModule { }
