@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'user-profile',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent {
+  public  path="assets/images/user/avatar-05.png";
+  User: any;
    notifications = [
     {
       username: 'ahmed saeed',
@@ -34,5 +37,18 @@ export class UserProfileComponent {
     },
 
   ];
+  constructor(private authService: AuthenticationService){}
+  ngOnInit(): void {
+    
+    this.authService.user$.subscribe(user => {
+      this.User = user;
+      console.log("user is ",this.User);
+      
+    });
+    
+  }
 
+  LogOut(){
+   this.authService.logout()
+  }
 }

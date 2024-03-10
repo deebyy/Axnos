@@ -46,7 +46,6 @@ export class CoursesComponent {
       coursePrice:'10$/Hour',
       professorName:'Youssef Ahmed',
       professorLanguages:'EN,AR',
-
     },
     {
       image: 'assets/images/courses/tutor2.png',
@@ -62,7 +61,6 @@ export class CoursesComponent {
       coursePrice:'10$/Hour',
       professorName:'Youssef Ahmed',
       professorLanguages:'EN,AR',
-
     },
     {
       image: 'assets/images/courses/tutor3.png',

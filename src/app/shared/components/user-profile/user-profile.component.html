@@ -23,21 +23,26 @@
   </div>
   <div class="btn-group">
     <div class="profile-img "  type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <img src="assets/images/profile.png" alt="" loading="lazy" alt="" width="50" height="50" class="rounded-circle">
+   
+      <img class="rounded-circle" src="{{ User?.image || path }}"  onerror="this.src=path"
+          width="50" height="50" loading="lazy" alt="">
     </div>
     <ul class="dropdown-menu dropmenu" style="position: absolute !important;">
       <li>
         <div class="dropdown-item d-flex align-items-center">
-          <img src="assets/images/profile.png" alt="" loading="lazy" alt=""
-               width="50" height="50" class="rounded-circle">
-          <span class="user-name">Abdelrahman Kosba</span>
+
+               <img class="rounded-circle" src="{{User?.image|| path }}"  onerror="this.src=path"
+               width="50" height="50"
+                 loading="lazy" alt="">
+
+          <span class="user-name">{{User?.firstName}} {{User?.lastName}}</span>
         </div>
       </li>
       <li class="d-flex justify-content-center mt-2">
         <a class="dropdown-item dashbord" href="#">my dashbord </a>
       </li>
       <li class="d-flex justify-content-center mt-2 mb-3">
-        <a class="dropdown-item Sign-out" href="#">Sign out</a>
+        <a class="dropdown-item Sign-out " (click)="LogOut()">Sign out</a>
       </li>
     </ul>
   </div>

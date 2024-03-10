@@ -8,7 +8,7 @@
         </div>
         <div class="sign-up">
             <h1>Create Account</h1>
-            <button class="sginup-google">
+            <button class="sginup-google" (click)="loginWithGoogle()">
               <img src="assets/images/auth/google.png" alt="">
               <span>Sign Up with Google</span>
             </button>
@@ -16,25 +16,30 @@
               <p class="OR mt-4 text-center ">OR</p>
             </div>
             <div class="signUp-form">
-              <form (ngSubmit)="submitForm()" #form="ngForm" class="d-flex flex-column">
+
+              <form [formGroup]="registrationForm" (submit)="submitForm()" class="d-flex flex-column">
                 <mat-form-field class="form-group">
-                  <mat-label>Full Name</mat-label>
-                  <input matInput id="fullName" name="fullName" ngModel required>
+                  <mat-label>First Name</mat-label>
+                  <input matInput formControlName="firstName" required>
+                </mat-form-field>
+                <mat-form-field class="form-group">
+                  <mat-label>Last Name</mat-label>
+                  <input matInput formControlName="lastName" required>
                 </mat-form-field>
 
                 <mat-form-field class="form-group">
-                  <mat-label>Email Adress</mat-label>
-                  <input matInput type="email" id="email" name="email" ngModel required>
+                  <mat-label>Email Address</mat-label>
+                  <input matInput type="email" formControlName="email" required>
                 </mat-form-field>
 
                 <mat-form-field class="form-group">
                   <mat-label>Password</mat-label>
-                  <input matInput type="password" id="password" name="password" [type]="hide ? 'password' : 'text'" ngModel required>
+                  <input matInput type="password" formControlName="password" [type]="hide ? 'password' : 'text'" required>
                   <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
                     <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
                   </button>
                 </mat-form-field>
-                <button mat-raised-button class="submit-btn" type="submit" [disabled]="!form.valid">Create Account</button>
+                <button mat-raised-button class="submit-btn" type="submit" [disabled]="!registrationForm.valid">Create Account</button>
                 <div class="mt-2 haveAcount">
                   <span>Already have an account?</span>
                   <a [routerLink]="['', 'auth', 'Login']" >Login</a>

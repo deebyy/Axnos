@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,17 +8,43 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
-  isLogged:boolean = true;
+
+  islogin: boolean = false;
+
   isLoginActive: boolean = true;
+
   isSignupActive: boolean = false;
-  constructor() {
+
+  userid = localStorage.getItem("userId")
+
+  constructor(private authService: AuthenticationService) {
+
     const storedLoginActive = localStorage.getItem('isLoginActive');
+
     this.isLoginActive = storedLoginActive === 'true';
+
     const storedSignupActive = localStorage.getItem('isSignupActive');
+
     this.isSignupActive = storedSignupActive === 'true';
+
+    // check user is logged or not 
+    this.authService.userToken.subscribe((isLogged) => {
+
+      if (isLogged != null) {
+
+        this.islogin = true;
+
+      } else {
+
+        this.islogin = false;
+      }
+    });
+  
+    
   }
 
   ngOnInit(): void {
+
   }
   toggleActiveButton(button: string) {
     if (button === 'login') {

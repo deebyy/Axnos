@@ -28,7 +28,7 @@ export class GenericService {
 
   // Get All Data Of Apis
   getAll(apiRoute:string):Observable<ApiresonseVM>{
-    return this._http.get<ApiresonseVM>(`${environment.baseUrl}${apiRoute}`)
+    return this._http.get<ApiresonseVM>(`${environment.apiUrl}${apiRoute}`)
     .pipe(
       retry(3),
       catchError(this.handleError)
@@ -36,14 +36,14 @@ export class GenericService {
   }
   // Get Data By Id
   getById(id:number,apiRoute:string):Observable<ApiresonseVM>{
-    return this._http.get<ApiresonseVM>(`${environment.baseUrl}${apiRoute}/${id}`,)
+    return this._http.get<ApiresonseVM>(`${environment.apiUrl}${apiRoute}/${id}`,)
     .pipe(
       retry(3),
       catchError(this.handleError)
     )
   }
   getByIdYear(id:number,apiRoute:string,year:any):Observable<ApiresonseVM>{
-    return this._http.get<ApiresonseVM>(`${environment.baseUrl}${apiRoute}/${id}/${year}`,)
+    return this._http.get<ApiresonseVM>(`${environment.apiUrl}${apiRoute}/${id}/${year}`,)
     .pipe(
       retry(3),
       catchError(this.handleError)
@@ -51,7 +51,7 @@ export class GenericService {
   }
   // Get Data By Id
   getByIdQ(apiRoute:string):Observable<ApiresonseVM>{
-    return this._http.get<ApiresonseVM>(`${environment.baseUrl}${apiRoute}`,)
+    return this._http.get<ApiresonseVM>(`${environment.apiUrl}${apiRoute}`,)
     .pipe(
       retry(3),
       catchError(this.handleError)
@@ -60,7 +60,7 @@ export class GenericService {
 
   // Add Data To Api
   post(newObject:any,apiRoute:string):Observable<ApiresonseVM>{
-    return this._http.post<ApiresonseVM>(`${environment.baseUrl}${apiRoute}` , newObject,)
+    return this._http.post<ApiresonseVM>(`${environment.apiUrl}${apiRoute}` , newObject,)
     .pipe(
       retry(3),
       catchError(this.handleError)
@@ -69,7 +69,7 @@ export class GenericService {
 
   // Update Data By Id
   put(newObject:any,apiRoute:string):Observable<ApiresonseVM>{
-    return this._http.put<ApiresonseVM>(`${environment.baseUrl}${apiRoute}` , newObject,)
+    return this._http.put<ApiresonseVM>(`${environment.apiUrl}${apiRoute}` , newObject,)
     .pipe(
       retry(3),
       catchError(this.handleError)
@@ -78,7 +78,7 @@ export class GenericService {
 
   // Delete Data From Api By Id
   delete(id:number,apiRoute:string):Observable<ApiresonseVM>{
-    return this._http.delete<ApiresonseVM>(`${environment.baseUrl}${apiRoute}/${id}`,)
+    return this._http.delete<ApiresonseVM>(`${environment.apiUrl}${apiRoute}/${id}`,)
     .pipe(
       retry(3),
       catchError(this.handleError)
@@ -88,7 +88,7 @@ export class GenericService {
 
   // Delete file From Api By Id
   deleteFileByName(apiRoute:string):Observable<ApiresonseVM>{
-    return this._http.delete<ApiresonseVM>(`${environment.baseUrl}${apiRoute}`,)
+    return this._http.delete<ApiresonseVM>(`${environment.apiUrl}${apiRoute}`,)
     .pipe(
       retry(3),
       catchError(this.handleError)
