@@ -1,0 +1,96 @@
+
+<div class="container" >
+    <div class="row">
+          <div class="d-flex justify-content-center">
+            <div class="user-image">
+              <span class="number">2</span>
+              <img src="assets/images/tutors/tutor1.png" alt="">
+            </div>
+          </div>
+          <div class="user-details mt-4">
+            <p class="name text-center">Hello {{User.firstName}}</p>
+            <p class="email text-center">{{User.email}}</p>
+          </div>
+          <div class="menu mt-5 mb-4">
+              <div class="row">
+                <h1 class="Activity" *ngIf="isTutor">Tutor Activity</h1>
+                      <!-- dash -->
+                      <div class="col-sm-6 col-12 text-center  p-0" >
+                        <div class="box"
+                            style="border-right: 0;"
+                            [routerLink]="['', 'dashboard', 'dash']"
+                            [routerLinkActiveOptions]="{exact: true}"
+                            routerLinkActive="active">
+
+                                <img src="assets/images/dash/dash.svg" alt="">
+                                <p class="box-name mt-3">Dashboard</p>
+                                <span class="status"></span>
+                        </div>
+                      </div>
+                      <!-- calenders -->
+                      <div class="col-sm-6 col-12 text-center  p-0" *ngIf="isTutor">
+                        <div class="box"  [routerLink]="['', 'dashboard', 'calenders']"  routerLinkActive="active" >
+                                <img src="assets/images/dash/calender.png" alt="">
+                                <p class="box-name mt-3">Calendars</p>
+                                <span class="status"></span>
+                        </div>
+                      </div>
+                      <!-- subjects -->
+                      <div class="col-sm-6 col-12 text-center p-0" *ngIf="isTutor">
+                        <div class="box" [routerLink]="['', 'dashboard', 'subjects']"  routerLinkActive="active">
+                                <img src="assets/images/dash/bookings.svg" alt="">
+                                <p class="box-name mt-3"> My Subjects</p>
+                                <span class="status"></span>
+                        </div>
+                      </div>
+                      <!-- tutor-invoice -->
+                      <div class="col-sm-6 col-12 text-center p-0" *ngIf="isTutor">
+                        <div class="box" [routerLink]="['', 'dashboard', 'tutor-invoice']"  routerLinkActive="active">
+                                <img src="assets/images/dash/invoice.png" alt="">
+                                <p class="box-name mt-3">Invoice</p>
+                                <span class="status"></span>
+                        </div>
+                      </div>
+                       <!-- student-booking -->
+                      <div class="col-sm-6 col-12 text-center p-0" *ngIf="!isTutor">
+                        <div class="box" [routerLink]="['', 'dashboard', 'bookings']"  routerLinkActive="active">
+                                <img src="assets/images/dash/bookings.svg" alt="">
+                                <p class="box-name mt-3"> My bookings</p>
+                                <span class="status"></span>
+                        </div>
+                      </div>
+                       <!-- student-invoice -->
+                      <div class="col-sm-6 col-12 text-center p-0" *ngIf="!isTutor">
+                        <div class="box" [routerLink]="['', 'dashboard', 'invoice']"  routerLinkActive="active">
+                                <img src="assets/images/dash/invoice.png" alt="">
+                                <p class="box-name mt-3">Invoice</p>
+                                <span class="status"></span>
+                        </div>
+                      </div>
+              </div>
+          </div>
+
+
+
+          <div class="menu mt-5 mb-4" *ngIf="isTutor">
+            <div class="row">
+              <h1 class="Activity" *ngIf="isTutor">Student Activity</h1>
+
+                    <div class="col-sm-6 col-12 text-center p-0">
+                      <div class="box" [routerLink]="['', 'dashboard', 'bookings']"  routerLinkActive="active">
+                              <img src="assets/images/dash/bookings.svg" alt="">
+                              <p class="box-name mt-3"> My bookings</p>
+                              <span class="status"></span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-12 text-center p-0">
+                      <div class="box" [routerLink]="['', 'dashboard', 'invoice']"  routerLinkActive="active">
+                              <img src="assets/images/dash/invoice.png" alt="">
+                              <p class="box-name mt-3">Invoice</p>
+                              <span class="status"></span>
+                      </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

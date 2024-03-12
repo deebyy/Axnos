@@ -1,0 +1,136 @@
+<div class="container">
+  <form >
+      <div class="row">
+          <div class="col-md-4 col-sm-6 col-12">
+            <div class="mb-4">
+              <label for="Firstname" class="form-label  lable">First Name</label>
+              <input type="text" class="form-control" id="Firstname" placeholder="Enter First Name">
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 col-12">
+            <div class="mb-4">
+              <label for="Lasttname" class="form-label  lable">Last Name</label>
+              <input type="text" class="form-control" id="Lasttname" placeholder="Enter First Name">
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 col-12" *ngIf="isTutor">
+            <div class="mb-4">
+              <label for="gender" class="form-label  lable">gender</label>
+              <select class="form-select" aria-label="Default select example">
+                <option value="1" selected>Male</option>
+                <option value="2">Fmale</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-12">
+            <div class="mb-4">
+              <label for="University" class="form-label  lable">University</label>
+              <select class="form-select" aria-label="Default select example">
+                <option value="1" selected>Mansoura</option>
+                <option value="2">option2</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 col-12">
+            <div class="mb-4">
+              <label for="Country" class="form-label  lable">Country</label>
+              <select class="form-select" aria-label="Default select example">
+                <option value="1" selected>Egypt</option>
+                <option value="2">option2</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 col-12">
+            <div class="mb-4">
+              <label for="Faculity" class="form-label  lable">Faculity</label>
+              <select class="form-select" aria-label="Default select example">
+                <option value="1" selected>Computer Science</option>
+                <option value="2">option2</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-12">
+            <div class="mb-4">
+              <label for="adress" class="form-label  lable">Adress</label>
+              <input type="text" class="form-control" id="adress" placeholder="45141 street name">
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 col-12">
+            <div class="mb-4">
+              <label for="State" class="form-label  lable">State</label>
+              <select class="form-select" aria-label="Default select example">
+                <option value="1" selected>Bozorgi</option>
+                <option value="2">option2</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 col-12">
+            <div class="mb-4">
+              <label for="City" class="form-label  lable">City</label>
+              <select class="form-select" aria-label="Default select example">
+                <option value="1" selected>Mehrab</option>
+                <option value="2">option2</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-12">
+            <div class="mb-4">
+              <label for="email" class="form-label lable">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="abdelrahman@gmail.com">
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-12" *ngIf="isTutor">
+            <div class="mb-4">
+              <label for="datepicker" class="form-label lable">Date of birth</label>
+              <input type="date" id="datepicker" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 col-12">
+            <div class="mb-4">
+              <label for="phone" class="form-label lable">Mobile Number</label>
+              <input type="number" id="phone" class="form-control" placeholder="Enter Mobile Number">
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-12" *ngIf="isTutor">
+            <div class="mb-4">
+              <label for="Languages" class="form-label  lable">Languages</label>
+              <select class="form-select" aria-label="Default select example">
+                <option value="1" selected>Arabic</option>
+                <option value="2">English</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12" *ngIf="isTutor">
+            <div class="row">
+              <div class="col-md-8 col-12">
+                <div class="mb-4">
+                  <label for="Bio" class="form-label lable">Bio</label>
+                  <textarea class="form-control" id="Bio" rows="4" placeholder="Enter Your Bio here">As a Computer Engineering student at the University of Duisburg-Essen, I am deeply immersed in the intricacies of software development and system design. My academic pursuits are complemented by a passion for teaching, where I assist fellow students in understanding complex engineering concepts. With a strong grasp of programming, data structures, and digital systems, I provide peer-to-peer .......  </textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 col-12" *ngIf="isTutor">
+            <div class="mb-4">
+              <span class="lable TimeSlots">Available Time Slots</span>
+                <button class="search mb-4 mt-3" type="button">
+                  + Add My Time Slot
+                </button>
+            </div>
+          </div>
+          <div class="col-12">
+              <div class="actions d-flex justify-content-center">
+                <button class="cancel">Cancel</button>
+                <button class="complete">Complete</button>
+              </div>
+          </div>
+      </div>
+
+  </form>
+</div>
+

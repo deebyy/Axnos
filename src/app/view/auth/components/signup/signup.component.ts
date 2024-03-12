@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SignupCredentials } from 'src/app/core/interfaces/user';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +14,12 @@ import { Router } from '@angular/router';
 export class SignupComponent {
   hide = true;
   registrationForm!: FormGroup;
-  constructor(private fb: FormBuilder, private http: HttpClient , private router:Router,  private socialAuthService: SocialAuthService,){
+  constructor( private fb: FormBuilder,
+               private http: HttpClient ,
+               private router:Router,
+               private socialAuthService: SocialAuthService,
+               private authService :AuthenticationService
+               ){
 }
   ngOnInit(): void {
     this.registrationForm = this.fb.group({
@@ -23,18 +30,29 @@ export class SignupComponent {
     });
 
   }
-  submitForm() {
-    console.log( this.registrationForm.value);
+  // submitForm() {
+  //   console.log( this.registrationForm.value);
 
+  //   if (this.registrationForm.valid) {
+  //     this.http.post('http://localhost:3000/SignupUsers', this.registrationForm.value).subscribe(response => {
+  //       console.log('Form submitted successfully!', response);
+  //       alert("Form submitted successfully!")
+  //       this.router.navigate(['/auth/Login']);
+  //       this.registrationForm.reset();
+  //     }, error => {
+  //       console.error('Error occurred while submitting form:', error);
+  //     });
+  //   }
+  // }
+  submitForm() {
     if (this.registrationForm.valid) {
-      this.http.post('http://localhost:3000/SignupUsers', this.registrationForm.value).subscribe(response => {
-        console.log('Form submitted successfully!', response);
-        alert("Form submitted successfully!")
-        this.router.navigate(['/auth/Login']);
-        this.registrationForm.reset();
-      }, error => {
-        console.error('Error occurred while submitting form:', error);
-      });
+      const credentials: SignupCredentials = {
+        firstName: this.registrationForm.value.firstName,
+        lastName: this.registrationForm.value.lastName,
+        email: this.registrationForm.value.email,
+        password: this.registrationForm.value.password
+      };
+      this.authService.signup(credentials);
     }
   }
   togglePasswordVisibility(): void {

@@ -12,7 +12,7 @@ export class GenericService {
   constructor(private _http:HttpClient) {}
 
   // Handle request
-  private handleError(error: HttpErrorResponse) {   
+  private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error);
@@ -35,7 +35,7 @@ export class GenericService {
     )
   }
   // Get Data By Id
-  getById(id:number,apiRoute:string):Observable<ApiresonseVM>{
+  getById(id:any,apiRoute:string):Observable<ApiresonseVM>{
     return this._http.get<ApiresonseVM>(`${environment.apiUrl}${apiRoute}/${id}`,)
     .pipe(
       retry(3),

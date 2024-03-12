@@ -5,8 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { User } from '../interfaces/user';
+import { SignupCredentials, User } from '../interfaces/user';
 import Swal from 'sweetalert2'
+import { GenericService } from './generic.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -17,7 +18,9 @@ export class AuthenticationService {
     public userID = localStorage.getItem("userId")
 
     constructor(private http: HttpClient , private router:Router ,
-      private route: ActivatedRoute, private tostar:ToastrService) {
+      private route: ActivatedRoute, private tostar:ToastrService,
+      private generalSer:GenericService
+      ) {
 
       if (localStorage.getItem('userId') != null) {
         this.getUserById(this.userID).subscribe(user => {
@@ -27,25 +30,25 @@ export class AuthenticationService {
         });
         this.savecurrentuserID();
       }
-  
+
     }
     savecurrentuserID() {
       let id: any = localStorage.getItem('userId');
       this.userToken.next(id);
     }
- 
+
     login(email: string, password: string): void {
       let id = localStorage.getItem("userId")
      if(!id)
       this.http.get<any>(`${environment.apiUrl}/SignupUsers`).subscribe({
-        
+
         next: (res) => {
-          
+
           const user = res.find((a: any) => {
             return a.email === email && a.password === password;
           });
           if (user) {
-           
+
             Swal.fire({
               title: "Good job!",
               text: "You logged in successfully",
@@ -68,25 +71,67 @@ export class AuthenticationService {
           }
         },
         error: (error) => {
-          
+
           console.error('Error occurred while submitting form:', error);
         }
       });
     }
+    signup(credentials: SignupCredentials): void {
+      this.http.post<any>(`${environment.apiUrl}/SignupUsers`, credentials).subscribe({
+        next: (res) => {
+          Swal.fire({
+            title: "Success!",
+            text: "You have successfully signed up",
+            icon: "success"
+          }).then(() => {
+            this.router.navigate(['/auth/Login']);
+          });
+        },
+        error: (error) => {
+          console.error('Error occurred while submitting signup form:', error);
+        }
+      });
+    }
+
+
+
+
 
     logout(): void {
       window.location.reload()
       localStorage.removeItem('userId');
+      localStorage.removeItem('isTutor');
       localStorage.setItem('isLoginActive', JSON.stringify(true));
       localStorage.setItem('isSignupActive', JSON.stringify(false));
-      this.userToken.next(null); 
-      const currentUrl = this.router.url;
-      if (currentUrl.startsWith('/courses') || currentUrl.startsWith('/tutors')  ) {
-        this.router.navigate(['/auth/Login']);
-      }
+      this.userToken.next(null);
+
     }
+
+
+
+
+
   private getUserById(userId: any): Observable<any> {
       return this.http.get<User>(`${environment.apiUrl}/SignupUsers/${userId}`);
     }
-  
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const currentUrl = this.router.url;
+      // if (currentUrl.startsWith('/courses') || currentUrl.startsWith('/tutors')  ) {
+      //   this.router.navigate(['/auth/Login']);
+      // }

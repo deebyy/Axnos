@@ -39,13 +39,12 @@ export class UserProfileComponent {
   ];
   constructor(private authService: AuthenticationService){}
   ngOnInit(): void {
-    
+
     this.authService.user$.subscribe(user => {
       this.User = user;
       console.log("user is ",this.User);
-      
     });
-    
+
   }
 
   LogOut(){

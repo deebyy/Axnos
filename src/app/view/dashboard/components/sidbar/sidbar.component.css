@@ -1,0 +1,95 @@
+.container {
+  margin-top: 40px;
+}
+
+.user-image {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.user-image::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+  border: 2px solid #3361FF;
+  border-right: 2px solid #DADEE6;
+  border-radius: 50%;
+  transform: rotate(-30deg);
+  -webkit-transform: rotate(-30deg);
+  -moz-transform: rotate(-30deg);
+  -ms-transform: rotate(-30deg);
+  -o-transform: rotate(-30deg);
+}
+.user-image .number {
+  position: absolute;
+  right: -10px;
+  width: 25px;
+  height: 25px;
+  background: #3361FF;
+  color: #FFFFFF;
+  z-index: 3;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 2;
+}
+.user-image img {
+  width: 85%;
+  height: 85%;
+  border-radius: 50%;
+  z-index: 2;
+  position: absolute;
+}
+
+.user-details .name {
+  color: #6B7A99;
+  font-size: 13px;
+  font-weight: 600;
+}
+.user-details .email {
+  color: #ADB8CC;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.menu .box {
+  cursor: pointer;
+  position: relative;
+  border: 0.1px solid #e1e4e9;
+  padding: 25px 0;
+  background-color: #F7F8FA;
+}
+.menu .box img {
+  width: 25px;
+  height: 25px;
+}
+.menu .box .box-name {
+  color: #ADB8CC;
+  margin-bottom: 0;
+}
+.menu .box.active {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  z-index: 1;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+}
+.menu .box.active .box-name {
+  color: #0C0531;
+}
+.menu .box.active .status {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: red;
+  border-radius: 50%;
+  top: 20px;
+  right: 20px;
+}/*# sourceMappingURL=sidbar.component.css.map */

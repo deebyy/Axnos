@@ -1,0 +1,60 @@
+.dashboard {
+  padding-top: 45px;
+  background-color: #F7F8FA;
+}
+.dashboard .head {
+  padding: 0 120px;
+}
+.dashboard .head .usertype {
+  color: #4D5E80;
+  font-size: 15px;
+  font-weight: 600;
+}
+.dashboard .head .join-tutor {
+  cursor: pointer;
+  background-image: linear-gradient(to right, rgb(247, 18, 219), rgb(73, 56, 207));
+  font-size: 15px;
+  font-weight: 600;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media (max-width: 600px) {
+  .dashboard .head {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+}
+
+::ng-deep .swal2-html-container {
+  text-align: start !important;
+}
+
+::ng-deep.title {
+  color: 54595E;
+  font-size: 17px;
+}
+
+::ng-deep.subtitle {
+  color: #54595E;
+  font-size: 12px;
+}
+
+::ng-deep.swal2-actions {
+  justify-content: end !important;
+  width: 100% !important;
+  padding-right: 20px !important;
+  flex-direction: row-reverse;
+}
+
+::ng-deep.swal2-confirm {
+  background-color: #4F4F4F !important;
+  color: #F5F5F5 !important;
+  box-shadow: none !important;
+}
+
+::ng-deep.swal2-cancel {
+  background-color: white !important;
+  color: #4F4F4F !important;
+  border: 0.3px solid #4F4F4F !important;
+}/*# sourceMappingURL=dashboard.component.css.map */

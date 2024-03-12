@@ -24,11 +24,16 @@ const routes: Routes = [
       import('./view/tutors/tutors.module').then((m) => m.TutorsModule),
   },
   {
-
     path: 'courses',
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('./view/courses/courses.module').then((m) => m.CoursesModule),
+  },
+  {
+    canActivate: [AuthGuard],
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./view/dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
 ];
 

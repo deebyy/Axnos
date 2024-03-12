@@ -28,6 +28,7 @@
 }
 .user-profile .Sign-out {
   color: #F01919;
+  cursor: pointer;
 }
 @media (min-width: 991px) {
   .user-profile {
