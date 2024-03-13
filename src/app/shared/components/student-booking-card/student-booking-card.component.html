@@ -1,0 +1,110 @@
+
+
+<div class="card" >
+  <div class="card-body">
+      <div class="tutor-info d-flex align-items-center">
+          <div class="tutor-img">
+            <img [src]="bookedCourse.image" alt="">
+          </div>
+          <div class="tutor-details">
+            <h5>{{bookedCourse.tutor}}</h5>
+            <p>{{bookedCourse.country}}</p>
+            <p>{{bookedCourse.university}}</p>
+            <p>{{bookedCourse.faculity}}</p>
+          </div>
+      </div>
+      <div class="course-info mt-1">
+          <div class="review">
+            <div class="">
+              <div class="record">
+                <img src="assets/images/courses/ved.png" alt="">
+                <span>{{bookedCourse.coursesNumber}}</span>
+              </div>
+              <div class="rating mt-1">
+                <rating class="rate" [(ngModel)]="bookedCourse.rate" [max]="bookedCourse.rate"  [readonly]="true" ></rating>
+                <span>{{bookedCourse.rate}} Rating</span>
+              </div>
+              <div class="student">
+                <i class='bx bxs-user'></i>
+                <span>{{bookedCourse.students}}</span>
+              </div>
+            </div>
+          </div>
+          <div class=" d-flex justify-content-center  mt-5">
+            <div class="course-details">
+              <p class="course-name">{{bookedCourse.courseName}}</p>
+              <p class="course-price">{{bookedCourse.coursePrice}}</p>
+              <p class="professor-name">professor: {{bookedCourse.professorName}}</p>
+              <p class="professor-languages">Languages: {{bookedCourse.professorLanguages}}</p>
+            </div>
+          </div>
+
+          <div class="session mt-3">
+            <p class="session-title">  Your session time: </p>
+            <p class="session-time mb-0">
+              <span>{{bookedCourse.date}}</span>
+              <span>From</span>
+              <span>{{bookedCourse.from}}</span>
+              <span>to</span>
+              <span>{{bookedCourse.to}}</span>
+            </p>
+            <button class="update-time"
+                    [ngClass]="{'disabledUpdateTime': isSessionInPast(bookedCourse.date, bookedCourse.from)}"
+                    [disabled]="isSessionInPast(bookedCourse.date, bookedCourse.from)" >
+              Update the time
+            </button>
+
+          </div>
+          <div class="d-flex justify-content-center mt-4">
+
+              <div class="action-btns">
+                    <button class="Cancel mb-3"
+                          [ngClass]="{'cancelDiabledBtn': isSessionInPast(bookedCourse.date, bookedCourse.from)}"
+                          [disabled]="isSessionInPast(bookedCourse.date, bookedCourse.from)">Cancel my session</button>
+                            <!-- make button disabled if date in past  -->
+
+                    <button class="feedback"  data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            [ngClass]="{'feedbackDiabledBtn': isSessionInFuture(bookedCourse.date, bookedCourse.from)}"
+                            [disabled]="isSessionInFuture(bookedCourse.date, bookedCourse.from)">Write a feedback</button>
+                       <!-- make button disabled if date in future  -->
+
+
+                       <div class="modal feedBackModal fade"  #exampleModal id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header justify-content-center border-bottom-0 pb-0">
+                                  <h1>Feedback Form</h1>
+                            </div>
+                          <div class="ratingForm d-flex justify-content-center">
+                                <form [formGroup]="feedbackForm" (submit)="onSubmit()" >
+                                      <div class="modal-body">
+                                          <div class="mb-4">
+                                            <label for="address2" class="form-label scaling">Share your experience in scaling</label>
+                                            <div class="feedback-rating" >
+
+                                                <rating class="rate" formControlName="rating" [max]="5"></rating>
+                                              </div>
+                                          </div>
+                                          <div class="mb-4">
+                                            <textarea class="form-control comment" formControlName="comment" id="comment" rows="4" placeholder="Add your comments..."></textarea>
+                                          </div>
+                                      </div>
+
+                                      <div class="modal-footer border-top-0 d-flex ">
+                                        <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn save-btn">SUBMIT</button>
+                                      </div>
+                              </form>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+               </div>
+          </div>
+      </div>
+
+  </div>
+</div>
+
+
+

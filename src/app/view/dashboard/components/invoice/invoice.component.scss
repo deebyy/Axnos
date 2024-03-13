@@ -1,0 +1,44 @@
+@import '../../../../../assets/scss/colors';
+
+
+::ng-deep.mat-mdc-paginator-range-label {
+  margin: 0 27px 0 24px !important;
+}
+::ng-deep.mat-mdc-paginator-container {
+  justify-content: center !important;
+}
+
+::ng-deep.mat-mdc-header-cell{
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+::ng-deep.mat-mdc-cell{
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+.withdraw-details{
+  .totla-balanc{
+    h1{
+      color: #FF9104;
+      font-size:14px
+    }
+  }
+  .info{
+    background: #F7F8FA;
+    padding: 25px;
+    .title{
+      color: $black-color;
+      font-weight: 500;
+        font-size: 13px;
+    }
+    .value{
+      color: #FF9104;
+    }
+    .free{
+      span{
+        color: $red-color;
+        font-size:11px;
+      }
+    }
+  }
+}

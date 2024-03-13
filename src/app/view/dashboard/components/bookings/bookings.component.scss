@@ -1,0 +1,13 @@
+@import '../../../../../assets/scss/colors';
+
+
+.booking-header{
+  .head-title{
+    font-weight: 600;
+  }
+  hr{
+    border-top: 3px solid $orange-color;
+    opacity: 1;
+  }
+
+}

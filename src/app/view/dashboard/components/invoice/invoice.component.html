@@ -1,1 +1,51 @@
-<p>invoice works!</p>
+
+<div class="withdraw-details">
+  <div class="totla-balanc">
+      <h1 class="text-center">My total Bookings</h1>
+  </div>
+
+</div>
+
+
+<div class="mat-elevation-z8 table-responsive">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Booked Dated Column -->
+    <ng-container matColumnDef="BookedDated">
+      <th mat-header-cell *matHeaderCellDef style="min-width: 140px;"> Booked Dated </th>
+      <td mat-cell *matCellDef="let element"> {{element.BookedDated}} </td>
+    </ng-container>
+
+    <!-- Subject Column -->
+    <ng-container matColumnDef="Subject">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Subject </th>
+      <td mat-cell *matCellDef="let element" class="text-center"> {{element.Subject}} </td>
+    </ng-container>
+
+    <!-- Course Date Column -->
+    <ng-container matColumnDef="CourseDate">
+      <th mat-header-cell *matHeaderCellDef class="text-center"  style="min-width: 190px;" > Course Date </th>
+      <td mat-cell *matCellDef="let element" class="text-center"> {{element.CourseDate}} </td>
+    </ng-container>
+
+     <!-- Price Column -->
+     <ng-container matColumnDef="Price">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Price </th>
+      <td mat-cell *matCellDef="let element" class="text-center"> {{element.Price}} </td>
+    </ng-container>
+
+       <!-- status Column -->
+       <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef class="text-center"> status </th>
+        <td mat-cell *matCellDef="let element" class="text-center"> {{element.status}} </td>
+      </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

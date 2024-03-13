@@ -10,6 +10,10 @@ import { InvoiceComponent } from './components/invoice/invoice.component';
 import { SubjectsComponent } from './components/subjects/subjects.component';
 import { CalendersComponent } from './components/calenders/calenders.component';
 import { TutorInvoceComponent } from './components/tutor-invoce/tutor-invoce.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -25,7 +29,12 @@ import { TutorInvoceComponent } from './components/tutor-invoce/tutor-invoce.com
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    SharedModule
   ]
 })
 export class DashboardModule { }

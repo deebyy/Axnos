@@ -15,6 +15,7 @@ import { RatingModule } from 'ngx-bootstrap/rating';
 import { CustomMultiselectComponent } from './components/custom-multiselect/custom-multiselect.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CourseCardComponent } from './components/course-card/course-card.component';
+import { StudentBookingCardComponent } from './components/student-booking-card/student-booking-card.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CourseCardComponent } from './components/course-card/course-card.compon
     TutorCardComponent,
     CustomMultiselectComponent,
     CourseCardComponent,
+    StudentBookingCardComponent,
 
   ],
   imports: [
@@ -39,7 +41,8 @@ import { CourseCardComponent } from './components/course-card/course-card.compon
     UserProfileComponent,
     TutorCardComponent,
     CustomMultiselectComponent,
-    CourseCardComponent
+    CourseCardComponent,
+    StudentBookingCardComponent
   ]
 })
 export class SharedModule { }

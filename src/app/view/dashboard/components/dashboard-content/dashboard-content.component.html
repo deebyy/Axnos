@@ -105,6 +105,15 @@
               </select>
             </div>
           </div>
+          <div class="col-md-4 col-sm-6 col-12" *ngIf="isTutor">
+            <div class="mb-4">
+              <label for="Currency" class="form-label  lable">Currency</label>
+              <select class="form-select" aria-label="Default select example">
+                <!-- <option *ngFor="let currencyCode of getObjectKeys(currency)" [value]="currencyCode">{{ currency[currencyCode] }}</option> -->
+                <option *ngFor="let entry of currencyEntries" [value]="entry[0]">{{ entry[0] }}</option>
+              </select>
+            </div>
+          </div>
           <div class="col-12" *ngIf="isTutor">
             <div class="row">
               <div class="col-md-8 col-12">
@@ -125,8 +134,7 @@
           </div>
           <div class="col-12">
               <div class="actions d-flex justify-content-center">
-                <button class="cancel">Cancel</button>
-                <button class="complete">Complete</button>
+                <button class="complete">Save</button>
               </div>
           </div>
       </div>

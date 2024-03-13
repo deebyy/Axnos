@@ -26,6 +26,18 @@
     padding-left: 1.5rem;
   }
 }
+
+
+.large{
+  background: #fff;
+  padding: 20px 30px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
 }
 ::ng-deep .swal2-html-container {
   text-align: start !important;
