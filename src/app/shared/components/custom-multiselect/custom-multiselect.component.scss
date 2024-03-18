@@ -1,0 +1,21 @@
+@import '../../../../assets/scss/colors';
+
+.label{
+  background: $wight-color;
+  padding: 0 7px;
+  z-index: 999;
+  font-size: 15px;
+}
+::ng-deep.p-dropdown ,::ng-deep.p-calendar{
+  width: 100% !important;
+}
+::ng-deep .p-dropdown .p-dropdown-label.p-placeholder ,::ng-deep .p-calendar .p-inputtext::placeholder {
+  color: $black-color !important;
+  font-size: 12px;
+  font-weight: 500;
+}
+@media (max-width:500px) {
+  ::ng-deep .p-dropdown .p-dropdown-label.p-placeholder ,::ng-deep .p-calendar .p-inputtext::placeholder {
+    font-size: 14px;
+  }
+}

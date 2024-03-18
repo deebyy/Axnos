@@ -8,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { SharedModule } from "../../shared/shared.module";
 import { DropdownModule } from 'primeng/dropdown';
-
 @NgModule({
   declarations: [
     CoursesComponent

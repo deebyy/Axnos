@@ -2,72 +2,165 @@
   <div class="container mt-2">
 
     <div class="row subjects">
-        <div class="create-subject d-flex ">
-          <button class="create-btn mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">create new subject</button>
+      <div class="create-subject d-flex ">
+        <button class="create-btn mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">create new
+          subject</button>
 
 
-         <div class="modal fade" #exampleModal id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" #exampleModal id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-bottom-0 pb-0">
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form [formGroup]="subjectForm" (submit)="addSubject()">
+                <div class="modal-body">
+
+                  <h5 class="modal-title">Create a New Subject </h5>
+
+                  <div class="mb-4">
+                    <input type="text" class="form-control" formControlName="courseName" id="SubjectName"
+                      placeholder=" Subject Name">
+                  </div>
+                  <div class="mb-4">
+                    <input type="text" class="form-control" formControlName="professorName" id="ProfessorName"
+                      placeholder=" Professor Name">
+                  </div>
+                  <div class="mb-4">
+                    <select class="form-select" formControlName="coursePrice" aria-label="Default select example">
+                      <option disabled selected value="Price/Hour">Price/Hour</option>
+                      <option value="10$">10$</option>
+                      <option value="20$">20$</option>
+                      <option value="30$">30$</option>
+                    </select>
+                  </div>
+
+
+                </div>
+                <div class="modal-footer border-top-0 d-flex justify-content-center">
+                  <button type="submit" class="edit"
+                    [ngStyle]="{'background-color': subjectForm.invalid || subjectForm.get('coursePrice')?.value.trim() === 'Price/Hour' ? '#d3cbcb' : '#29A354'}"
+                    [disabled]="subjectForm.invalid || subjectForm.get('coursePrice')?.value.trim() === 'Price/Hour'">Save
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class=" col-md-6 col-12" *ngFor="let subject of subjects">
+        <div class="subject-details">
+          <div class="text-end edit-parent">
+            <img src="assets/images/edit.png" width="15" alt="" (click)="getbyid(subject.id)" data-bs-toggle="modal"
+              data-bs-target="#exampleModal2">
+          </div>
+
+          <div class="modal fade" #exampleModal2 id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header border-bottom-0 pb-0">
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form  [formGroup]="subjectForm" (submit)="addSubject()" >
-                    <div class="modal-body">
-                              <div class="mb-4">
-                                <input type="text" class="form-control" formControlName="courseName" id="SubjectName" placeholder=" Subject Name">
-                              </div>
-                              <div class="mb-4">
-                                <input type="text" class="form-control" formControlName="professorName" id="ProfessorName" placeholder=" Professor Name">
-                              </div>
-                              <div class="mb-4">
-                                <select class="form-select" formControlName="coursePrice" aria-label="Default select example">
-                                  <option disabled selected value="Price/Hour"  >Price/Hour</option>
-                                  <option value="10$">10$</option>
-                                  <option value="20$">20$</option>
-                                  <option value="30$">30$</option>
-                                </select>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                  Specific Time slots for this subject
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                  My All Time Slots
-                                </label>
-                              </div>
-
+                <form (ngSubmit)="onSubmit()">
+                  <div class="modal-body">
+                    <h5 class="modal-title">Edit Subject </h5>
+                    <div class="mb-4">
+                      <input type="text" class="form-control" [(ngModel)]="obj.courseName" name="SubjectName"
+                        id="SubjectName" placeholder=" Subject Name">
                     </div>
-                    <div class="modal-footer border-top-0 d-flex justify-content-center">
-                      <button type="submit" class="edit"
-                              [ngStyle]="{'background-color': subjectForm.invalid || subjectForm.get('coursePrice')?.value.trim() === 'Price/Hour' ? '#d3cbcb' : '#29A354'}"
-                              [disabled]="subjectForm.invalid || subjectForm.get('coursePrice')?.value.trim() === 'Price/Hour'">Save
-                      </button>
+                    <div class="mb-4">
+                      <input type="text" class="form-control" [(ngModel)]="obj.professorName" name="ProfessorName"
+                        id="ProfessorName" placeholder=" Professor Name">
                     </div>
-              </form>
+                    <div class="mb-4">
+                      <select class="form-select" [(ngModel)]="obj.coursePrice" name="coursePrice"
+                        aria-label="Default select example">
+                        <option disabled selected value="Price/Hour">Price/Hour</option>
+                        <option value="10$">10$</option>
+                        <option value="20$">20$</option>
+                        <option value="30$">30$</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="modal-footer border-top-0 d-flex justify-content-center">
+                    <button type="submit" class="edit"
+                      [ngStyle]="{'background-color': obj.courseName == '' || obj.professorName == '' ? '#d3cbcb' : '#FF6F06'}"
+                      [disabled]="obj.courseName == '' || obj.professorName == ''">
+                      update
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
 
-        </div>
-        <div class="col-lg-4 col-md-6 col-12" *ngFor="let subject of subjects">
-          <div class="subject-details">
-              <div>
-                <p class="course-name">{{subject.courseName}}</p>
-                <p class="course-price">{{subject.coursePrice}}/Hour</p>
-                <p class="professor-name">professor: {{subject.professorName}}</p>
-              </div>
-              <div class="d-flex justify-content-center flex-column">
-                <button class="edit mb-3">edit</button>
-                <button class="cancel mb-3">cancel</button>
-              </div>
+          <div>
+            <p class="course-name">{{subject.courseName}}</p>
+            <p class="course-price">{{subject.coursePrice}}/Hour</p>
+            <p class="professor-name">professor: {{subject.professorName}}</p>
+          </div>
+          <div class="status">
+            <span *ngIf="subject.status == 'created'">status: created and not published yet</span>
+            <span *ngIf="subject.status == 'published'">status:published</span>
+            <span *ngIf="subject.status == 'Deactivated'">status:Deactivated</span>
+            <span *ngIf="subject.status == 'Deleted'">status:Deleted</span>
+
+          </div>
+          <div class="d-flex justify-content-between " *ngIf="subject.status != 'Deleted'">
+            <button class="Remove mb-3" (click)="ChangeSubjectStatus(subject,'Delete',subject.id)">Remove</button>
+            <button class="edit mb-3" *ngIf="subject.status == 'created'"
+              (click)="ChangeSubjectStatus(subject,'Publish',subject.id)">Publish</button>
+            <button class="edit mb-3" *ngIf="subject.status == 'published'"
+              (click)="ChangeSubjectStatus(subject,'Deactivate',subject.id)">Deactivate</button>
+            <button class="edit mb-3" *ngIf="subject.status == 'Deactivated'"
+              (click)="ChangeSubjectStatus(subject,'Reactivate',subject.id)">Reactivate</button>
           </div>
         </div>
+      </div>
     </div>
   </div>
 
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

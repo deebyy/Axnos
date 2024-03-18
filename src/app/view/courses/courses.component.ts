@@ -28,7 +28,9 @@ export class CoursesComponent {
   cities: City[] | undefined;
   selectedCity: City | undefined;
   isReadonly = true;
-
+  selectedCountry:any
+  selectedUniversity:any;
+  selectedFaculity:any
 
 
   courses = [
@@ -177,71 +179,43 @@ export class CoursesComponent {
 
   ];
   constructor(private fb: FormBuilder) {
-    this.myForm = new FormGroup({
-      Subject: new FormControl(),
-      University: new FormControl(),
-      Faculity: new FormControl(),
-      Country: new FormControl(),
+    this.myForm = this.fb.group({
+      subject: new FormControl(),
+      country: new FormControl(),
+      university: new FormControl(),
+      faculity: new FormControl(),
     });
   }
 
   ngOnInit() {
 
-      this.cities = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' }
-        ];
-      this.Countries = [
-          { item_id: 1, item_text: 'Afghanistan' },
-          { item_id: 2, item_text: 'Angola' },
-          { item_id: 3, item_text: 'Australia' },
-          { item_id: 4, item_text: 'Bahrain' },
-          { item_id: 5, item_text: 'Chennai' },
-          { item_id: 6, item_text: 'Algeria' }
+        this.Countries = [
+          { name: 'New York', code: 'NY' },
+          { name: 'Rome', code: 'RM' },
+          { name: 'London', code: 'LDN' },
+          { name: 'Istanbul', code: 'IST' },
+          { name: 'Paris', code: 'PRS' }
         ];
       this.Universites = [
-        { item_id: 1, item_text: 'Harvard ' },
-        { item_id: 2, item_text: 'Stanford  ' },
-        { item_id: 3, item_text: 'Princeton  ' },
-        { item_id: 4, item_text: 'assuit ' },
-        { item_id: 5, item_text: 'Columbia ' },
-        { item_id: 6, item_text: 'Tokyo' }
-        ];
+          { item_id: 1, name: 'Harvard ' },
+          { item_id: 2, name: 'Stanford  ' },
+          { item_id: 3, name: 'Princeton  ' },
+          { item_id: 4, name: 'assuit ' },
+          { item_id: 5, name: 'Columbia ' },
+          { item_id: 6, name: 'Tokyo' }
+          ];
       this.Faculites = [
-      { item_id: 1, item_text: 'Arts' },
-      { item_id: 2, item_text: 'Science' },
-      { item_id: 3, item_text: 'Engineering' },
-      { item_id: 4, item_text: 'Medicine' },
-      { item_id: 5, item_text: 'Law' },
-      { item_id: 6, item_text: 'Education' }
-        ];
-      this.Subjects = [
-      { item_id: 1, item_text: 'Mathematics' },
-      { item_id: 2, item_text: 'History' },
-      { item_id: 3, item_text: 'Biology' },
-      { item_id: 4, item_text: 'Physics' },
-      { item_id: 5, item_text: 'Computer Science' },
-      { item_id: 6, item_text: 'Philosophy' }
-        ];
-      this.dropdownSettings = {
-          singleSelection: false,
-          idField: 'item_id',
-           allowSearchFilter: true,
-          textField: 'item_text',
-          selectAllText: 'Select All',
-          unSelectAllText: 'UnSelect All',
-          itemsShowLimit: 3,
+          { Fname: 'Arts' },
+          { Fname: 'Science' },
+          { Fname: 'Engineering' },
+          { Fname: 'Medicine' },
+          { Fname: 'Law' },
+          { Fname: 'Education' }
+          ];
 
-      };
 
   }
-  handleUniversitySelection(selection: any[]) {
-    console.log("selection",selection);
 
-  }
 
   onFormSubmit(): void {
     console.log('Form values:', this.myForm.value);

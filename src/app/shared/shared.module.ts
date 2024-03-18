@@ -16,7 +16,7 @@ import { CustomMultiselectComponent } from './components/custom-multiselect/cust
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CourseCardComponent } from './components/course-card/course-card.component';
 import { StudentBookingCardComponent } from './components/student-booking-card/student-booking-card.component';
-
+import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -35,6 +35,7 @@ import { StudentBookingCardComponent } from './components/student-booking-card/s
     FormsModule,
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot(),
+    DropdownModule
   ],
   exports:[
     NavbarComponent,

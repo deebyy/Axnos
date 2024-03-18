@@ -1,0 +1,220 @@
+@import '../../../../../assets/scss/colors';
+section{
+  margin-top: 50px;
+  .book-form{
+    h1{
+      color: $black-color;
+    }
+    .drop::placeholder{
+      color: red;
+    }
+    .label{
+      background: $wight-color;
+      padding: 0 7px;
+      z-index: 999;
+      font-size: 15px;
+    }
+    .detailslabel{
+      color: black;
+      margin-bottom: 5px;
+    }
+    .extra-session{
+      color: #FF9104;
+      border: 0;
+      background-color: transparent;
+      text-align: start;
+      font-size: 17px;
+    }
+    @media (max-width:500px) {
+      .selection-parent{
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+
+    .selection{
+      display: flex;
+      .month,.year{
+        width: auto;
+        padding-right: 50px;
+      }
+      .year{
+        margin-left: 10px;
+      }
+      @media (max-width:500px) {
+        .month,.year{
+          padding-right: 50px;
+        }
+      }
+    }
+    .visa-images{
+      img{
+        width: 50px;
+      }
+      ul{
+        li{
+          display: inline-block;
+          img{
+            height: 20px;
+            margin: 15px 15px 0 0;
+          }
+        }
+      }
+    }
+  }
+  .Summary-parent{
+    padding: 0 30px;
+    @media (max-width:767px) {
+      &{
+        padding: 0.75rem ;
+      }
+    }
+
+  .Summary{
+    background: $gray-color;
+    border-radius: 20px;
+    padding: 25px 25px 75px;
+    h1{
+      color: $black-color;
+      text-align: center;
+      font-size: 16px;
+       font-weight: 500;
+    }
+    .tutor-info{
+
+      .tutor-img img{
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+      }
+      .tutor-details{
+
+            margin-left: 15px;
+        h5{
+
+          color: $black-color;
+          font-size: 15px;
+          font-weight: 600;
+          margin-bottom: 2px;
+        }
+        p{
+          color: $black-color;
+          font-size: 11px;
+          margin-bottom: 0;
+          font-weight: 600;
+        }
+        .subject-details{
+          p{
+            color: #6255A5;
+            font-size: 11px;
+            margin-bottom: 0;
+            font-weight: 600;
+          }
+        }
+
+
+        @media (max-width:500px) {
+          &{
+            h5{
+              font-size: 19px;
+            }
+            p{
+              font-size: 13px;
+            }
+            .subject-details{
+              p{
+                font-size: 13px;
+              }
+            }
+          }
+        }
+      }
+
+
+    }
+    .selected-subject-details{
+      .head{
+        span{
+          font-size: 15px;
+          font-weight: 500;
+        }
+        .You {
+          color: $black-color;
+        }
+        .hours {
+          color: #6255A5;
+        }
+      }
+      .dates{
+        p{
+          border: 3px solid #FF9104;
+          color: #FF9104;
+          text-align: center;
+          padding: 2px;
+          border-radius: 8px;
+          padding: 4px 0;
+          font-size: 11px;
+        }
+        hr{
+          display: none;
+          @media (max-width:991px) {
+            display: block;
+          }
+        }
+      }
+      .totalPrice{
+        p {
+          color: $black-color;
+          font-size: 12px;
+          &:first-of-type {
+            color: $black-color;
+            font-size: 20px;
+            margin-bottom: 9px;
+          }
+        }
+      }
+    }
+  }
+}
+  .action-btns{
+  .book {
+    border: 0;
+    font-weight: 400;
+    color: $wight-color;
+    background-color: $orange-color;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 13px;
+    -webkit-border-radius: 13px;
+    -moz-border-radius: 13px;
+    -ms-border-radius: 13px;
+    -o-border-radius: 13px;
+    padding: 0 75px;
+}
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+::ng-deep.p-dropdown ,::ng-deep.p-calendar{
+  width: 100% !important;
+}
+::ng-deep .p-dropdown .p-dropdown-label.p-placeholder ,::ng-deep .p-calendar .p-inputtext::placeholder {
+  color: $black-color !important;
+  font-size: 12px;
+  font-weight: 500;
+}
+@media (max-width:500px) {
+  ::ng-deep .p-dropdown .p-dropdown-label.p-placeholder ,::ng-deep .p-calendar .p-inputtext::placeholder {
+    font-size: 14px;
+  }
+}

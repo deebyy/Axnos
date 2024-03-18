@@ -92,4 +92,10 @@
   border-radius: 50%;
   top: 20px;
   right: 20px;
+}
+
+.Activity {
+  color: #4D5E80;
+  text-align: center;
+  font-weight: 500;
 }/*# sourceMappingURL=sidbar.component.css.map */

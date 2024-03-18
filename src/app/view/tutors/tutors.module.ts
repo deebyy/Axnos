@@ -9,10 +9,14 @@ import { RatingModule } from 'ngx-bootstrap/rating';
 import { SharedModule } from "../../shared/shared.module";
 import { DropdownModule } from 'primeng/dropdown';
 import { ProfileComponent } from './components/profile/profile.component';
+import { BookingSubjectComponent } from './components/booking-subject/booking-subject.component';
+import { CalendarModule } from 'primeng/calendar';
+import { DatePipe } from '@angular/common';
 @NgModule({
     declarations: [
         TutorsComponent,
-        ProfileComponent
+        ProfileComponent,
+        BookingSubjectComponent
     ],
     imports: [
         CommonModule,
@@ -22,7 +26,12 @@ import { ProfileComponent } from './components/profile/profile.component';
         ReactiveFormsModule,
         DropdownModule,
         SharedModule,
-        RatingModule.forRoot()
+        RatingModule.forRoot(),
+        CalendarModule,
+
+    ],
+    providers: [
+      DatePipe
     ]
 })
 export class TutorsModule { }

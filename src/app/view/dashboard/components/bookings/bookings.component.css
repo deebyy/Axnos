@@ -1,1 +1,7 @@
-/*# sourceMappingURL=bookings.component.css.map */
+.booking-header .head-title {
+  font-weight: 600;
+}
+.booking-header hr {
+  border-top: 3px solid #FF6F06;
+  opacity: 1;
+}/*# sourceMappingURL=bookings.component.css.map */

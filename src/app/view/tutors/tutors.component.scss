@@ -49,6 +49,25 @@
   color: #adadad !important;
   letter-spacing: 1.5px !important;
 }
+::ng-deep.p-dropdown ,::ng-deep.p-calendar{
+  width: 100% !important;
+}
+::ng-deep .p-dropdown .p-dropdown-label.p-placeholder ,::ng-deep .p-calendar .p-inputtext::placeholder {
+  color: $black-color !important;
+  font-size: 12px;
+  font-weight: 500;
+}
+@media (max-width:500px) {
+  ::ng-deep .p-dropdown .p-dropdown-label.p-placeholder ,::ng-deep .p-calendar .p-inputtext::placeholder {
+    font-size: 14px;
+  }
+}
+.label{
+  background: $wight-color;
+  padding: 0 7px;
+  z-index: 999;
+  font-size: 13px;
+}
  .form{
   .element{
     width: 25%;
@@ -83,22 +102,10 @@
 }
  }
 
- ::ng-deep.p-dropdown.p-dropdown-clearable .p-dropdown-label {
-  padding-right: 5.75rem !important;
-}
-.element{
-  width: 20%;
-}
-@media screen and (min-width: 768px) and (max-width: 1200px) {
-  .element{
-    width: 50%;
-  }
-}
-@media  (max-width: 767px) {
-  .element{
-    width: 100%;
-  }
-}
+//  ::ng-deep.p-dropdown.p-dropdown-clearable .p-dropdown-label {
+//   padding-right: 5.75rem !important;
+// }
+
 .card{
   box-shadow:0px 0px 18px 0 #cdd1d7;
   border: 0;

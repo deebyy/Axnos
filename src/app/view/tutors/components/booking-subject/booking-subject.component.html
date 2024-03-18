@@ -1,0 +1,164 @@
+<section>
+    <div class="container">
+        <div class="row pb-5">
+            <div class="col-lg-6 col-12 mb-5">
+                <form  class="book-form" [formGroup]="myForm" >
+                    <h1>Select session time</h1>
+                      <div class="row">
+                          <div class="col-lg-8 col-12">
+                              <div class="card border-0">
+
+                                <div class="form-group has-float-label mb-3">
+                                    <label for="date" class="label"> Date </label>
+                                    <p-calendar formControlName="date"
+                                                [iconDisplay]="'input'"
+                                                name="date" [showIcon]="true"
+                                              [(ngModel)]="CuyrrentObject.date"
+                                                inputId="date" placeholder="Select your session date">
+                                    </p-calendar>
+                                </div>
+
+
+                                  <div class="form-group has-float-label mb-3">
+                                      <p-dropdown formControlName="from" class="drop"
+                                                  [options]="fromHour" name="from"
+                                                  optionLabel="name" optionValue="name"
+                                                  [(ngModel)]="CuyrrentObject.from"
+                                                  [showClear]="true" placeholder="Select your session start time">
+                                      </p-dropdown>
+                                      <label class="label">From</label>
+                                  </div>
+
+
+                                  <div class="form-group has-float-label  mb-2">
+                                      <p-dropdown formControlName="to" class="drop"
+                                                  [options]="toHour"  name="to"
+                                                  optionValue="name" optionLabel="name"
+                                                  [(ngModel)]="CuyrrentObject.to"
+                                                  [showClear]="true" placeholder="Select your session end time">
+                                      </p-dropdown>
+                                      <label class="label">To</label>
+                                  </div>
+
+                                  <div class="add">
+                                    <button class="extra-session" (click)="resetSessionForm()">+Add extra session</button>
+                                  </div>
+                              </div>
+
+                          </div>
+                      </div>
+                      <div class="mt-5 form-group ">
+                        <label for="details" class="detailslabel"> Provide additional details for the tutor to facilitate preparation. </label>
+                        <textarea class="form-control comment" formControlName="details" id="details" rows="4"></textarea>
+                      </div>
+                      <div class="row mt-4">
+                          <div class="col-lg-7 col-12">
+                            <div class="mb-3">
+                              <label for="owner" class="form-label">Owner</label>
+                              <input type="text" formControlName="owner" class="form-control" id="owner">
+                            </div>
+                          </div>
+                          <div class="col-lg-5 col-12">
+                            <div class="mb-3">
+                              <label for="CVV" class="form-label">CVV</label>
+                              <input type="number" formControlName="CVV" class="form-control" id="CVV">
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <div class="mb-3">
+                              <label for="cardnum" class="form-label">Card Number</label>
+                              <input type="number" formControlName="cardnum" class="form-control" id="cardnum">
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <label for="Expir" class="form-label">Expiration Date</label>
+                              <div class="d-flex justify-content-between selection-parent">
+                                <div class="selection">
+                                  <select class="form-select month" formControlName="month" aria-label="Default select example">
+                                    <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+                                  </select>
+                                  <select class="form-select year" formControlName="year" aria-label="Default select example">
+                                    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                                  </select>
+                                </div>
+                                <div class="visa-images">
+                                  <ul class="text-center">
+                                    <li><img src="assets/images/tutors/visa.png" alt="" loading="lazy"></li>
+                                    <li><img src="assets/images/tutors/mastercard.png" alt="" loading="lazy"></li>
+                                    <li><img src="assets/images/tutors/paypal.png" alt="" loading="lazy"></li>
+                                  </ul>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                </form>
+            </div>
+            <div class="col-lg-6 col-12 Summary-parent" >
+                <div class="Summary">
+                     <h1>Session Summary  </h1>
+                     <div class="tutor-info d-flex align-items-start mt-5 mb-3">
+                          <div class="tutor-img">
+                            <img src="assets/images/tutors/tutor1.png" alt="">
+                          </div>
+                          <div class="tutor-details">
+                            <h5>  Mohamed Hassan</h5>
+                            <p>Country: Egypt</p>
+                            <p>University: Mansoura University</p>
+                            <p>Facuilty: Computer Science</p>
+                            <p>Languages:en,ar</p>
+                            <div class="subject-details">
+                              <p>Subject: DataBase </p>
+                              <p>Price/Hour: 10 Dollar</p>
+                              <p>Prof:Youssef Ahmed</p>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="selected-subject-details mt-5">
+                          <div class="head mb-2">
+                              <span class="You">You selected: </span>
+                              <span class="hours">2 hours</span>
+                          </div>
+
+
+                            <div *ngIf="newsession && newsession.length > 0">
+                                    <div class=" dates" *ngFor="let session of newsession" >
+                                          <div *ngIf="session.date  && session.from && session.to ">
+                                                  <div class="row">
+                                                          <div class="col-lg-3 col-6">
+                                                            <p class="dateselected" *ngIf="session.date">{{formatDate(session.date) }}</p>
+                                                          </div>
+                                                          <div class="col-lg-3 col-6">
+                                                            <p class="dayselected" *ngIf="session.date"> {{formatDayName(session.date)}}</p>
+                                                          </div>
+                                                          <div class="col-lg-3 col-6">
+                                                            <p class="selectedfromhour" *ngIf="session.from">{{session.from}}</p>
+                                                          </div>
+                                                          <div class="col-lg-3 col-6">
+                                                            <p class="selectedtohour" *ngIf="session.to">{{session.to}}</p>
+                                                          </div>
+
+
+                                                        <div class="col-12"> <hr></div>
+                                                  </div>
+                                          </div>
+                                    </div>
+                            </div>
+
+
+                          <div class="totalPrice mt-2">
+                            <p>Total Price = 20 dollar </p>
+                            <p class="mb-0">Price/Hour: 10 dollar  </p>
+                            <p class="mb-0">Number of Hours: 2 </p>
+                          </div>
+                      </div>
+                </div>
+            </div>
+            <div class="col-12 mt-4">
+              <div class="action-btns d-flex justify-content-center">
+                <button class="book" (click)="onSubmit()">book</button>
+
+              </div>
+            </div>
+        </div>
+    </div>
+</section>
