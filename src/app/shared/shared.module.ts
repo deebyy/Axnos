@@ -17,6 +17,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CourseCardComponent } from './components/course-card/course-card.component';
 import { StudentBookingCardComponent } from './components/student-booking-card/student-booking-card.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -35,7 +36,8 @@ import { DropdownModule } from 'primeng/dropdown';
     FormsModule,
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot(),
-    DropdownModule
+    DropdownModule,
+    NgxIntlTelInputModule
   ],
   exports:[
     NavbarComponent,

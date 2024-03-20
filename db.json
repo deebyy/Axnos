@@ -107,6 +107,19 @@
     }
   ],
   "subjects": [
-
+    {
+      "id": "93fa",
+      "courseName": "physics",
+      "coursePrice": "10$",
+      "professorName": "ali rheem",
+      "status": "Deleted"
+    },
+    {
+      "id": "c931",
+      "courseName": "physics101",
+      "coursePrice": "30$",
+      "professorName": "ahmed saeed hassan",
+      "status": "published"
+    }
   ]
 }

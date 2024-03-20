@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 interface FromTo {
   name: string;
 }
@@ -9,7 +10,7 @@ interface summery {
   day?: string,
   from: string,
   to: string,
-  totalHours?: number;
+  totalHours: number;
 }
 @Component({
   selector: 'app-booking-subject',
@@ -29,7 +30,7 @@ export class BookingSubjectComponent {
   selectedToHour: FromTo | undefined;
 
   date2: any | undefined = '';
-
+  totalHoursArray: number[] = [];
   CuyrrentObject: summery = {
     date: '',
     day: '',
@@ -38,7 +39,8 @@ export class BookingSubjectComponent {
     totalHours: 0
   }
   newsession: summery[] = [this.CuyrrentObject];
-  constructor(private formBuilder: FormBuilder, private datePipe: DatePipe) {
+
+  constructor(private formBuilder: FormBuilder, private datePipe: DatePipe,private toastrService: ToastrService) {
     this.myForm = this.formBuilder.group({
       date: [null, Validators.required],
       from: [null, Validators.required],
@@ -51,11 +53,11 @@ export class BookingSubjectComponent {
       year: [2016, Validators.required]
     });
 
+    this.calculateAndStoreTotalHours();
   }
 
-  ngOnInit() {
-    console.log("sessions befor submit",this.newsession);
 
+  ngOnInit() {
 
     this.fromHour = [
       { name: '8 PM' },
@@ -76,7 +78,7 @@ export class BookingSubjectComponent {
 
   formatDate(date: string | null): string {
     if (date) {
-      return this.datePipe.transform(date, 'MM/dd/yyyy') || '';
+      return this.datePipe.transform(date, 'dd/MM/yyyy') || '';
     } else {
       return '';
     }
@@ -145,9 +147,7 @@ export class BookingSubjectComponent {
       totalHours: 0
     };
     this.newsession.push(this.CuyrrentObject);
-
   }
-
 
   calculateTotalHoursReserved(from: string, to: string): number {
     const fromTime = this.convertTimeStringTo24Hours(from);
@@ -158,6 +158,24 @@ export class BookingSubjectComponent {
     }
     return totalHours;
   }
+
+  calculateAndStoreTotalHours(): number {
+    this.totalHoursArray = [];
+  for (const session of this.newsession) {
+    if (session.from !== '' && session.to !== '') {
+      const totalHours = this.calculateTotalHoursReserved(session.from, session.to);
+      session.totalHours = totalHours;
+      this.totalHoursArray.push(totalHours);
+    } else {
+      session.totalHours = 0;
+      this.totalHoursArray.push(0);
+    }
+  }
+    const totalHoursSum = this.totalHoursArray.reduce((sum, sessionTotalHours) => sum + sessionTotalHours, 0);
+
+    return totalHoursSum;
+  }
+
   convertTimeStringTo24Hours(timeString: string): number {
     if (!timeString) {
       // Handle the case where timeString is empty or undefined
@@ -176,30 +194,28 @@ export class BookingSubjectComponent {
     return hour;
   }
 
-  // convertTimeStringTo24Hours(timeString: string): number {
-  //   const [hourString, indicator] = timeString.split(' ');
-  //   let hour = parseInt(hourString);
-  //   if (indicator.toLowerCase() === 'pm' && hour !== 12) {
-  //     hour += 12;
-  //   }
-  //   if (indicator.toLowerCase() === 'am' && hour === 12) {
-  //     hour = 0;
-  //   }
-  //   return hour;
-  // }
+  deleteSession(date:any,from:any,to:any,index: number): void {
+    this.newsession.splice(index, 1);
+    this.calculateAndStoreTotalHours();
+    this.resetSessionForm();
+    if (this.totalHoursArray.length === 0) {
+      this.totalHoursArray = [0];
+    }
 
-/*    const sessionsWithTotalHours = this.newsession.map(session => {
-      const totalHours = this.calculateTotalHoursReserved(session.from, session.to);
-      return {
-        ...session,
-        totalHours: totalHours
-      };
-    });
+    this.toastrService.error( `The  ${this.formatDate(date)} From ${from} To ${to} has been deleted `);
 
-    // Log the total hours for each session
-    console.log('Total hours for each session:', sessionsWithTotalHours.map(session => session.totalHours));
-    const totalHoursSum = sessionsWithTotalHours.reduce((sum, session) => sum + session.totalHours, 0);
-    console.log('Total sum of hours:', totalHoursSum); */
+
+  }
+
+   firetoast(){
+    if(this.CuyrrentObject.date && this.CuyrrentObject.from && this.CuyrrentObject.to ){
+      console.log("object has data ");
+      this.toastrService.success( `The  ${this.formatDate(this.CuyrrentObject.date)} From ${this.CuyrrentObject.from} To ${this.CuyrrentObject.to} has been chosen `);
+
+    }
+  }
+
+
 }
 
 

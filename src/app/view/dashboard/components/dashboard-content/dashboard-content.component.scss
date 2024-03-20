@@ -8,20 +8,45 @@
       font-weight: 500;
       position: relative;
       margin-bottom: 0.2rem !important;
-      &::after{
-        position: absolute;
-        content: "*";
-        color: #F01919;
-        top: -2px;
-        right: -15px;
-      }
+      // &::after{
+      //   position: absolute;
+      //   content: "*";
+      //   color: #F01919;
+      //   top: -2px;
+      //   right: -15px;
+      // }
+    }
+
+
+    .required::after {
+      position: absolute;
+      content: "*";
+      color: #F01919;
+      top: -2px;
+      right: -15px;
     }
     .form-control ,.form-select{
-      border-color: #858585;
+      border: 1px solid #858585;
+
     }
-    .form-control::placeholder ,.form-control ,.form-selec {
+    input , select  {
+      height: 44px;
+    }
+    .form-control::placeholder ,.form-control ,.form-select {
       color: #858585;
       font-size: 14px;
+
+
+  }
+  .error {
+    color: red;
+    font-size: 16px;
+  }
+  .invalid {
+    border: 1px solid red !important;
+  }
+  .invalid:focus{
+    box-shadow: 0 0 0 0.25rem #efe0e5 !important
   }
   .TimeSlots{
     font-size: 17px;
@@ -66,4 +91,46 @@
 }
 
 
+}
+
+.u-pearl.current .u-pearl-icon,
+.u-pearl.current .u-pearl-number {
+  color: #6362e7;
+  border-color: #6362e7;
+  transform: scale(1);
+}
+
+.u-pearl.done .u-pearl-icon,
+.u-pearl.done .u-pearl-number {
+  color: #fff;
+  background-color: #6362e7;
+  border-color: #6362e7;
+}
+
+.u-pearl-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-size: 13px;
+  color: #526069;
+  font-weight: 600;
+}
+// ::ng-deep .swal2-html-container {
+//   text-align: center !important;
+// }
+// ::ng-deep.swal2-actions{
+//   justify-content: center !important;
+//   width: 100% !important;
+
+// }
+// ::ng-deep.swal2-confirm{
+//   background-color: #7066e0 !important;
+//   color: #F5F5F5 !important;
+//   box-shadow:none !important
+// }
+::ng-deep.swal2-title{
+margin: 0 !important;
 }

@@ -14,6 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { NgCircleProgressModule } from 'ng-circle-progress';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 
 @NgModule({
@@ -34,7 +36,27 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ReactiveFormsModule,
     MatTableModule,
     MatPaginatorModule,
-    SharedModule
+    SharedModule,
+    NgCircleProgressModule.forRoot({
+      "backgroundPadding": 7,
+      "radius": 0,
+      "space": -2,
+      "outerStrokeColor": "#808080",
+      "innerStrokeColor": "#e7e8ea",
+      "innerStrokeWidth": 2,
+      showTitle:true,
+      maxPercent:100,
+      outerStrokeWidth:100,
+      percent:100,
+      showSubtitle:false,
+      "titleFormat": (percent: number) => `${percent}%`,
+      "titleFontSize": '12',
+      "subtitleFontSize": '20',
+      "animateTitle": false,
+      "animationDuration": 1000,
+      "showUnits": false,
+      "clockwise": false}),
+      NgxIntlTelInputModule
   ]
 })
 export class DashboardModule { }

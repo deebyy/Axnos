@@ -24,13 +24,9 @@ export class SharedService {
   }
 
   updateSubject(subject: Subject , id): Observable<any> {
-    const url = `${this.apiUrl}/${subject.id}`;
-    //return this.http.put(url, subject);
     return this.http.put(this.apiUrl + `/${id}`, subject);
   }
-  // updateservice(id: any, value: any) {
-  //   return this.http.post(this.apiUrl + `services/${id}`, value, { headers: this.headers });
-  // }
+
   getSubjectById(id: number): Observable<Subject> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Subject>(url);

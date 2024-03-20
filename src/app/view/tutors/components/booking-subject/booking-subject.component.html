@@ -13,6 +13,7 @@
                                     <p-calendar formControlName="date"
                                                 [iconDisplay]="'input'"
                                                 name="date" [showIcon]="true"
+                                                (ngModelChange)="firetoast()"
                                               [(ngModel)]="CuyrrentObject.date"
                                                 inputId="date" placeholder="Select your session date">
                                     </p-calendar>
@@ -24,6 +25,7 @@
                                                   [options]="fromHour" name="from"
                                                   optionLabel="name" optionValue="name"
                                                   [(ngModel)]="CuyrrentObject.from"
+                                                  (ngModelChange)="firetoast()"
                                                   [showClear]="true" placeholder="Select your session start time">
                                       </p-dropdown>
                                       <label class="label">From</label>
@@ -35,6 +37,7 @@
                                                   [options]="toHour"  name="to"
                                                   optionValue="name" optionLabel="name"
                                                   [(ngModel)]="CuyrrentObject.to"
+                                                  (ngModelChange)="firetoast()"
                                                   [showClear]="true" placeholder="Select your session end time">
                                       </p-dropdown>
                                       <label class="label">To</label>
@@ -116,12 +119,10 @@
                       <div class="selected-subject-details mt-5">
                           <div class="head mb-2">
                               <span class="You">You selected: </span>
-                              <span class="hours">2 hours</span>
+                              <span class="hours" >{{calculateAndStoreTotalHours()}}</span>
                           </div>
-
-
                             <div *ngIf="newsession && newsession.length > 0">
-                                    <div class=" dates" *ngFor="let session of newsession" >
+                                    <div class=" dates" *ngFor="let session of newsession ; let i = index" >
                                           <div *ngIf="session.date  && session.from && session.to ">
                                                   <div class="row">
                                                           <div class="col-lg-3 col-6">
@@ -130,25 +131,32 @@
                                                           <div class="col-lg-3 col-6">
                                                             <p class="dayselected" *ngIf="session.date"> {{formatDayName(session.date)}}</p>
                                                           </div>
-                                                          <div class="col-lg-3 col-6">
+                                                          <div class="col-lg-2 col-6">
                                                             <p class="selectedfromhour" *ngIf="session.from">{{session.from}}</p>
                                                           </div>
-                                                          <div class="col-lg-3 col-6">
+                                                          <div class="col-lg-2 col-6">
                                                             <p class="selectedtohour" *ngIf="session.to">{{session.to}}</p>
                                                           </div>
-
+                                                          <div class="col-lg-2 col-12 d-flex justify-content-center">
+                                                            <button (click)="deleteSession(session.date,session.from,session.to,i)" class="border-0" style="background-color: transparent; margin-bottom: 1rem;">
+                                                              <i class="material-icons">delete</i>
+                                                            </button>
+                                                          </div>
 
                                                         <div class="col-12"> <hr></div>
                                                   </div>
+
                                           </div>
                                     </div>
                             </div>
+                            <!-- <div *ngIf="totalHoursArray && totalHoursArray.length > 0">
 
-
+                              <p>Total Hours Array: {{ calculateAndStoreTotalHours() }}</p>
+                            </div> -->
                           <div class="totalPrice mt-2">
-                            <p>Total Price = 20 dollar </p>
+                            <p>Total Price = {{ calculateAndStoreTotalHours() * 10 }} dollar </p>
                             <p class="mb-0">Price/Hour: 10 dollar  </p>
-                            <p class="mb-0">Number of Hours: 2 </p>
+                            <p class="mb-0">Number of Hours:{{ calculateAndStoreTotalHours() }} </p>
                           </div>
                       </div>
                 </div>

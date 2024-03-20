@@ -8,11 +8,17 @@ import Swal from 'sweetalert2';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-
+  percentComplete: number = 0;
   isTutor:boolean = false;
   constructor(private tutorService: TutorService){
     this.tutorService.isTutor$.subscribe(isTutor => {
       this.isTutor = isTutor;
+    });
+  }
+  ngOnInit() {
+    // Subscribe to the percent changes
+    this.tutorService.percent$.subscribe(percent => {
+      this.percentComplete = percent;
     });
   }
   firesweetAlert(){
@@ -28,11 +34,14 @@ export class DashboardComponent {
           cancelButton: 'cancel-button-class'
         }
         }).then((result) => {
-        this.isTutor = true;
-        this.tutorService.setIsTutor(this.isTutor);
+        if (result.isConfirmed) {
+          this.isTutor = true;
+          this.tutorService.setIsTutor(this.isTutor);
+        } else {
+          console.log("Cancel action triggered");
+        }
         });
 }
-
 
 
 

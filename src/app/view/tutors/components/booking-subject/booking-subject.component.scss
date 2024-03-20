@@ -61,7 +61,7 @@ section{
         }
       }
     }
-  }
+    }
   .Summary-parent{
     padding: 0 30px;
     @media (max-width:767px) {
@@ -173,9 +173,12 @@ section{
           }
         }
       }
+      .material-icons{
+        color: $red-color;
+      }
     }
   }
-}
+    }
   .action-btns{
   .book {
     border: 0;
@@ -194,17 +197,6 @@ section{
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
 ::ng-deep.p-dropdown ,::ng-deep.p-calendar{
   width: 100% !important;
 }
@@ -218,3 +210,4 @@ section{
     font-size: 14px;
   }
 }
+

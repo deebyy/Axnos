@@ -11,7 +11,9 @@ import { TutorService } from 'src/app/core/services/tutor.service';
 })
 export class SidbarComponent {
   isTutor:boolean = false;
-  User: any;
+  Userinfo: any;
+  progressPercent: number = 0;
+  percentComplete: number = 0;
   constructor(private tutorService: TutorService,private authService: AuthenticationService){
     this.tutorService.isTutor$.subscribe(isTutor => {
       this.isTutor = isTutor;
@@ -19,7 +21,10 @@ export class SidbarComponent {
   }
   ngOnInit(): void {
     this.authService.user$.subscribe(user => {
-      this.User = user;
+      this.Userinfo = user;
+    });
+    this.tutorService.percent$.subscribe(percent => {
+      this.progressPercent = percent;
     });
   }
 

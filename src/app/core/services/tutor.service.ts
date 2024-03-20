@@ -8,6 +8,9 @@ export class TutorService {
   private isTutorSubject = new BehaviorSubject<boolean>(this.getInitialIsTutorValue());
   isTutor$ = this.isTutorSubject.asObservable();
 
+
+  private percentSource = new BehaviorSubject<number>(0);
+  percent$ = this.percentSource.asObservable();
   constructor() { }
 
   private getInitialIsTutorValue(): boolean {
@@ -19,5 +22,7 @@ export class TutorService {
     this.isTutorSubject.next(value);
     localStorage.setItem("isTutor", value);
   }
-
+  updatePercent(newPercent: number) {
+    this.percentSource.next(newPercent);
+  }
 }

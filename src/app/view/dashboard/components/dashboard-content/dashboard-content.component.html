@@ -1,52 +1,78 @@
 <div class="container">
-  <form >
+  <!-- <span>Total Completion: {{ percent }}%</span> -->
+
+  <form  [formGroup]="myForm" (ngSubmit)="submitForm()">
       <div class="row">
           <div class="col-md-4 col-sm-6 col-12">
             <div class="mb-4">
-              <label for="Firstname" class="form-label  lable">First Name</label>
-              <input type="text" class="form-control" id="Firstname" placeholder="Enter First Name">
+              <label for="Firstname" class="form-label lable required" >First Name</label>
+              <input type="text" class="form-control"
+                     formControlName="firstName"
+                     id="Firstname"
+                     [(ngModel)]="User.firstName"
+                     [class.invalid]="myForm.get('firstName')?.invalid && isSubmited"
+                     placeholder="Enter First Name">
             </div>
           </div>
           <div class="col-md-4 col-sm-6 col-12">
             <div class="mb-4">
-              <label for="Lasttname" class="form-label  lable">Last Name</label>
-              <input type="text" class="form-control" id="Lasttname" placeholder="Enter First Name">
+              <label for="Lasttname" class="form-label lable required">Last Name</label>
+              <input type="text"
+                     class="form-control"
+                     formControlName="lastName"
+                     id="Lasttname"
+                     [(ngModel)]="User.lastName"
+                     [class.invalid]="myForm.get('lastName')?.invalid && isSubmited"
+                     placeholder="Enter First Name">
             </div>
           </div>
           <div class="col-md-4 col-sm-6 col-12" *ngIf="isTutor">
             <div class="mb-4">
-              <label for="gender" class="form-label  lable">gender</label>
-              <select class="form-select" aria-label="Default select example">
-                <option value="1" selected>Male</option>
-                <option value="2">Fmale</option>
+              <label for="gender" class="form-label lable " [class.required]="isTutor">gender</label>
+              <select class="form-select"
+                      aria-label="Default select example"
+                      formControlName="gender"
+                      [class.invalid]="myForm.get('gender')?.invalid && isSubmited" >
+                <option value="" selected disabled>Choose gender</option>
+                <option *ngFor="let gender of gender" [value]="gender">{{ gender }}</option>
               </select>
             </div>
           </div>
 
           <div class="col-md-4 col-sm-6 col-12">
             <div class="mb-4">
-              <label for="University" class="form-label  lable">University</label>
-              <select class="form-select" aria-label="Default select example">
-                <option value="1" selected>Mansoura</option>
-                <option value="2">option2</option>
+              <label for="University" class="form-label lable" [class.required]="isTutor" >University</label>
+              <select class="form-select"
+                      aria-label="Default select example"
+                      formControlName="university"
+                      [class.invalid]="myForm.get('university')?.invalid && isSubmited"
+                      >
+                <option value="" selected disabled>Choose university</option>
+                <option *ngFor="let university of universites" [value]="university">{{ university }}</option>
               </select>
             </div>
           </div>
           <div class="col-md-4 col-sm-6 col-12">
             <div class="mb-4">
-              <label for="Country" class="form-label  lable">Country</label>
-              <select class="form-select" aria-label="Default select example">
-                <option value="1" selected>Egypt</option>
-                <option value="2">option2</option>
+              <label for="Country" class="form-label lable" [class.required]="isTutor" >Country</label>
+              <select class="form-select"
+                      aria-label="Default select example"
+                      formControlName="country"
+                      [class.invalid]="myForm.get('country')?.invalid && isSubmited">
+                <option value="" selected disabled>Choose country</option>
+                <option *ngFor="let countriy of countries" [value]="countriy">{{ countriy }}</option>
               </select>
             </div>
           </div>
           <div class="col-md-4 col-sm-6 col-12">
             <div class="mb-4">
-              <label for="Faculity" class="form-label  lable">Faculity</label>
-              <select class="form-select" aria-label="Default select example">
-                <option value="1" selected>Computer Science</option>
-                <option value="2">option2</option>
+              <label for="Faculity" class="form-label lable" [class.required]="isTutor" >Faculity</label>
+              <select class="form-select"
+                      aria-label="Default select example"
+                      formControlName="faculty"
+                      [class.invalid]="myForm.get('faculty')?.invalid && isSubmited">
+                <option  value="" selected disabled>Choose faculty</option>
+                <option *ngFor="let faculty of faculities" [value]="faculty">{{ faculty }}</option>
               </select>
             </div>
           </div>
@@ -54,62 +80,97 @@
           <div class="col-md-4 col-sm-6 col-12">
             <div class="mb-4">
               <label for="adress" class="form-label  lable">Adress</label>
-              <input type="text" class="form-control" id="adress" placeholder="45141 street name">
+              <input type="text" class="form-control"
+                     formControlName="address"
+                     id="adress"
+                     placeholder="45141 street name">
             </div>
           </div>
           <div class="col-md-4 col-sm-6 col-12">
             <div class="mb-4">
               <label for="State" class="form-label  lable">State</label>
-              <select class="form-select" aria-label="Default select example">
-                <option value="1" selected>Bozorgi</option>
-                <option value="2">option2</option>
+              <select class="form-select" aria-label="Default select example" formControlName="state">
+                <option value="" selected disabled>Choose state</option>
+                <option *ngFor="let state of states" [value]="state">{{ state }}</option>
               </select>
             </div>
           </div>
           <div class="col-md-4 col-sm-6 col-12">
             <div class="mb-4">
               <label for="City" class="form-label  lable">City</label>
-              <select class="form-select" aria-label="Default select example">
-                <option value="1" selected>Mehrab</option>
-                <option value="2">option2</option>
+              <select class="form-select" aria-label="Default select example" formControlName="city">
+                <option value="" selected disabled>Choose city</option>
+                <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
               </select>
             </div>
           </div>
 
           <div class="col-md-4 col-sm-6 col-12">
             <div class="mb-4">
-              <label for="email" class="form-label lable">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="abdelrahman@gmail.com">
+              <label for="email" class="form-label lable required">Email</label>
+              <input type="email"
+                     class="form-control"
+                     id="email"
+                     formControlName="email"
+                     [(ngModel)]="User.email"
+                     [class.invalid]="myForm.get('email')?.invalid && isSubmited"
+                     placeholder="abdelrahman@gmail.com">
             </div>
           </div>
 
           <div class="col-md-4 col-sm-6 col-12" *ngIf="isTutor">
             <div class="mb-4">
-              <label for="datepicker" class="form-label lable">Date of birth</label>
-              <input type="date" id="datepicker" class="form-control">
+              <label for="datepicker" class="form-label lable"  [class.required]="isTutor">Date of birth</label>
+              <input type="date" id="datepicker"
+                     class="form-control"
+                     formControlName="dateOfBirth"
+                     [class.invalid]="myForm.get('dateOfBirth')?.invalid && isSubmited">
             </div>
           </div>
           <div class="col-md-4 col-sm-6 col-12">
             <div class="mb-4">
-              <label for="phone" class="form-label lable">Mobile Number</label>
-              <input type="number" id="phone" class="form-control" placeholder="Enter Mobile Number">
+              <label for="phone" class="form-label lable"  [class.required]="isTutor">Mobile Number</label>
+              <!-- <input type="number" id="phone"
+                     class="form-control"
+                     formControlName="phoneNumber"
+                     placeholder="Enter Mobile Number"
+                     [class.invalid]="myForm.get('phoneNumber')?.invalid && isSubmited"> -->
+                     <ngx-intl-tel-input [cssClass]="'form-control'"
+                                                [preferredCountries]="preferredCountries"
+                                                [enableAutoCountrySelect]="true" [enablePlaceholder]="false"
+                                                [searchCountryFlag]="true"
+                                                [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                                                [selectFirstCountry]="false"
+                                                [selectedCountryISO]="CountryISO.SaudiArabia" [maxLength]="20"
+                                                [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                                                [numberFormat]="PhoneNumberFormat.National" name="phone"
+
+                                                formControlName="phoneNumber" style="height: 55px;">
+                   </ngx-intl-tel-input>
             </div>
           </div>
 
           <div class="col-md-4 col-sm-6 col-12" *ngIf="isTutor">
             <div class="mb-4">
-              <label for="Languages" class="form-label  lable">Languages</label>
-              <select class="form-select" aria-label="Default select example">
-                <option value="1" selected>Arabic</option>
-                <option value="2">English</option>
+              <label for="Languages" class="form-label  lable" [class.required]="isTutor">Languages</label>
+              <select class="form-select"
+                      aria-label="Default select example"
+                      formControlName="languages"
+                      [class.invalid]="myForm.get('languages')?.invalid && isSubmited">
+                <option value="" selected disabled>Choose a language</option>
+                <option *ngFor="let language of languages" [value]="language">{{ language }}</option>
               </select>
             </div>
           </div>
           <div class="col-md-4 col-sm-6 col-12" *ngIf="isTutor">
             <div class="mb-4">
-              <label for="Currency" class="form-label  lable">Currency</label>
-              <select class="form-select" aria-label="Default select example">
-                <!-- <option *ngFor="let currencyCode of getObjectKeys(currency)" [value]="currencyCode">{{ currency[currencyCode] }}</option> -->
+              <label for="Currency" class="form-label  lable" [class.required]="isTutor" >Currency</label>
+              <select class="form-select"
+                      aria-label="Default select example"
+                      formControlName="currency"
+                      [class.invalid]="myForm.get('currency')?.invalid && isSubmited">
+
+                <option value="" selected disabled>Choose currency</option>
                 <option *ngFor="let entry of currencyEntries" [value]="entry[0]">{{ entry[0] }}</option>
               </select>
             </div>
@@ -118,8 +179,11 @@
             <div class="row">
               <div class="col-md-8 col-12">
                 <div class="mb-4">
-                  <label for="Bio" class="form-label lable">Bio</label>
-                  <textarea class="form-control" id="Bio" rows="4" placeholder="Enter Your Bio here">As a Computer Engineering student at the University of Duisburg-Essen, I am deeply immersed in the intricacies of software development and system design. My academic pursuits are complemented by a passion for teaching, where I assist fellow students in understanding complex engineering concepts. With a strong grasp of programming, data structures, and digital systems, I provide peer-to-peer .......  </textarea>
+                  <label for="Bio" class="form-label lable" [class.required]="isTutor" >Bio</label>
+                  <textarea class="form-control" id="Bio" rows="4"
+                            formControlName="bio"
+                            placeholder="Enter Your Bio here"
+                            [class.invalid]="myForm.controls['bio'].invalid && isSubmited">As a Computer Engineering student at the University of Duisburg-Essen, I am deeply immersed in the intricacies of software development and system design. My academic pursuits are complemented by a passion for teaching, where I assist fellow students in understanding complex engineering concepts. With a strong grasp of programming, data structures, and digital systems, I provide peer-to-peer .......  </textarea>
                 </div>
               </div>
             </div>
