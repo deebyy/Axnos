@@ -67,4 +67,8 @@
   background-color: white !important;
   color: #4F4F4F !important;
   border: 0.3px solid #4F4F4F !important;
+}
+
+::ng-deep.swal2-title {
+  margin: 0 !important;
 }/*# sourceMappingURL=dashboard.component.css.map */

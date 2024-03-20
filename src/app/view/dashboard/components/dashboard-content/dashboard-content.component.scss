@@ -32,12 +32,14 @@
     input , select  {
       height: 44px;
     }
-    .form-control::placeholder ,.form-control ,.form-select {
-      color: #858585;
+    .form-control ,.form-select {
+      color: $black-color;
       font-size: 14px;
-
-
   }
+  .form-control::placeholder {
+    color: #858585;
+    font-size: 14px;
+}
   .error {
     color: red;
     font-size: 16px;
@@ -118,19 +120,6 @@
   color: #526069;
   font-weight: 600;
 }
-// ::ng-deep .swal2-html-container {
-//   text-align: center !important;
-// }
-// ::ng-deep.swal2-actions{
-//   justify-content: center !important;
-//   width: 100% !important;
-
-// }
-// ::ng-deep.swal2-confirm{
-//   background-color: #7066e0 !important;
-//   color: #F5F5F5 !important;
-//   box-shadow:none !important
-// }
 ::ng-deep.swal2-title{
 margin: 0 !important;
 }

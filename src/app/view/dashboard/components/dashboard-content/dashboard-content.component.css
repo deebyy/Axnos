@@ -4,7 +4,7 @@
   position: relative;
   margin-bottom: 0.2rem !important;
 }
-.container .lable::after {
+.container .required::after {
   position: absolute;
   content: "*";
   color: #F01919;
@@ -12,15 +12,32 @@
   right: -15px;
 }
 .container .form-control, .container .form-select {
-  border-color: #858585;
+  border: 1px solid #858585;
+}
+.container input, .container select {
+  height: 44px;
+}
+.container .form-control, .container .form-select {
+  color: #000000;
+  font-size: 14px;
 }
 .container .form-control::-moz-placeholder {
   color: #858585;
   font-size: 14px;
 }
-.container .form-control::placeholder, .container .form-control, .container .form-selec {
+.container .form-control::placeholder {
   color: #858585;
   font-size: 14px;
+}
+.container .error {
+  color: red;
+  font-size: 16px;
+}
+.container .invalid {
+  border: 1px solid red !important;
+}
+.container .invalid:focus {
+  box-shadow: 0 0 0 0.25rem #efe0e5 !important;
 }
 .container .TimeSlots {
   font-size: 17px;
@@ -59,4 +76,34 @@
   .container .actions .cancel, .container .actions .complete {
     font-size: 18px;
   }
+}
+
+.u-pearl.current .u-pearl-icon,
+.u-pearl.current .u-pearl-number {
+  color: #6362e7;
+  border-color: #6362e7;
+  transform: scale(1);
+}
+
+.u-pearl.done .u-pearl-icon,
+.u-pearl.done .u-pearl-number {
+  color: #fff;
+  background-color: #6362e7;
+  border-color: #6362e7;
+}
+
+.u-pearl-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-size: 13px;
+  color: #526069;
+  font-weight: 600;
+}
+
+::ng-deep.swal2-title {
+  margin: 0 !important;
 }/*# sourceMappingURL=dashboard-content.component.css.map */

@@ -42,12 +42,12 @@
           <div class="col-md-4 col-sm-6 col-12">
             <div class="mb-4">
               <label for="University" class="form-label lable" [class.required]="isTutor" >University</label>
-              <select class="form-select"
+              <select class="form-select "
                       aria-label="Default select example"
                       formControlName="university"
                       [class.invalid]="myForm.get('university')?.invalid && isSubmited"
                       >
-                <option value="" selected disabled>Choose university</option>
+                <option value="" selected disabled >Choose university</option>
                 <option *ngFor="let university of universites" [value]="university">{{ university }}</option>
               </select>
             </div>

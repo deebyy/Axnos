@@ -83,11 +83,9 @@ section .Summary-parent .Summary .tutor-info .tutor-img img {
   border-radius: 50%;
 }
 section .Summary-parent .Summary .tutor-info .tutor-details {
-  font-family: "ReemKufi", sans-serif;
   margin-left: 15px;
 }
 section .Summary-parent .Summary .tutor-info .tutor-details h5 {
-  font-family: "ReemKufi", sans-serif !important;
   color: #000000;
   font-size: 15px;
   font-weight: 600;
@@ -151,6 +149,9 @@ section .Summary-parent .Summary .selected-subject-details .totalPrice p:first-o
   color: #000000;
   font-size: 20px;
   margin-bottom: 9px;
+}
+section .Summary-parent .Summary .selected-subject-details .material-icons {
+  color: #F01919;
 }
 section .action-btns .book {
   border: 0;

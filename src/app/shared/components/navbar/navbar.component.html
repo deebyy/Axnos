@@ -17,7 +17,7 @@
           <a class="nav-link" routerLinkActive="active"  [routerLink]="['', 'tutors']">Tutors</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
+          <a class="nav-link" [routerLink]="['', 'about']">About</a>
         </li>
         <li class="nav-item" *ngIf="!islogin">
           <div class="auth-btns">

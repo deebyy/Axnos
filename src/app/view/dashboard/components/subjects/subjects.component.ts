@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'src/app/core/interfaces/subject';
 import { SharedService } from 'src/app/core/services/shared.service';
-
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-subjects',
   templateUrl: './subjects.component.html',
@@ -54,6 +54,11 @@ export class SubjectsComponent {
 
       this.Ser.addSubject(newSubject).subscribe(() => {
         this.exampleModal.nativeElement.querySelector('.btn-close').click();
+        Swal.fire({
+          title: "Good job!",
+          html: "<div style='text-align: center;'>The subject has been created successfully!</div>",
+          icon: "success"
+        });
         this.loadSubjects();
         this.subjectForm.reset();
       });
@@ -63,15 +68,35 @@ export class SubjectsComponent {
     switch (Statuskeyword) {
       case 'Publish':
         subject.status = 'published';
+        Swal.fire({
+          title: "Good job!",
+          html: "<div style='text-align: center;'>The subject has been published successfully!</div>",
+          icon: "success"
+        });
         break;
       case 'Deactivate':
         subject.status = 'Deactivated';
+        Swal.fire({
+          title: "Good job!",
+          html: "<div style='text-align: center;'>The subject has been Deactivated successfully! </div>",
+          icon: "success"
+        });
         break;
       case 'Reactivate':
         subject.status = 'published';
+        Swal.fire({
+          title: "Good job!",
+          html: "<div style='text-align: center;'>The subject has been Reactivated and  published successfully!</div>",
+          icon: "success"
+        });
         break;
       case 'Delete':
         subject.status = 'Deleted';
+        Swal.fire({
+          title: "Good job!",
+          html: "<div style='text-align: center;'>The subject has been Deleted successfully!</div>",
+          icon: "error"
+        });
         break;
       default:
         break;

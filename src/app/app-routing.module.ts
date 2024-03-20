@@ -40,6 +40,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./view/contact/contact.module').then((m) => m.ContactModule),
   },
+  {
+    path: 'about',
+    loadChildren: () =>
+      import('./view/about/about.module').then((m) => m.AboutModule),
+  },
 ];
 
 @NgModule({

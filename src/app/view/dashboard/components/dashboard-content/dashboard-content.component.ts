@@ -67,7 +67,7 @@ export class DashboardContentComponent {
       country: ['', this.isTutor ? Validators.required : null],
       faculty: ['', this.isTutor ? Validators.required : null],
       phoneNumber: ['', this.isTutor ? Validators.required : ''],
-      address:['',[ Validators.minLength(10)] ],
+      address:['',[ Validators.minLength(6)] ],
       state: [''],
       city: [''],
       gender: [ '', this.isTutor ? Validators.required :null],

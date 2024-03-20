@@ -11,8 +11,9 @@
 }
 .footer .social-details .logo-text {
   color: #29A354;
-  margin-left: 10px;
+  margin-left: 4px;
   font-weight: 700;
+  font-size: 20px;
 }
 .footer .social-details .social {
   padding-inline-start: 0;

@@ -1,0 +1,16 @@
+.about-Title {
+  font-weight: 500;
+}
+
+.description {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.join {
+  background-color: #29A354;
+  color: #FFFFFF;
+  border-radius: 50px;
+  font-weight: 500;
+}/*# sourceMappingURL=about.component.css.map */

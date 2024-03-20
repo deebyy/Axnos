@@ -1,0 +1,15 @@
+@import '../../../assets/scss/colors';
+.about-Title{
+  font-weight: 500;
+}
+.description{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+.join{
+  background-color: $main-color;
+  color: $wight-color;
+  border-radius: 50px;
+  font-weight: 500;
+}
