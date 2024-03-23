@@ -16,38 +16,6 @@
               <p class="OR mt-4 text-center ">OR</p>
             </div>
             <div class="signUp-form">
-              <!-- <form (ngSubmit)="login()" #form="ngForm" class="d-flex flex-column">
-                <mat-form-field class="form-group">
-                  <mat-label>First Name</mat-label>
-                  <input matInput id="firstName" name="firstName" ngModel required>
-                </mat-form-field>
-                <mat-form-field class="form-group">
-                  <mat-label>Last Name</mat-label>
-                  <input matInput id="lastName" name="lastName" ngModel required>
-                </mat-form-field>
-
-
-                <mat-form-field class="form-group">
-                  <mat-label>Password</mat-label>
-                  <input matInput type="password" id="password" name="password" [type]="hide ? 'password' : 'text'" ngModel required>
-                  <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
-                    <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-                  </button>
-                </mat-form-field>
-                <div class="form-check  mb-3" style="z-index: 99999;">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                  <label class="form-check-label" for="flexCheckDefault">
-                   Keep me logged in
-                  </label>
-                </div>
-
-                <button mat-raised-button class="submit-btn" type="submit" [disabled]="!form.valid">Log In</button>
-                <div class="mt-2 haveAcount">
-                  <span>Are you new?</span>
-                  <a [routerLink]="['', 'auth', 'Signup']">Create An Account</a>
-                </div>
-
-              </form> -->
               <form [formGroup]="loginForm" (submit)="login()" class="d-flex flex-column">
                 <mat-form-field class="form-group">
                   <mat-label>Email</mat-label>

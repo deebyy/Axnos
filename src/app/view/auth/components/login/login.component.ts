@@ -14,10 +14,10 @@ import Swal from 'sweetalert2'
 export class LoginComponent {
   hide = true;
   loginForm!: FormGroup;
-  constructor( private fb: FormBuilder, 
-               private router: Router,
-               private http: HttpClient,
-               private authService:AuthenticationService) { }
+  constructor(private fb: FormBuilder,
+    private router: Router,
+    private http: HttpClient,
+    private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({

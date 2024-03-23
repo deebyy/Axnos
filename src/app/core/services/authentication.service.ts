@@ -93,10 +93,6 @@ export class AuthenticationService {
       });
     }
 
-
-
-
-
     logout(): void {
       window.location.reload()
       localStorage.removeItem('userId');
@@ -106,11 +102,6 @@ export class AuthenticationService {
       this.userToken.next(null);
 
     }
-
-
-
-
-
   private getUserById(userId: any): Observable<any> {
       return this.http.get<User>(`${environment.apiUrl}/SignupUsers/${userId}`);
     }

@@ -30,20 +30,7 @@ export class SignupComponent {
     });
 
   }
-  // submitForm() {
-  //   console.log( this.registrationForm.value);
 
-  //   if (this.registrationForm.valid) {
-  //     this.http.post('http://localhost:3000/SignupUsers', this.registrationForm.value).subscribe(response => {
-  //       console.log('Form submitted successfully!', response);
-  //       alert("Form submitted successfully!")
-  //       this.router.navigate(['/auth/Login']);
-  //       this.registrationForm.reset();
-  //     }, error => {
-  //       console.error('Error occurred while submitting form:', error);
-  //     });
-  //   }
-  // }
   submitForm() {
     if (this.registrationForm.valid) {
       const credentials: SignupCredentials = {

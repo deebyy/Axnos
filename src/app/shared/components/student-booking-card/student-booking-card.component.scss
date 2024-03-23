@@ -60,6 +60,8 @@
     }
   }
   .rating{
+    display: flex;
+    align-items: center;
     .rate {
       color: #FFC107;
       font-size: 22px;
@@ -71,6 +73,50 @@
     }
     span:last-child{
       font-size: 12px;
+    }
+    .refund{
+      margin-left: 6px;
+      button{
+        border: 0;
+        background-color: transparent;
+        color: $main-color;
+        font-weight: 600;
+      }
+      span,.disabled{
+        color: #b9b2b2;
+        font-weight: 600;
+      }
+      .disabled {
+        cursor: not-allowed;
+      }
+    }
+    .modal{
+      .modal-title{
+        text-align: center;
+        font-size: 27px;
+        margin-bottom: 25px;
+      }
+      .form-check-label{
+        color: $black-color;
+        font-size: 10px;
+      }
+      .modal-footer{
+        .edit{
+          border: 0;
+          font-weight: 400;
+          color:$wight-color;
+          height: 38px;
+          font-size: 16px;
+          border-radius: 20px;
+          -webkit-border-radius: 20px;
+          -moz-border-radius: 20px;
+          -ms-border-radius: 20px;
+          -o-border-radius: 20px;
+          padding: 0px 35px;
+          background-color:$success-color;;
+
+          }
+      }
     }
   }
   .course-details{
@@ -240,4 +286,5 @@
   }
 
 }
+
 
