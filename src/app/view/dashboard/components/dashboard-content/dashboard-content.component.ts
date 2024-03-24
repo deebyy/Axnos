@@ -67,9 +67,9 @@ export class DashboardContentComponent {
       country: ['', this.isTutor ? Validators.required : null],
       faculty: ['', this.isTutor ? Validators.required : null],
       phoneNumber: ['', this.isTutor ? Validators.required : ''],
-      address:['',[ Validators.minLength(6)] ],
-      state: [''],
-      city: [''],
+      // address:['',[ Validators.minLength(6)] ],
+      // state: [''],
+      // city: [''],
       gender: [ '', this.isTutor ? Validators.required :null],
       dateOfBirth: ['', this.isTutor ? Validators.required : ''],
       languages: ['', this.isTutor ? Validators.required : null],
@@ -122,6 +122,7 @@ export class DashboardContentComponent {
     this.percent = totalControls > 0 ? Math.floor((validControlsCount / totalControls) * 100) : 0;
     this.percentChange.emit(this.percent);
     this.tutorService.updatePercent(this.percent);
+    localStorage.setItem("percent",this.percent.toString())
     if (this.percent === 100) {
       Swal.fire({
         title: "congratulations  \ud83c\udf89",

@@ -16,6 +16,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { HomeModule } from '../home/home.module';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
     MatTableModule,
     MatPaginatorModule,
     SharedModule,
+    HomeModule,
     NgCircleProgressModule.forRoot({
       "backgroundPadding": 7,
       "radius": 0,

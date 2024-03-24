@@ -9,8 +9,7 @@ import { SubjectsComponent } from '../view/dashboard/components/subjects/subject
 
 @NgModule({
   declarations: [
-    CalendersComponent,
-    SubjectsComponent
+    CalendersComponent
   ],
   imports: [
     CommonModule,

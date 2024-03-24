@@ -28,21 +28,22 @@
                     <input type="text" class="form-control" formControlName="professorName" id="ProfessorName"
                       placeholder=" Professor Name">
                   </div>
-                  <div class="mb-4">
-                    <select class="form-select" formControlName="coursePrice" aria-label="Default select example">
-                      <option disabled selected value="Price/Hour">Price/Hour</option>
-                      <option value="10$">10$</option>
-                      <option value="20$">20$</option>
-                      <option value="30$">30$</option>
-                    </select>
-                  </div>
 
+                  <div class=" mb-4 curncy">
+                    <select  id="selectprice" class="form-select " formControlName="coursePrice" aria-label="Default select example">
+                      <option disabled selected value="">Price/Hour</option>
+                    <option value="10$">10</option>
+                    <option value="20$">20</option>
+                    <option value="30$">30</option>
+                    </select>
+                    <label class="input-group-text " for="selectprice">$</label>
+                  </div>
 
                 </div>
                 <div class="modal-footer border-top-0 d-flex justify-content-center">
                   <button type="submit" class="edit"
-                    [ngStyle]="{'background-color': subjectForm.invalid || subjectForm.get('coursePrice')?.value.trim() === 'Price/Hour' ? '#d3cbcb' : '#29A354'}"
-                    [disabled]="subjectForm.invalid || subjectForm.get('coursePrice')?.value.trim() === 'Price/Hour'">Save
+                    [ngStyle]="{'background-color': subjectForm.invalid || subjectForm.get('coursePrice')?.value.trim() === '' ? '#d3cbcb' : '#29A354'}"
+                    [disabled]="subjectForm.invalid || subjectForm.get('coursePrice')?.value.trim() === ''">Save
                   </button>
                 </div>
               </form>

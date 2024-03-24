@@ -9,16 +9,21 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './home.component';
 
 
+
 @NgModule({
   declarations: [
     HomeComponent,
     HeroComponent,
     BenifitsComponent,
-    FooterComponent
+    FooterComponent,
+
   ],
   imports: [
     CommonModule,
     HomeRoutingModule
-  ]
+  ],
+ exports:[
+  FooterComponent
+ ]
 })
 export class HomeModule { }

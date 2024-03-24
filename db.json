@@ -113,6 +113,27 @@
       "coursePrice": "10$",
       "professorName": "ali rheem",
       "status": "Deleted"
+    },
+    {
+      "id": "4a91",
+      "courseName": "physics11",
+      "coursePrice": "10$",
+      "professorName": "ahmed saeed",
+      "status": "Deleted"
+    },
+    {
+      "id": "fbd7",
+      "courseName": "asd",
+      "coursePrice": "20$",
+      "professorName": "ali rheem",
+      "status": "created"
+    },
+    {
+      "id": "bf2c",
+      "courseName": "physics101",
+      "coursePrice": "10$",
+      "professorName": "ddd",
+      "status": "created"
     }
   ],
   "courses": [

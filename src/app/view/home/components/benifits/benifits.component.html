@@ -1,9 +1,33 @@
 <section class="benefits">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
-          <div class="benefit-image">
+      <div class="col-md-6 video-box">
+          <div class="benefit-image h-100">
               <img src="assets/images/home/benift.png" loading="lazy" alt="" >
+              <button class="venobox play-btn mb-4 border-0"
+                      data-bs-toggle="modal" data-bs-target="#exampleModal"
+                      ></button>
+
+                      <div class="modal fade  modal-lg" #exampleModal id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header border-bottom-0 pb-0">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body" style="padding: 0.5rem;">
+                            <video width="100%" height="100%" controls >
+                              <source src="assets/vedio/UniMates-update.mp4" type="video/mp4">
+                            </video>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              <!-- <video width="100%" height="100%" controls poster="assets/images/home/benift.png">
+                <source src="assets/vedio/UniMates-update.mp4" type="video/mp4">
+              </video> -->
+
+
           </div>
       </div>
       <div class="col-md-6">

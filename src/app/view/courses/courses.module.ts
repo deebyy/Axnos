@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { SharedModule } from "../../shared/shared.module";
 import { DropdownModule } from 'primeng/dropdown';
+import { HomeModule } from '../home/home.module';
 @NgModule({
   declarations: [
     CoursesComponent
@@ -19,6 +20,7 @@ import { DropdownModule } from 'primeng/dropdown';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    HomeModule,
     DropdownModule
   ]
 })

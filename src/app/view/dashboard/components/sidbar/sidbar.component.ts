@@ -23,8 +23,14 @@ export class SidbarComponent {
     this.authService.user$.subscribe(user => {
       this.Userinfo = user;
     });
+    // const storedPercent = localStorage.getItem('percent');
+    // if (storedPercent) {
+    //   this.progressPercent = parseInt(storedPercent);
+    // }
     this.tutorService.percent$.subscribe(percent => {
       this.progressPercent = percent;
+      console.log(this.progressPercent);
+
     });
   }
 

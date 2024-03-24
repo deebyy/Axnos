@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { TutorService } from 'src/app/core/services/tutor.service';
 @Component({
   selector: 'app-invoice',
   templateUrl: './invoice.component.html',
@@ -9,9 +10,15 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 export class InvoiceComponent {
   displayedColumns: string[] = ['BookedDated', 'Subject', 'CourseDate','Price', 'status'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
+  progressPercent: number = 0;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  constructor(private tutorService: TutorService){}
+ngOnInit(): void {
+  this.tutorService.percent$.subscribe(percent => {
+    this.progressPercent = percent;
+  });
 
+}
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
@@ -25,6 +32,7 @@ export interface PeriodicElement {
   status:string;
 
 }
+
 
 const ELEMENT_DATA: PeriodicElement[] = [
   {

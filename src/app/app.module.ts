@@ -15,6 +15,7 @@ import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 import { SharedModule } from './shared/shared.module';
 import { CalendarModule } from 'primeng/calendar';
+import { HomeModule } from './view/home/home.module';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -43,7 +44,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     FeatherModule.pick(allIcons),
     SharedModule,
-    CalendarModule
+    CalendarModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

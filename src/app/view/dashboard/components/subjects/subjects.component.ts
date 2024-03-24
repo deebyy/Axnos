@@ -32,7 +32,7 @@ export class SubjectsComponent {
     this.subjectForm = this.formBuilder.group({
       courseName: ['', Validators.required],
       professorName: ['', Validators.required],
-      coursePrice: ['Price/Hour', Validators.required]
+      coursePrice: ['', Validators.required]
     });
   }
 
@@ -61,6 +61,7 @@ export class SubjectsComponent {
         });
         this.loadSubjects();
         this.subjectForm.reset();
+        this.subjectForm.get('coursePrice')?.setValue('');
       });
     }
   }

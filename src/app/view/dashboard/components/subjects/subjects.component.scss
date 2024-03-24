@@ -100,6 +100,20 @@
       color: $black-color;
       font-size: 10px;
     }
+    .curncy{
+      display: flex;
+      select{
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      label{
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+    .modal-content{
+      box-shadow: 0px 10px 34px 0 #b8edc6;
+    }
     .modal-footer{
       .edit{
         border: 0;

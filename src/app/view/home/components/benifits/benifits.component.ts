@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+
+import {  ElementRef, OnInit,Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-benifits',
   templateUrl: './benifits.component.html',
   styleUrls: ['./benifits.component.scss']
 })
+
 export class BenifitsComponent {
+  @ViewChild('exampleModal') modal: any;
+
   benefits = [
     {
       title: 'Your University Subject',
@@ -25,4 +29,25 @@ export class BenifitsComponent {
 
 
   ];
+  ngAfterViewInit(): void {
+    this.modal.nativeElement.addEventListener('shown.bs.modal', () => {
+      this.playVideo();
+    });
+    this.modal.nativeElement.addEventListener('hidden.bs.modal', () => {
+      this.pauseVideo();
+    });
+  }
+
+  playVideo(): void {
+    const videoElement: HTMLVideoElement = this.modal.nativeElement.querySelector('video');
+    if (videoElement) {
+      videoElement.play();
+    }
+  }
+  pauseVideo(): void {
+    const videoElement: HTMLVideoElement = this.modal.nativeElement.querySelector('video');
+    if (videoElement) {
+      videoElement.pause();
+    }
+  }
 }
