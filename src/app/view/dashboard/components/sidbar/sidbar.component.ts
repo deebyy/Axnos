@@ -22,16 +22,24 @@ export class SidbarComponent {
   ngOnInit(): void {
     this.authService.user$.subscribe(user => {
       this.Userinfo = user;
+      if(this.Userinfo != null || this.Userinfo != undefined){
+        this.Userinfo = {
+          firstName: user.firstName || user.given_name,
+          email: user.email,
+
+        };
+
+      }
     });
-    // const storedPercent = localStorage.getItem('percent');
-    // if (storedPercent) {
-    //   this.progressPercent = parseInt(storedPercent);
-    // }
+
     this.tutorService.percent$.subscribe(percent => {
       this.progressPercent = percent;
-      console.log(this.progressPercent);
 
     });
   }
 
 }
+    // const storedPercent = localStorage.getItem('percent');
+    // if (storedPercent) {
+    //   this.progressPercent = parseInt(storedPercent);
+    // }

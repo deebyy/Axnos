@@ -43,7 +43,18 @@ export class UserProfileComponent {
     this.authService.user$.subscribe(user => {
       this.User = user;
       console.log("user is ",this.User);
+      if(this.User != null || this.User != undefined){
+        this.User = {
+          firstName: user.firstName || user.given_name,
+          lastName: user.lastName || user.family_name,
+          email: user.email,
+          image: user.picture || this.path
+        };
+        console.log("user is ",this.User);
+      }
+
     });
+
 
   }
 

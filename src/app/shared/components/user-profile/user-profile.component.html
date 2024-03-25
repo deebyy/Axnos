@@ -23,15 +23,16 @@
   </div>
   <div class="btn-group">
     <div class="profile-img "  type="button" data-bs-toggle="dropdown" aria-expanded="false">
-
-      <img class="rounded-circle" src="{{ User?.image || path }}"  onerror="this.src=path"
+      <!-- <img class="rounded-circle" [src]="User?.image"  onerror="this.src=path"
+      width="50" height="50" loading="lazy" alt=""> -->
+      <img class="rounded-circle" [src]="User?.image"
           width="50" height="50" loading="lazy" alt="">
     </div>
     <ul class="dropdown-menu dropmenu" style="position: absolute !important;">
       <li>
         <div class="dropdown-item d-flex align-items-center">
 
-               <img class="rounded-circle" src="{{User?.image|| path }}"  onerror="this.src=path"
+               <img class="rounded-circle" [src]="User?.image"
                width="50" height="50"
                  loading="lazy" alt="">
 

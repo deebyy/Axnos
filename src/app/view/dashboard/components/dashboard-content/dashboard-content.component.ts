@@ -54,7 +54,12 @@ export class DashboardContentComponent {
       this.currencyEntries = Object.entries(res);
     })
     this.authService.user$.subscribe(user => {
-      this.User = { ...user };
+      // this.User = { ...user };
+      this.User = {
+        firstName: user.firstName || user.given_name,
+        lastName: user.lastName || user.family_name,
+        ...user
+      };
     });
   }
   initializeForm(): void  {
@@ -82,7 +87,7 @@ export class DashboardContentComponent {
     }
     Object.values(this.myForm.controls).forEach(control => {
       control.valueChanges.subscribe((res) => {
-        console.log("control is",res);
+
         if (control.valid) {
           this.calculatePercent();
         }
@@ -97,8 +102,7 @@ export class DashboardContentComponent {
   }
   submitForm() {
     this.isSubmited = true
-    console.log("Form submitted!");
-    console.log(this.myForm.value);
+
   }
 
   calculatePercent(): void {
@@ -122,7 +126,7 @@ export class DashboardContentComponent {
     this.percent = totalControls > 0 ? Math.floor((validControlsCount / totalControls) * 100) : 0;
     this.percentChange.emit(this.percent);
     this.tutorService.updatePercent(this.percent);
-    localStorage.setItem("percent",this.percent.toString())
+
     if (this.percent === 100) {
       Swal.fire({
         title: "congratulations  \ud83c\udf89",

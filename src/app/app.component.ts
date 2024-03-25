@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { AuthenticationService } from './core/services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +10,21 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AppComponent {
   title = 'angular-stable-v';
-  constructor(private toastrService: ToastrService,public translate: TranslateService) {}
+  islogin: boolean = false;
+  constructor(private toastrService: ToastrService,public translate: TranslateService,private authService: AuthenticationService) {
+    this.authService.userToken.subscribe((isLogged) => {
 
-  onClick() {
-     this.toastrService.success('info');
-    //  success, error, info, warning
+      if (isLogged != null) {
+
+        this.islogin = true;
+
+      } else {
+
+        this.islogin = false;
+      }
+    });
   }
-  switchLanguage() {
-    const currentLang = this.translate.currentLang;
-    this.translate.use(currentLang === 'ar' ? 'en' : 'ar');
-  }
+ngOnInit(): void {
+}
+
 }

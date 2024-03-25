@@ -1,25 +1,30 @@
 import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SignupCredentials } from 'src/app/core/interfaces/user';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
-
+import jwt_decode from 'jwt-decode';
+declare var google:any;
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
+
+  auth2: any;
   hide = true;
   registrationForm!: FormGroup;
+  user:any;
+  loggedIn:any;
   constructor( private fb: FormBuilder,
                private http: HttpClient ,
                private router:Router,
                private socialAuthService: SocialAuthService,
-               private authService :AuthenticationService
-               ){
+               private authService :AuthenticationService ){
+
 }
   ngOnInit(): void {
     this.registrationForm = this.fb.group({
@@ -29,6 +34,7 @@ export class SignupComponent {
       password: ['', Validators.required]
     });
 
+    this.initGoogleSignInButton();
   }
 
   submitForm() {
@@ -46,38 +52,25 @@ export class SignupComponent {
     this.hide = !this.hide;
   }
 
-  loginWithGoogle() {
+private initGoogleSignInButton(): void {
+  google.accounts.id.initialize({
+    client_id: '154886408036-b375e6fm8v1cu1jmhi6kcp9n5ph0au6b.apps.googleusercontent.com',
+    callback: (res: any) => this.authService.loginWithGoogle(res)
+  });
+  google.accounts.id.renderButton(document.getElementById('google-btn'), {
+    size: 'large',
+    shape: 'rectangle',
+    type: 'standard',
+    text: 'Sign in with Google',
 
-    this.socialAuthService
-    .signIn(GoogleLoginProvider.PROVIDER_ID)
-    .then((res) => {
-     console.log(res);
+  });
 
-      let authObj = {
-         name: res.name,
-         social_id: res.id,
-         email: res.email
-      };
-      console.log(authObj);
-      // this._ClientAuthService.AuthLogin(authObj).subscribe((res: any) => {
-      //   console.log(res);
-
-      //   if (res.status == true) {
-
-      //     this._Router.navigate(['/activate-account-email'])
-
-      //   } else {
-
-      //     this.phoneActive = res.message.phone;
-      //     console.log( this.phoneActive );
-      //   }
-
-
-      // });
-
-
-    });
-  // }
 }
+
+logOut(): void {
+  this.socialAuthService.signOut();
+}
+
+
 
 }

@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 import { SignupCredentials, User } from '../interfaces/user';
 import Swal from 'sweetalert2'
 import { GenericService } from './generic.service';
-
+import jwt_decode from 'jwt-decode';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
    userSubject :BehaviorSubject<any> = new BehaviorSubject<any>(null);
@@ -16,18 +16,18 @@ export class AuthenticationService {
    userToken = new BehaviorSubject(null);
     public token:any
     public userID = localStorage.getItem("userId")
+    payload = JSON.parse(localStorage.getItem('payload') || '{}');
+    constructor(private http: HttpClient , private router:Router , private route: ActivatedRoute, private tostar:ToastrService,  private generalSer:GenericService ) {
 
-    constructor(private http: HttpClient , private router:Router ,
-      private route: ActivatedRoute, private tostar:ToastrService,
-      private generalSer:GenericService
-      ) {
-
-      if (localStorage.getItem('userId') != null) {
+      if (localStorage.getItem('userId') != null && localStorage.getItem('authMethod') !== 'google') {
         this.getUserById(this.userID).subscribe(user => {
           if (user) {
             this.userSubject.next(user);
           }
         });
+        this.savecurrentuserID();
+      }else if(localStorage.getItem('userId') != null && localStorage.getItem('authMethod') === 'google'){
+        this.userSubject.next(this.payload);
         this.savecurrentuserID();
       }
 
@@ -92,11 +92,33 @@ export class AuthenticationService {
         }
       });
     }
-
+    getDecodedAccessToken(token: string): any {
+      try {
+        return jwt_decode(token);
+      } catch (Error) {
+        return null;
+      }
+    }
+    loginWithGoogle(response: any): void {
+      if (response) {
+        const payload2 = this.getDecodedAccessToken(response.credential);
+        localStorage.setItem("payload", JSON.stringify(payload2));
+        const token = response.credential;
+        //localStorage.setItem('userToken', token);
+        localStorage.setItem("userId", token);
+        localStorage.setItem('authMethod', 'google');
+        this.userToken.next(token);
+        this.userSubject.next(payload2);
+        const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.router.navigateByUrl(returnUrl);
+      }
+    }
     logout(): void {
       window.location.reload()
       localStorage.removeItem('userId');
       localStorage.removeItem('isTutor');
+      localStorage.removeItem('payload');
+      localStorage.removeItem('authMethod');
       localStorage.setItem('isLoginActive', JSON.stringify(true));
       localStorage.setItem('isSignupActive', JSON.stringify(false));
       this.userToken.next(null);
@@ -105,6 +127,7 @@ export class AuthenticationService {
   private getUserById(userId: any): Observable<any> {
       return this.http.get<User>(`${environment.apiUrl}/SignupUsers/${userId}`);
     }
+
 
 }
 

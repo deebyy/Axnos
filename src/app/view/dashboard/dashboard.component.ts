@@ -16,7 +16,7 @@ export class DashboardComponent {
     });
   }
   ngOnInit() {
-    // Subscribe to the percent changes
+
     this.tutorService.percent$.subscribe(percent => {
       this.percentComplete = percent;
     });

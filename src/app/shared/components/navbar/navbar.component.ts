@@ -27,8 +27,10 @@ export class NavbarComponent {
 
     this.isSignupActive = storedSignupActive === 'true';
 
-    // check user is logged or not 
+    // check user is logged or not
     this.authService.userToken.subscribe((isLogged) => {
+    //  console.log("isLogged",isLogged);
+
 
       if (isLogged != null) {
 
@@ -39,8 +41,8 @@ export class NavbarComponent {
         this.islogin = false;
       }
     });
-  
-    
+
+
   }
 
   ngOnInit(): void {

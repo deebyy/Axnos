@@ -29,14 +29,14 @@ export class BenifitsComponent {
 
 
   ];
-  ngAfterViewInit(): void {
-    this.modal.nativeElement.addEventListener('shown.bs.modal', () => {
-      this.playVideo();
-    });
-    this.modal.nativeElement.addEventListener('hidden.bs.modal', () => {
-      this.pauseVideo();
-    });
-  }
+  // ngAfterViewInit(): void {
+  //   this.modal.nativeElement.addEventListener('shown.bs.modal', () => {
+  //     this.playVideo();
+  //   });
+  //   this.modal.nativeElement.addEventListener('hidden.bs.modal', () => {
+  //     this.pauseVideo();
+  //   });
+  // }
 
   playVideo(): void {
     const videoElement: HTMLVideoElement = this.modal.nativeElement.querySelector('video');
