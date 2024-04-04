@@ -13,7 +13,43 @@ export class SubjectsComponent {
   @ViewChild('exampleModal') exampleModal: any;
   @ViewChild('exampleModal2') exampleModal2: any;
   constructor(private formBuilder: FormBuilder, private Ser: SharedService) { }
-  subjects: any[] = [];
+  subjects: any[] = [
+    {
+      "id": "283a",
+      "courseName": "physics",
+      "coursePrice": "10$",
+      "professorName": "ali rheem",
+      "status": "Deleted"
+    },
+    {
+      "id": "4a91",
+      "courseName": "physics11",
+      "coursePrice": "10$",
+      "professorName": "ahmed saeed",
+      "status": "Deleted"
+    },
+    {
+      "id": "fbd7",
+      "courseName": "asd",
+      "coursePrice": "20$",
+      "professorName": "ali rheem",
+      "status": "created"
+    },
+    {
+      "id": "bf2c",
+      "courseName": "physics101",
+      "coursePrice": "10$",
+      "professorName": "ddd",
+      "status": "created"
+    },
+    {
+      "id": "b69e",
+      "courseName": "asd",
+      "coursePrice": "30$",
+      "professorName": "ali rheem",
+      "status": "created"
+    }
+  ];
   obj = {
     id: '',
     courseName: '',
@@ -24,7 +60,7 @@ export class SubjectsComponent {
   ProviderData!: Subject;
   ngOnInit() {
     this.initForm();
-    this.loadSubjects();
+    //this.loadSubjects();
   }
 
 
@@ -37,11 +73,11 @@ export class SubjectsComponent {
   }
 
 
-  loadSubjects(): void {
-    this.Ser.getSubjects().subscribe(subjects => {
-      this.subjects = subjects;
-    });
-  }
+  // loadSubjects(): void {
+  //   this.Ser.getSubjects().subscribe(subjects => {
+  //     this.subjects = subjects;
+  //   });
+  // }
 
   addSubject() {
     if (this.subjectForm.valid) {
@@ -59,7 +95,7 @@ export class SubjectsComponent {
           html: "<div style='text-align: center;'>The subject has been created successfully!</div>",
           icon: "success"
         });
-        this.loadSubjects();
+      //  this.loadSubjects();
         this.subjectForm.reset();
         this.subjectForm.get('coursePrice')?.setValue('');
       });
@@ -104,7 +140,7 @@ export class SubjectsComponent {
     }
 
     this.Ser.updateSubject(subject, id).subscribe(() => {
-      this.loadSubjects();
+     // this.loadSubjects();
     });
   }
   getbyid(id: any) {
@@ -122,7 +158,7 @@ export class SubjectsComponent {
     if (this.obj.id) {
       this.Ser.updateSubject(this.obj, this.obj.id).subscribe((res: Subject) => {
         console.log('Subject updated:', res);
-        this.loadSubjects();
+       // this.loadSubjects();
         this.exampleModal2.nativeElement.querySelector('.btn-close').click();
       });
     } else {

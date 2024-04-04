@@ -17,8 +17,73 @@ export class StudentBookingCardComponent {
   rate: any = 0;
   requestRefundSended: boolean = false
   refundForm!: FormGroup;
-  courses!: any[];
+ // courses!: any[];
   selectedCourseId!: number;
+  courses = [
+    {
+      id: 1,
+      image: 'assets/images/courses/tutor1.png',
+      tutor:'Mohamed Hassan',
+      country:'Egypt',
+      university:'Mansoura University',
+      faculity:'Computer Science',
+      coursesNumber:'3 courses',
+      students:'15 Student',
+      rate:5,
+      reviewers:'13',
+      courseName:'DataBase',
+      coursePrice:'10$/Hour',
+      professorName:'Youssef Ahmed',
+      professorLanguages:'EN,AR',
+      date:'2024-02-28',
+      from:'13:00',
+      to:'14:00',
+      isRefunded:false,
+      status:'pending'
+    },
+    {
+      id: 2,
+      image: 'assets/images/courses/tutor2.png',
+      tutor:'Mohamed Hassan',
+      country:'Egypt',
+      university:'Mansoura University',
+      faculity:'Computer Science',
+      coursesNumber:'3 courses',
+      students:'15 Student',
+      rate:5,
+      reviewers:'13',
+      courseName:'DataBase',
+      coursePrice:'10$/Hour',
+      professorName:'Youssef Ahmed',
+      professorLanguages:'EN,AR',
+      date:'2024-01-28',
+      from:'13:00',
+      to:'14:00',
+      isRefunded:false,
+      status:'pending'
+    },
+    {
+      id: 3,
+      image: 'assets/images/courses/tutor3.png',
+      tutor:'Mohamed Hassan',
+      country:'Egypt',
+      university:'Mansoura University',
+      faculity:'Computer Science',
+      coursesNumber:'3 courses',
+      students:'15 Student',
+      rate:5,
+      reviewers:'13',
+      courseName:'DataBase',
+      coursePrice:'10$/Hour',
+      professorName:'Youssef Ahmed',
+      professorLanguages:'EN,AR',
+      date:'2024-3-2',
+      from:'13:00',
+      to:'14:00',
+      isRefunded:false,
+      status:'pending'
+    },
+  ];
   constructor(private formBuilder: FormBuilder, private courceSer: CourcesService) { }
 
   ngOnInit(): void {
@@ -30,7 +95,7 @@ export class StudentBookingCardComponent {
       reason: ['', Validators.required],
       details: ['', Validators.required]
     });
-    this.getCourses();
+   // this.getCourses();
   }
   getCourses(): void {
     this.courceSer.getAllCourses()

@@ -23,15 +23,32 @@
                 <mat-form-field class="form-group">
                   <mat-label>First Name</mat-label>
                   <input matInput formControlName="firstName" required>
+                  <mat-error *ngIf="registrationForm.get('firstName')?.touched &&
+                            registrationForm.get('firstName')?.hasError('required')">
+                            First Name is required
+                        </mat-error>
                 </mat-form-field>
                 <mat-form-field class="form-group">
                   <mat-label>Last Name</mat-label>
                   <input matInput formControlName="lastName" required>
+                        <mat-error *ngIf="registrationForm.get('lastName')?.touched &&
+                            registrationForm.get('lastName')?.hasError('required')">
+                            Last Name is required
+                        </mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="form-group">
                   <mat-label>Email Address</mat-label>
                   <input matInput type="email" formControlName="email" required>
+                     <!-- Display validation messages -->
+                    <mat-error *ngIf="registrationForm.get('email')?.touched &&
+                                      registrationForm.get('email')?.hasError('required')">
+                      Email is required
+                    </mat-error>
+                    <mat-error *ngIf="registrationForm.get('email')?.touched &&
+                                      registrationForm.get('email')?.hasError('email')">
+                      Please enter a valid email address
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="form-group">
@@ -40,8 +57,20 @@
                   <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
                     <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
                   </button>
+                     <!-- Display validation messages -->
+                     <mat-error *ngIf="registrationForm.get('password')?.touched &&
+                                       registrationForm.get('password')?.hasError('required')">
+                      Password is required
+                    </mat-error>
+
+                    <mat-error *ngIf="registrationForm.get('password')?.touched &&
+                                registrationForm.get('password')?.hasError('pattern') ">
+                          Password must have at least 8 characters long and one lowercase letter,
+                          one uppercase letter, one digit,
+                          and one non-alphanumeric character
+                    </mat-error>
                 </mat-form-field>
-                <button mat-raised-button class="submit-btn" type="submit" [disabled]="!registrationForm.valid">Create Account</button>
+                <button mat-raised-button class="submit-btn mt-5" type="submit" [disabled]="!registrationForm.valid" [ngClass]="{'disabled': !registrationForm.valid}">Create Account</button>
                 <div class="mt-2 haveAcount">
                   <span>Already have an account?</span>
                   <a [routerLink]="['', 'auth', 'Login']" >Login</a>

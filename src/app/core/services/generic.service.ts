@@ -2,7 +2,7 @@ import { environment } from 'src/environments/environment';
 
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import { Observable, catchError, map, retry, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, retry, throwError } from 'rxjs';
 import { ApiresonseVM } from '../interfaces/apiresonsevm';
 
 @Injectable({
@@ -10,7 +10,39 @@ import { ApiresonseVM } from '../interfaces/apiresonsevm';
 })
 export class GenericService {
   headers:any;
-  constructor(private _http:HttpClient) {}
+  userToken = new BehaviorSubject(null);
+  token: any;
+  url: string = environment.baseUrl;
+  
+  constructor(private _http:HttpClient) {
+    this.token = localStorage.getItem('userToken') || '';
+    if (localStorage.getItem('userToken') != null) {
+      this.savecurrentuser();
+    }
+  }
+  savecurrentuser() {
+    let token: any = localStorage.getItem('userToken');
+    this.userToken.next(token);
+  }
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // Handle request
   private handleError(error: HttpErrorResponse) {

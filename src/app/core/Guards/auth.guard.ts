@@ -14,7 +14,25 @@ export class AuthGuard implements CanActivate {
     private tost:ToastrService
 ) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree>| Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    
+          if (this.authenticationService.isAuthenticated()) {
+            // User is logged in, allow navigation
+            return true;
+          } else {
+            // User is not logged in, redirect to login page with return URL
+            return this.router.createUrlTree(['/auth/Login'], { queryParams: { returnUrl: state.url } });
+
+          }
+       
+     
+    }
+}
+
+
+/* canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
       return this.authenticationService.user$.pipe(
         map(user => {
           if (user) {
@@ -27,5 +45,4 @@ export class AuthGuard implements CanActivate {
           }
         })
       );
-    }
-}
+    } */

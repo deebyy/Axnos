@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { GenericService } from 'src/app/core/services/generic.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,9 +16,9 @@ export class NavbarComponent {
 
   isSignupActive: boolean = false;
 
-  userid = localStorage.getItem("userId")
+  userid = localStorage.getItem("userToken")
 
-  constructor(private authService: AuthenticationService) {
+  constructor(private authService: AuthenticationService, private generalSer: GenericService) {
 
     const storedLoginActive = localStorage.getItem('isLoginActive');
 
@@ -28,20 +29,32 @@ export class NavbarComponent {
     this.isSignupActive = storedSignupActive === 'true';
 
     // check user is logged or not
-    this.authService.userToken.subscribe((isLogged) => {
-    //  console.log("isLogged",isLogged);
+    // this.authService.userToken.subscribe((isLogged) => {
+    // //  console.log("isLogged",isLogged);
 
 
-      if (isLogged != null) {
+    //   if (isLogged != null) {
 
-        this.islogin = true;
+    //     this.islogin = true;
 
-      } else {
+    //   } else {
 
-        this.islogin = false;
-      }
-    });
+    //     this.islogin = false;
+    //   }
+    // });
+    this.generalSer.userToken.subscribe((isLogged) => {
+      //  console.log("isLogged",isLogged);
 
+
+        if (isLogged != null) {
+
+          this.islogin = true;
+
+        } else {
+
+          this.islogin = false;
+        }
+      });
 
   }
 

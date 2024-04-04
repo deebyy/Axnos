@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-interface City {
-  name: string;
-  code: string;
-}
+import { CountryInfo, Faculty, University } from 'src/app/core/interfaces/models';
+import { ApiService } from 'src/app/core/services/api.service';
+
 @Component({
   selector: 'app-tutors',
   templateUrl: './tutors.component.html',
@@ -12,24 +11,14 @@ interface City {
 export class TutorsComponent {
 
   myForm!:FormGroup;
-  disabled = false;
-  ShowFilter = false;
-  limitSelection = false;
-  Countries: any = [];
-  Universites: any = [];
-  Faculites: any = [];
   Subjects: any = [];
-  universities2: any = [];
-  selectedItems: any = [];
-  dropdownSettings: any = {};
   rate: any =4.5;
-  body: any;
-  cities: City[] | undefined;
-  selectedCity: City | undefined;
-  isReadonly = true;
-  selectedCountry:any
-  selectedUniversity:any;
-  selectedFaculity:any
+  Countries: CountryInfo[] = [];
+  Universites: University[] = [];
+  Faculties: Faculty[] = [];
+  selectedCountry: any
+  selectedUniversity: any;
+  selectedFaculity: any
 
 
   tutors=[
@@ -179,7 +168,7 @@ export class TutorsComponent {
     },
 
   ]
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private apiSer: ApiService) {
 
   }
 
@@ -189,36 +178,14 @@ export class TutorsComponent {
           university: new FormControl(),
           faculity: new FormControl(),
         });
-      this.cities = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' }
-        ];
-      this.Countries = [
-          { name: 'New York', code: 'NY' },
-          { name: 'Rome', code: 'RM' },
-          { name: 'London', code: 'LDN' },
-          { name: 'Istanbul', code: 'IST' },
-          { name: 'Paris', code: 'PRS' }
-        ];
-      this.Universites = [
-          { item_id: 1, name: 'Harvard ' },
-          { item_id: 2, name: 'Stanford  ' },
-          { item_id: 3, name: 'Princeton  ' },
-          { item_id: 4, name: 'assuit ' },
-          { item_id: 5, name: 'Columbia ' },
-          { item_id: 6, name: 'Tokyo' }
-          ];
-      this.Faculites = [
-          { item_id: 1, name: 'Arts' },
-          { item_id: 2, name: 'Science' },
-          { item_id: 3, name: 'Engineering' },
-          { item_id: 4, name: 'Medicine' },
-          { item_id: 5, name: 'Law' },
-          { item_id: 6, name: 'Education' }
-          ];
+        this.apiSer.getAllCountries().subscribe((res: CountryInfo[]) => {
+          console.log(res);
+          this.Countries = res
+        })
+        this.apiSer.getAllUniversities().subscribe((res: University[]) => {
+          console.log(res);
+          this.Universites = res
+        })
 
       this.Subjects = [
       { item_id: 1, item_text: 'Mathematics' },
@@ -228,23 +195,33 @@ export class TutorsComponent {
       { item_id: 5, item_text: 'Computer Science' },
       { item_id: 6, item_text: 'Philosophy' }
         ];
-      this.dropdownSettings = {
-          singleSelection: false,
-          idField: 'item_id',
-           allowSearchFilter: true,
-          textField: 'item_text',
-          selectAllText: 'Select All',
-          unSelectAllText: 'UnSelect All',
-          itemsShowLimit: 3,
-
-      };
-
   }
 
-
+  // Fetch faculties based on the selected university ID
+  onUniversityChange(event: any): void {
+    if (this.selectedUniversity != null) {
+      this.apiSer.getFaculityByUnivesityID(this.selectedUniversity).subscribe((faculties: Faculty[]) => {
+        console.log("faculties", faculties);
+        this.Faculties = faculties;
+      })
+    } else {
+      this.Faculties = [];
+      console.log("faculties are empty now");
+    }
+  }
+ // Fetch Universities based on the selected Country ID
+  onCountryChange(event: any): void {
+    if (this.selectedCountry != null) {
+      this.apiSer.getUniversityByCountryID(this.selectedCountry).subscribe((Universities:University[]) => {
+        console.log("Universities", Universities);
+        this.Universites = Universities;
+      })
+    } else {
+      this.Faculties = [];
+      console.log("Universities are empty now");
+    }
+  }
   onFormSubmit(): void {
-    console.log(this.selectedCountry);
-
     console.log('Form values:', this.myForm.value);
   }
 

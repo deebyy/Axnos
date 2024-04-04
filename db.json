@@ -141,6 +141,13 @@
       "coursePrice": "10$",
       "professorName": "ddd",
       "status": "created"
+    },
+    {
+      "id": "b69e",
+      "courseName": "asd",
+      "coursePrice": "30$",
+      "professorName": "ali rheem",
+      "status": "created"
     }
   ],
   "courses": [

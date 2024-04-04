@@ -30,7 +30,7 @@ const routes: Routes = [
       import('./view/courses/courses.module').then((m) => m.CoursesModule),
   },
   {
-    canActivate: [AuthGuard],
+   canActivate: [AuthGuard],
     path: 'dashboard',
     loadChildren: () =>
       import('./view/dashboard/dashboard.module').then((m) => m.DashboardModule),

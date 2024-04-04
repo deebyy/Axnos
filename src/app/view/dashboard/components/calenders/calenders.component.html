@@ -1,1 +1,555 @@
-<p>calenders works!</p>
+<div class="card">
+  <div class="card-body">
+      <ng-template #modalContent let-close="close">
+          <div class="modal-header">
+              <h5 class="modal-title">Event action occurred</h5>
+              <button type="button" class="close" (click)="close()">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <div> Action:
+                  <pre>{{ modalData.action }}</pre> </div>
+              <div> Event:
+                  <pre>{{ modalData.event | json }}</pre> </div>
+
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
+          </div>
+      </ng-template>
+      <div class="row">
+          <div class="col-md-4">
+              <div class="btn-group">
+                  <div class="btn btn-success" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+                      Previous </div>
+                  <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate"> Today </div>
+
+                  <div class="btn btn-info"
+                       mwlCalendarNextView
+                      [view]="view"
+                      [(viewDate)]="viewDate"
+                      (viewDateChange)="activeDayIsOpen = false"> Next </div>
+              </div>
+          </div>
+          <div class="col-md-4 text-center">
+              <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+          </div>
+          <div class="col-md-4 text-right">
+              <div class="btn-group">
+                  <div  class="btn btn-primary"  (click)="setView(CalendarView.Month)"     [class.active]="view === CalendarView.Month"> Month </div>
+                  <div  class="btn btn-primary"  (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week"> Week </div>
+                  <div  class="btn btn-primary"  (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day"> Day </div>
+              </div>
+          </div>
+      </div>
+      <br>
+      <div [ngSwitch]="view">
+
+          <mwl-calendar-month-view
+               *ngSwitchCase="'month'" [viewDate]="viewDate"
+               data-bs-toggle="modal" data-bs-target="#exampleModal"
+               data-backdrop="static" data-keyboard="false"
+               [events]="events" [refresh]="refresh"
+               [activeDayIsOpen]="activeDayIsOpen"
+              (dayClicked)="dayClicked($event.day)"
+              (eventClicked)="handleEvent('Clicked', $event.event)"
+              (eventTimesChanged)="eventTimesChanged($event)">
+          </mwl-calendar-month-view>
+          <mwl-calendar-week-view
+                    *ngSwitchCase="'week'" [viewDate]="viewDate"
+                    [events]="events" [refresh]="refresh"
+                    (eventClicked)="handleEvent('Clicked', $event.event)"
+                    (eventTimesChanged)="eventTimesChanged($event)">
+          </mwl-calendar-week-view>
+          <mwl-calendar-day-view
+                  *ngSwitchCase="'day'" [viewDate]="viewDate"
+                  [events]="events" [refresh]="refresh"
+                  (eventClicked)="handleEvent('Clicked', $event.event)"
+              (eventTimesChanged)="eventTimesChanged($event)">
+          </mwl-calendar-day-view>
+
+
+          <div class="modal fade session-date"  #exampleModal id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false" >
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header border-bottom-0 pb-0">
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+
+
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-12 mb-1">
+                          <label for="Start">Start Date:</label>
+                          <input
+                          id="Start"
+                          class="form-control"
+                          type="text"
+                          [(ngModel)]="selectedStartDate"
+                          mwlFlatpickr
+                          [altInput]="true"
+                          [convertModelValue]="true"
+                          [enableTime]="true"
+                          dateFormat="Y-m-dTH:i"
+                          altFormat="F j, Y H:i"
+                          placeholder="Select start date and time"
+                        />
+                        </div>
+                        <div class="col-12 mb-2">
+                          <label for="End">End Date:</label>
+                          <input
+                          id="End"
+                          class="form-control"
+                          type="text"
+                          [(ngModel)]="selectedEndDate"
+                          mwlFlatpickr
+                          [altInput]="true"
+                          [convertModelValue]="true"
+                          [enableTime]="true"
+                          dateFormat="Y-m-dTH:i"
+                          altFormat="F j, Y H:i"
+                          placeholder="Select end date and time"
+                        />
+                        </div>
+                        <div class="col-12 d-flex align-items-center">
+                          <div class="form-check me-3">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"  (change)="toggleSession()" >
+                            <label class="form-check-label" for="flexCheckChecked">
+                              Make Recurring
+                            </label>
+                          </div>
+
+                        </div>
+                        <div *ngIf="ShowSession">
+                          <fieldset class="col-12">
+                            <legend>Session Time</legend>
+                            <div class="row">
+                              <div class="col-12">
+                               <div class="sessiontime-set">
+                                <label for="startselect">start:</label>
+                                <select class="form-select" id="startselect" aria-label="Default select example" [(ngModel)]="selectedStartTime">
+                                    <option selected disabled>Choose a start time</option>
+                                    <option *ngFor="let time of startTimes" [value]="time">{{ time }}</option>
+                                </select>
+                               </div>
+                              </div>
+                              <div class="col-12">
+                               <div class="sessiontime-set">
+                                <label for="endselect">end:</label>
+                                <select class="form-select" id="endselect" aria-label="Default select example"[(ngModel)]="selectedEndTime">
+                                  <option selected disabled>Choose a end time</option>
+                                  <option *ngFor="let time of startTimes" [value]="time">{{ time }}</option>
+                                </select>
+                               </div>
+                              </div>
+                              <div class="col-12">
+                                  <div class="sessiontime-set">
+                                    <label for="duration">duration:</label>
+                                    <select class="form-select" id="duration" aria-label="Default select example">
+                                      <option selected disabled>Choose duration</option>
+                                      <option *ngFor="let duration of durations" [value]="duration">{{ duration }}</option>
+                                    </select>
+                                  </div>
+                              </div>
+                            </div>
+                          </fieldset>
+                          <fieldset class="col-12">
+                            <legend>recurrance pattern</legend>
+                            <div class="row">
+                              <div class="col-md-3 col-12 radios">
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="Daily" [(ngModel)]="selectedFrequency" value="Daily">
+                                  <label class="form-check-label" for="Daily">Daily</label>
+                                </div>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="Weekly" [(ngModel)]="selectedFrequency" value="Weekly">
+                                  <label class="form-check-label" for="Weekly">Weekly</label>
+                                </div>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="Monthly" [(ngModel)]="selectedFrequency" value="Monthly">
+                                  <label class="form-check-label" for="Monthly">Monthly</label>
+                                </div>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="Yearly" [(ngModel)]="selectedFrequency" value="Yearly">
+                                  <label class="form-check-label" for="Yearly">Yearly</label>
+                                </div>
+                              </div>
+                              <div class="col-md-9 col-12 " >
+                                <div *ngIf="selectedFrequency === 'Daily'">
+                                  <div class="form-check d-flex align-items-center" style="gap: 0.5rem;">
+                                    <input class="form-check-input" type="radio" name="every" id="every" value="every"  [(ngModel)]="selectedRadio">
+                                    <label class="form-check-label d-flex align-items-center" for="every" style="gap: 0.5rem;">
+                                        Every
+                                        <input class="form-control form-control-sm" type="number" [(ngModel)]="daysnumber" [disabled]="selectedRadio !== 'every'" style="width: 70px;">
+                                        day(s)
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="every" value="everyWeekday" id="everyWeekday"  [(ngModel)]="selectedRadio">
+                                    <label class="form-check-label" for="everyWeekday">
+                                    Every Weekday
+                                    </label>
+                                  </div>
+
+                                </div>
+                                <div *ngIf="selectedFrequency === 'Weekly'">
+                                  <div class="recur d-flex align-items-center"  style="gap: 0.5rem;">
+                                    Recur every
+                                    <input class="form-control form-control-sm" type="number" [(ngModel)]="daysnumber" [disabled]="selectedRadio !== 'every'" style="width: 70px;">
+                                    week(s) on:
+                                  </div>
+                                  <div class="days-name d-flex flex-wrap gap-2 mt-3">
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="" id="Sunday">
+                                      <label class="form-check-label" for="Sunday">
+                                        Sunday
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="" id="Monday" checked>
+                                      <label class="form-check-label" for="Monday">
+                                        Monday
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="" id="Tuesday">
+                                      <label class="form-check-label" for="Tuesday">
+                                        Tuesday
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="" id="Wednesday" >
+                                      <label class="form-check-label" for="Wednesday">
+                                        Wednesday
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="" id="Thursday">
+                                      <label class="form-check-label" for="Thursday">
+                                        Thursday
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="" id="Friday" >
+                                      <label class="form-check-label" for="Friday">
+                                        Friday
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="" id="Saturday">
+                                      <label class="form-check-label" for="Saturday">
+                                        Saturday
+                                      </label>
+                                    </div>
+
+                                  </div>
+                                </div>
+                                <div *ngIf="selectedFrequency === 'Monthly'">
+                                  <div class="form-check d-flex align-items-center" style="gap: 0.5rem;padding-left: 35px;">
+                                    <input class="form-check-input" type="radio" name="mounthDay" id="everyDay" value="Day"  [(ngModel)]="selectedDayRadio">
+                                    <label class="form-check-label d-flex align-items-center flex-wrap" for="everyDay" style="gap: 0.5rem;">
+                                        <span>Every</span>
+                                        <input class="form-control form-control-sm" type="number" [(ngModel)]="daysnumber" [disabled]="selectedDayRadio !== 'Day'" style="width: 70px;">
+                                        <span>  of every</span>
+                                        <input class="form-control form-control-sm" type="number" [(ngModel)]="daysnumber" [disabled]="selectedDayRadio !== 'Day'" style="width: 70px;">
+                                        <span> month(s)</span>
+                                    </label>
+                                  </div>
+
+                                  <div class="form-check d-flex align-items-center mt-3" style="gap: 0.5rem; padding-left: 35px;">
+                                    <input class="form-check-input" type="radio" name="mounthDay" value="The" id="The"  [(ngModel)]="selectedDayRadio">
+                                   <div class="row w-100">
+                                    <label class="form-check-label d-flex align-items-center flex-wrap" for="The" style="gap: 0.5rem;">
+                                      <span>The</span>
+                                        <div class="col-sm-2 col-12">
+                                          <select class="form-select" aria-label="Default select example" [disabled]="selectedDayRadio !== 'The'">
+                                            <option selected value="1">First</option>
+                                            <option value="2">Second</option>
+                                            <option value="3">Third</option>
+                                            <option value="4">Fouth</option>
+                                            <option value="5">Last</option>
+                                          </select>
+                                        </div>
+                                        <div class="col-sm-3 col-12">
+                                          <select class="form-select" aria-label="Default select example" [disabled]="selectedDayRadio !== 'The'">
+                                            <option selected value="1">Sunday</option>
+                                            <option value="2">Monday</option>
+                                            <option value="3">Tuesday</option>
+                                            <option value="4">Wednesday</option>
+                                            <option value="5">Thursday</option>
+                                            <option value="6">Friday</option>
+                                            <option value="7">Saturday</option>
+                                          </select>
+                                        </div>
+                                        <span>  of every</span>
+                                        <input class="form-control form-control-sm" type="number" [(ngModel)]="daysnumber" [disabled]="selectedDayRadio !== 'The'" style="width: 70px;">
+                                        <span> month(s)</span>
+                                    </label>
+                                   </div>
+
+                                  </div>
+                                </div>
+                                <div *ngIf="selectedFrequency === 'Yearly'">
+                                  <div class="recur d-flex align-items-center"  style="gap: 0.5rem;">
+                                    Recur every
+                                    <input class="form-control form-control-sm" type="number" [(ngModel)]="daysnumber" style="width: 70px;">
+                                    year(s) on:
+                                  </div>
+                                  <div class="form-check d-flex align-items-center mt-3" style="gap: 0.5rem; padding-left: 35px;">
+                                    <input class="form-check-input" type="radio" name="yearlyOn" value="On" id="On"  [(ngModel)]="selectedYearRadio">
+                                   <div class="row w-100">
+                                    <label class="form-check-label d-flex align-items-center flex-wrap" for="On" style="gap: 0.5rem;">
+                                      <span>On:</span>
+                                        <div class="col-sm-2 col-12">
+                                          <select class="form-select" aria-label="Default select example" [disabled]="selectedYearRadio !== 'On'">
+                                            <option selected value="1">First</option>
+                                            <option value="2">Second</option>
+                                            <option value="3">Third</option>
+                                            <option value="4">Fouth</option>
+                                            <option value="5">Last</option>
+                                          </select>
+                                        </div>
+
+                                    </label>
+                                   </div>
+
+                                  </div>
+                                  <div class="form-check d-flex align-items-center mt-2 mb-4" style="gap: 0.5rem; padding-left: 35px;">
+                                    <input class="form-check-input" type="radio" name="yearlyOn" value="OnThe" id="OnThe"  [(ngModel)]="selectedYearRadio">
+                                   <div class="row w-100">
+                                    <label class="form-check-label d-flex align-items-center flex-wrap" for="OnThe" style="gap: 0.5rem;">
+                                      <span>On the:</span>
+                                        <div class="col-sm-2 col-12">
+                                          <select class="form-select" aria-label="Default select example" [disabled]="selectedYearRadio !== 'OnThe'">
+                                            <option selected value="1">First</option>
+                                            <option value="2">Second</option>
+                                            <option value="3">Third</option>
+                                            <option value="4">Fouth</option>
+                                            <option value="5">Last</option>
+                                          </select>
+                                        </div>
+                                        <div class="col-sm-3 col-12">
+                                          <select class="form-select" aria-label="Default select example" [disabled]="selectedYearRadio !== 'OnThe'">
+                                            <option selected value="1">Sunday</option>
+                                            <option value="2">Monday</option>
+                                            <option value="3">Tuesday</option>
+                                            <option value="4">Wednesday</option>
+                                            <option value="5">Thursday</option>
+                                            <option value="6">Friday</option>
+                                            <option value="7">Saturday</option>
+                                          </select>
+                                        </div>
+                                        <span>  of </span>
+                                        <div class="col-sm-3 col-12">
+                                          <select class="form-select" aria-label="Default select example" [disabled]="selectedYearRadio !== 'OnThe'">
+                                            <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+                                          </select>
+                                        </div>
+                                    </label>
+                                   </div>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                         </fieldset>
+                         <fieldset class="col-12">
+                            <legend> Range of recurrance </legend>
+                              <div class="row">
+                                  <div class="col-md-6 col-12 d-flex align-items-center mt-2" style="padding-left: 25px;">
+                                    <label for="Start" class=" datepickerlabl">Start :</label>
+                                    <input
+                                    id="Start"
+                                    class="form-control w-75 "
+                                    type="text"
+                                    [(ngModel)]="selectedStartDate"
+                                    mwlFlatpickr
+                                    [altInput]="true"
+                                    [convertModelValue]="true"
+                                    [enableTime]="true"
+                                    dateFormat="Y-m-dTH:i"
+                                    altFormat="F j, Y H:i"
+                                    placeholder="Select start date and time"
+
+                                  />
+                                  </div>
+                                  <div class="col-md-6 col-12 mt-2" style="padding-left: 25px;">
+                                    <div class="form-check d-flex align-items-center" style="gap: 0.5rem;">
+                                      <input class="form-check-input" type="radio" name="range" id="EndBy" value="EndBy"  [(ngModel)]="range">
+                                      <label class="form-check-label d-flex align-items-center w-100" for="EndBy" >
+                                         <span class=" datepickerlabl">End By:</span>
+                                          <input
+                                          id="End"
+                                          class="form-control w-75"
+                                          type="text"
+                                          [(ngModel)]="selectedEndDate"
+                                          mwlFlatpickr
+                                          [altInput]="true"
+                                          [convertModelValue]="true"
+                                          [enableTime]="true"
+                                          dateFormat="Y-m-dTH:i"
+                                          altFormat="F j, Y H:i"
+                                          placeholder="Select end date and time"
+                                          [disabled]="range !== 'EndBy'"
+                                        />
+                                      </label>
+                                    </div>
+                                    <div class="form-check d-flex align-items-center mt-2" style="gap: 0.5rem;">
+                                      <input class="form-check-input" type="radio" name="range" value="EndAfter" id="EndAfter"  [(ngModel)]="range">
+                                      <label class="form-check-label d-flex align-items-center" for="EndAfter" style="gap: 0.5rem;">
+                                        End After:
+                                        <input class="form-control form-control-sm" type="number" [(ngModel)]="daysnumber" [disabled]="range !== 'EndAfter'" style="width: 70px;">
+                                        occurrance
+                                      </label>
+                                    </div>
+                                    <div class="form-check  mt-2" >
+                                      <input class="form-check-input" type="radio" name="range" value="NoEnd" id="NoEnd"  [(ngModel)]="range">
+                                      <label class="form-check-label d-flex align-items-center" for="NoEnd" style="gap: 0.5rem;">
+                                        No End Date
+                                      </label>
+                                    </div>
+                                  </div>
+                              </div>
+                          </fieldset>
+                        </div>
+
+
+                      </div>
+
+
+                    </div>
+
+
+                  <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary">Ok</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" disabled class="btn btn-secondary">Remove Reccurance</button>
+                  </div>
+
+                </div>
+              </div>
+         </div>
+      </div>
+
+  </div>
+</div>
+
+<br /><br /><br />
+
+<h3>
+  Edit events
+  <button class="btn btn-primary float-end" (click)="addEvent()">
+    Add new
+  </button>
+  <div class="clearfix"></div>
+</h3>
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Primary color</th>
+        <th>Secondary + text color</th>
+        <th>Starts at</th>
+        <th>Ends at</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let event of events">
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="event.title"
+            (keyup)="refresh.next('')"
+          />
+        </td>
+        <td>
+          <input
+            type="color"
+            [(ngModel)]="event.color!.primary"
+            (change)="refresh.next('')"
+          />
+        </td>
+        <td>
+          <input
+            type="color"
+            [(ngModel)]="event.color!.secondary"
+            (change)="refresh.next('')"
+          />
+          <input
+            type="color"
+            [ngModel]="event.color!.secondaryText ?? '#1e90ff'"
+            (ngModelChange)="event.color!.secondaryText = $event"
+            (change)="refresh.next('')"
+          />
+        </td>
+        <td>
+          <input
+            class="form-control"
+            type="text"
+            mwlFlatpickr
+            [(ngModel)]="event.start"
+            (ngModelChange)="refresh.next('')"
+            [altInput]="true"
+            [convertModelValue]="true"
+            [enableTime]="true"
+            dateFormat="Y-m-dTH:i"
+            altFormat="F j, Y H:i"
+            placeholder="Not set"
+          />
+        </td>
+        <td>
+          <input
+            class="form-control"
+            type="text"
+            mwlFlatpickr
+            [(ngModel)]="event.end"
+            (ngModelChange)="refresh.next('')"
+            [altInput]="true"
+            [convertModelValue]="true"
+            [enableTime]="true"
+            dateFormat="Y-m-dTH:i"
+            altFormat="F j, Y H:i"
+            placeholder="Not set"
+          />
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteEvent(event)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #modalContent let-close="close">
+  <div class="modal-header">
+    <h5 class="modal-title">Event action occurred</h5>
+    <button type="button" class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      Action:
+      <pre>{{ modalData.action }}</pre>
+    </div>
+    <div>
+      Event:
+      <pre>{{ modalData.event | json }}</pre>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="close()">
+      OK
+    </button>
+  </div>
+</ng-template>

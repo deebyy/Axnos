@@ -17,7 +17,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { HomeModule } from '../home/home.module';
-
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,13 @@ import { HomeModule } from '../home/home.module';
       "animationDuration": 1000,
       "showUnits": false,
       "clockwise": false}),
-      NgxIntlTelInputModule
+      NgxIntlTelInputModule,
+      FlatpickrModule.forRoot(),
+      NgbModalModule,
+      CalendarModule.forRoot({
+        provide: DateAdapter,
+        useFactory: adapterFactory,
+      }),
   ]
 })
 export class DashboardModule { }

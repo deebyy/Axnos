@@ -31,7 +31,8 @@ export class SignupComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/)]]
+
     });
 
     this.initGoogleSignInButton();
@@ -40,11 +41,13 @@ export class SignupComponent {
   submitForm() {
     if (this.registrationForm.valid) {
       const credentials: SignupCredentials = {
+        emailAddress: this.registrationForm.value.email,
         firstName: this.registrationForm.value.firstName,
         lastName: this.registrationForm.value.lastName,
-        email: this.registrationForm.value.email,
         password: this.registrationForm.value.password
       };
+      console.log("credentials",credentials);
+
       this.authService.signup(credentials);
     }
   }

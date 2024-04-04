@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import {
   TranslateLoader,
   TranslateModule,
@@ -20,6 +20,7 @@ import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-s
 import {
   GoogleLoginProvider,
 } from '@abacritt/angularx-social-login';
+import { TokenInterceptorService } from './core/Interceptors/token-interceptor.service';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -51,7 +52,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CalendarModule,
     HomeModule
   ],
-  providers: [ {
+  providers: [
+    {
     provide: 'SocialAuthServiceConfig',
     useValue: {
       autoLogin: false,
@@ -68,7 +70,14 @@ export function HttpLoaderFactory(http: HttpClient) {
         console.error(err);
       }
     } as SocialAuthServiceConfig,
-  }],
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
+
+],
 
   bootstrap: [AppComponent]
 })

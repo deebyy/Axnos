@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginCredentials } from 'src/app/core/interfaces/user';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import Swal from 'sweetalert2'
 declare var google:any;
@@ -30,8 +31,12 @@ export class LoginComponent {
 
   login() {
     if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      this.authService.login(email, password);
+      const credentials: LoginCredentials = {
+        emailAddress: this.loginForm.value.email,
+        password: this.loginForm.value.password
+      };
+      console.log("credentials",credentials);
+      this.authService.login(credentials);
     }
 
   }

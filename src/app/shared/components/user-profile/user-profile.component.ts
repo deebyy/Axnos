@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { UserProfile } from 'src/app/core/interfaces/user';
+import { ApiService } from 'src/app/core/services/api.service';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { GenericService } from 'src/app/core/services/generic.service';
 
 @Component({
   selector: 'user-profile',
@@ -8,7 +11,7 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 })
 export class UserProfileComponent {
   public  path="assets/images/user/avatar-05.png";
-  User: any;
+ // User: any;
    notifications = [
     {
       username: 'ahmed saeed',
@@ -37,23 +40,62 @@ export class UserProfileComponent {
     },
 
   ];
-  constructor(private authService: AuthenticationService){}
+  User: UserProfile = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    universityId: null,
+    countryId: null,
+    facultyId: null,
+    phoneNumber: null,
+    gender: null,
+    dateOfBirth: null,
+    languages: null,
+    currency: null,
+    bio: null,
+    image: null
+  };
+  constructor(private authService: AuthenticationService ,  private _GeneralService: GenericService , private apiSer:ApiService){}
   ngOnInit(): void {
+    this.apiSer.getprofile().subscribe((res:any)=>{
 
-    this.authService.user$.subscribe(user => {
-      this.User = user;
-      console.log("user is ",this.User);
-      if(this.User != null || this.User != undefined){
-        this.User = {
-          firstName: user.firstName || user.given_name,
-          lastName: user.lastName || user.family_name,
-          email: user.email,
-          image: user.picture || this.path
-        };
-        console.log("user is ",this.User);
-      }
+      this.User = {
+        firstName: res.firstName || res.given_name,
+        lastName: res.lastName || res.family_name,
+        email: res.email || '',
+        universityId: res.universityId || null,
+        countryId: res.countryId || null,
+        facultyId: res.facultyId || null,
+        phoneNumber: res.phoneNumber || null,
+        gender: res.gender || null,
+        dateOfBirth: res.dateOfBirth || null,
+        languages: res.languages || null,
+        currency: res.currency || null,
+        bio: res.bio || null,
+        image: res.image || this.path
+      };
+      // this.User = {
+      //   firstName: res.firstName || res.given_name,
+      //   lastName: res.lastName || res.family_name,
+      //   email: res.emailAddress,
+      //   image: res.image || this.path
+      // };
+    })
+    // this.authService.user$.subscribe(user => {
+    //   console.log("new user data", user);
 
-    });
+    //   this.User = user;
+    //   if(this.User != null || this.User != undefined){
+    //     this.User = {
+    //       firstName: user.firstName || user.given_name,
+    //       lastName: user.lastName || user.family_name,
+    //       email: user.emailAddress,
+    //       image: user.picture || this.path
+    //     };
+    //   }
+    //   console.log("user is ",this.User);
+
+    // });
 
 
   }

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DropdownFilterOptions } from 'primeng/dropdown';
-interface City {
-  name: string;
-  code: string;
-}
+import * as CryptoJS from 'crypto-js';
+import { ApiService } from 'src/app/core/services/api.service';
+import { CountryInfo, Faculty, University } from 'src/app/core/interfaces/models';
+
+
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -12,173 +13,162 @@ interface City {
 })
 export class CoursesComponent {
 
-  myForm!:FormGroup;
-  disabled = false;
-  ShowFilter = false;
-  limitSelection = false;
-  Countries: any = [];
-  Universites: any = [];
-  Faculites: any = [];
-  Subjects: any = [];
-  universities2: any = [];
-  selectedItems: any = [];
-  dropdownSettings: any = {};
-  rate: any =4.5;
-  body: any;
-  cities: City[] | undefined;
-  selectedCity: City | undefined;
+  myForm!: FormGroup;
+  rate: any = 4.5;
   isReadonly = true;
-  selectedCountry:any
-  selectedUniversity:any;
-  selectedFaculity:any
-
+  Countries: CountryInfo[] = [];
+  Universites: University[] = [];
+  Faculties: Faculty[] = [];
+  selectedCountry: any
+  selectedUniversity: any;
+  selectedFaculity: any
 
   courses = [
     {
       image: 'assets/images/courses/tutor1.png',
-      tutor:'Mohamed Hassan',
-      country:'Egypt',
-      university:'Mansoura University',
-      faculity:'Computer Science',
-      coursesNumber:'3 courses',
-      students:'15 Student',
-      rate:5,
-      reviewers:'13',
-      courseName:'DataBase',
-      coursePrice:'10$/Hour',
-      professorName:'Youssef Ahmed',
-      professorLanguages:'EN,AR',
+      tutor: 'Mohamed Hassan',
+      country: 'Egypt',
+      university: 'Mansoura University',
+      faculity: 'Computer Science',
+      coursesNumber: '3 courses',
+      students: '15 Student',
+      rate: 5,
+      reviewers: '13',
+      courseName: 'DataBase',
+      coursePrice: '10$/Hour',
+      professorName: 'Youssef Ahmed',
+      professorLanguages: 'EN,AR',
     },
     {
       image: 'assets/images/courses/tutor2.png',
-      tutor:'Mohamed Hassan',
-      country:'Egypt',
-      university:'Mansoura University',
-      faculity:'Computer Science',
-      coursesNumber:'3 courses',
-      students:'15 Student',
-      rate:5,
-      reviewers:'13',
-      courseName:'DataBase',
-      coursePrice:'10$/Hour',
-      professorName:'Youssef Ahmed',
-      professorLanguages:'EN,AR',
+      tutor: 'Mohamed Hassan',
+      country: 'Egypt',
+      university: 'Mansoura University',
+      faculity: 'Computer Science',
+      coursesNumber: '3 courses',
+      students: '15 Student',
+      rate: 5,
+      reviewers: '13',
+      courseName: 'DataBase',
+      coursePrice: '10$/Hour',
+      professorName: 'Youssef Ahmed',
+      professorLanguages: 'EN,AR',
     },
     {
       image: 'assets/images/courses/tutor3.png',
-      tutor:'Mohamed Hassan',
-      country:'Egypt',
-      university:'Mansoura University',
-      faculity:'Computer Science',
-      coursesNumber:'3 courses',
-      students:'15 Student',
-      rate:5,
-      reviewers:'13',
-      courseName:'DataBase',
-      coursePrice:'10$/Hour',
-      professorName:'Youssef Ahmed',
-      professorLanguages:'EN,AR',
+      tutor: 'Mohamed Hassan',
+      country: 'Egypt',
+      university: 'Mansoura University',
+      faculity: 'Computer Science',
+      coursesNumber: '3 courses',
+      students: '15 Student',
+      rate: 5,
+      reviewers: '13',
+      courseName: 'DataBase',
+      coursePrice: '10$/Hour',
+      professorName: 'Youssef Ahmed',
+      professorLanguages: 'EN,AR',
 
     },
     {
       image: 'assets/images/courses/tutor4.png',
-      tutor:'Mohamed Hassan',
-      country:'Egypt',
-      university:'Mansoura University',
-      faculity:'Computer Science',
-      coursesNumber:'3 courses',
-      students:'15 Student',
-      rate:5,
-      reviewers:'13',
-      courseName:'DataBase',
-      coursePrice:'10$/Hour',
-      professorName:'Youssef Ahmed',
-      professorLanguages:'EN,AR',
+      tutor: 'Mohamed Hassan',
+      country: 'Egypt',
+      university: 'Mansoura University',
+      faculity: 'Computer Science',
+      coursesNumber: '3 courses',
+      students: '15 Student',
+      rate: 5,
+      reviewers: '13',
+      courseName: 'DataBase',
+      coursePrice: '10$/Hour',
+      professorName: 'Youssef Ahmed',
+      professorLanguages: 'EN,AR',
 
     },
     {
       image: 'assets/images/courses/tutor5.png',
-      tutor:'Mohamed Hassan',
-      country:'Egypt',
-      university:'Mansoura University',
-      faculity:'Computer Science',
-      coursesNumber:'3 courses',
-      students:'15 Student',
-      rate:5,
-      reviewers:'13',
-      courseName:'DataBase',
-      coursePrice:'10$/Hour',
-      professorName:'Youssef Ahmed',
-      professorLanguages:'EN,AR',
+      tutor: 'Mohamed Hassan',
+      country: 'Egypt',
+      university: 'Mansoura University',
+      faculity: 'Computer Science',
+      coursesNumber: '3 courses',
+      students: '15 Student',
+      rate: 5,
+      reviewers: '13',
+      courseName: 'DataBase',
+      coursePrice: '10$/Hour',
+      professorName: 'Youssef Ahmed',
+      professorLanguages: 'EN,AR',
 
     },
     {
       image: 'assets/images/courses/tutor6.png',
-      tutor:'Mohamed Hassan',
-      country:'Egypt',
-      university:'Mansoura University',
-      faculity:'Computer Science',
-      coursesNumber:'3 courses',
-      students:'15 Student',
-      rate:5,
-      reviewers:'13',
-      courseName:'DataBase',
-      coursePrice:'10$/Hour',
-      professorName:'Youssef Ahmed',
-      professorLanguages:'EN,AR',
+      tutor: 'Mohamed Hassan',
+      country: 'Egypt',
+      university: 'Mansoura University',
+      faculity: 'Computer Science',
+      coursesNumber: '3 courses',
+      students: '15 Student',
+      rate: 5,
+      reviewers: '13',
+      courseName: 'DataBase',
+      coursePrice: '10$/Hour',
+      professorName: 'Youssef Ahmed',
+      professorLanguages: 'EN,AR',
 
     },
     {
       image: 'assets/images/courses/tutor7.png',
-      tutor:'Mohamed Hassan',
-      country:'Egypt',
-      university:'Mansoura University',
-      faculity:'Computer Science',
-      coursesNumber:'3 courses',
-      students:'15 Student',
-      rate:5,
-      reviewers:'13',
-      courseName:'DataBase',
-      coursePrice:'10$/Hour',
-      professorName:'Youssef Ahmed',
-      professorLanguages:'EN,AR',
+      tutor: 'Mohamed Hassan',
+      country: 'Egypt',
+      university: 'Mansoura University',
+      faculity: 'Computer Science',
+      coursesNumber: '3 courses',
+      students: '15 Student',
+      rate: 5,
+      reviewers: '13',
+      courseName: 'DataBase',
+      coursePrice: '10$/Hour',
+      professorName: 'Youssef Ahmed',
+      professorLanguages: 'EN,AR',
 
     },
     {
       image: 'assets/images/courses/tutor8.png',
-      tutor:'Mohamed Hassan',
-      country:'Egypt',
-      university:'Mansoura University',
-      faculity:'Computer Science',
-      coursesNumber:'3 courses',
-      students:'15 Student',
-      rate:5,
-      reviewers:'13',
-      courseName:'DataBase',
-      coursePrice:'10$/Hour',
-      professorName:'Youssef Ahmed',
-      professorLanguages:'EN,AR',
+      tutor: 'Mohamed Hassan',
+      country: 'Egypt',
+      university: 'Mansoura University',
+      faculity: 'Computer Science',
+      coursesNumber: '3 courses',
+      students: '15 Student',
+      rate: 5,
+      reviewers: '13',
+      courseName: 'DataBase',
+      coursePrice: '10$/Hour',
+      professorName: 'Youssef Ahmed',
+      professorLanguages: 'EN,AR',
 
     },
     {
       image: 'assets/images/courses/tutor9.png',
-      tutor:'Mohamed Hassan',
-      country:'Egypt',
-      university:'Mansoura University',
-      faculity:'Computer Science',
-      coursesNumber:'3 courses',
-      students:'15 Student',
-      rate:5,
-      reviewers:'13',
-      courseName:'DataBase',
-      coursePrice:'10$/Hour',
-      professorName:'Youssef Ahmed',
-      professorLanguages:'EN,AR',
+      tutor: 'Mohamed Hassan',
+      country: 'Egypt',
+      university: 'Mansoura University',
+      faculity: 'Computer Science',
+      coursesNumber: '3 courses',
+      students: '15 Student',
+      rate: 5,
+      reviewers: '13',
+      courseName: 'DataBase',
+      coursePrice: '10$/Hour',
+      professorName: 'Youssef Ahmed',
+      professorLanguages: 'EN,AR',
 
     },
 
   ];
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private apiSer: ApiService) {
     this.myForm = this.fb.group({
       subject: new FormControl(),
       country: new FormControl(),
@@ -188,37 +178,44 @@ export class CoursesComponent {
   }
 
   ngOnInit() {
-
-        this.Countries = [
-          { name: 'New York', code: 'NY' },
-          { name: 'Rome', code: 'RM' },
-          { name: 'London', code: 'LDN' },
-          { name: 'Istanbul', code: 'IST' },
-          { name: 'Paris', code: 'PRS' }
-        ];
-      this.Universites = [
-          { item_id: 1, name: 'Harvard ' },
-          { item_id: 2, name: 'Stanford  ' },
-          { item_id: 3, name: 'Princeton  ' },
-          { item_id: 4, name: 'assuit ' },
-          { item_id: 5, name: 'Columbia ' },
-          { item_id: 6, name: 'Tokyo' }
-          ];
-      this.Faculites = [
-          { Fname: 'Arts' },
-          { Fname: 'Science' },
-          { Fname: 'Engineering' },
-          { Fname: 'Medicine' },
-          { Fname: 'Law' },
-          { Fname: 'Education' }
-          ];
-
-
+    this.apiSer.getAllCountries().subscribe((res: CountryInfo[]) => {
+      console.log(res);
+      this.Countries = res
+    })
+    this.apiSer.getAllUniversities().subscribe((res: University[]) => {
+      console.log(res);
+      this.Universites = res
+    })
   }
 
+  // Fetch faculties based on the selected university ID
+  onUniversityChange(event: any): void {
+    if (this.selectedUniversity != null) {
+      this.apiSer.getFaculityByUnivesityID(this.selectedUniversity).subscribe((faculties: Faculty[]) => {
+        console.log("faculties", faculties);
+        this.Faculties = faculties;
+      })
+    } else {
+      this.Faculties = [];
+      console.log("faculties are empty now");
+    }
+  }
+ // Fetch Universities based on the selected Country ID
+  onCountryChange(event: any): void {
+    if (this.selectedCountry != null) {
+      this.apiSer.getUniversityByCountryID(this.selectedCountry).subscribe((Universities:University[]) => {
+        console.log("Universities", Universities);
+        this.Universites = Universities;
+      })
+    } else {
+      this.Faculties = [];
+      console.log("Universities are empty now");
+    }
+  }
 
   onFormSubmit(): void {
     console.log('Form values:', this.myForm.value);
+
   }
 
 

@@ -20,7 +20,7 @@
       margin:110px 85px 0 20px;
       .start{
        color:$mainBlue-color;
-       font-family: 'ReemKufi', sans-serif;
+       //font-family: 'ReemKufi', sans-serif;
        font-size: 25px;
       }
       .UniMates{
@@ -89,7 +89,9 @@
 
         }
       }
-      .signUp-form{
+      .signIn-form{
+        z-index: 333;
+        position: relative;
         .submit-btn{
           background-color: #FF6F06;
           color: $wight-color;
@@ -134,3 +136,11 @@
   }
 
 }
+/* start  style sweet alert */
+::ng-deep .swal2-html-container {
+  margin-top: 10px !important;
+}
+::ng-deep .swal2-title{
+  margin: 0 !important;
+  }
+/* end style sweet alert */

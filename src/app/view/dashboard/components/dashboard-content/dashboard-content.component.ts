@@ -5,7 +5,8 @@ import { TutorService } from 'src/app/core/services/tutor.service';
 import { SearchCountryField } from 'ngx-intl-tel-input';
 import { CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import { UserProfile } from 'src/app/core/interfaces/user';
 @Component({
   selector: 'app-dashboard-content',
   templateUrl: './dashboard-content.component.html',
@@ -35,7 +36,22 @@ export class DashboardContentComponent {
   languages: string[] = ['English', 'Spanish', 'French', 'German'];
   myForm!: FormGroup;
   percent: number = 0;
-  User: any;
+  User: UserProfile = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    universityId: null,
+    countryId: null,
+    facultyId: null,
+    phoneNumber: null,
+    gender: null,
+    dateOfBirth: null,
+    languages: null,
+    currency: null,
+    bio: null,
+    image: null
+  };
+  public  path="assets/images/user/avatar-05.png";
   constructor( private tutorService: TutorService,
                private apiSer:ApiService,
                private fb: FormBuilder,
@@ -53,14 +69,33 @@ export class DashboardContentComponent {
       this.currency = res
       this.currencyEntries = Object.entries(res);
     })
-    this.authService.user$.subscribe(user => {
-      // this.User = { ...user };
+    // this.authService.user$.subscribe(user => {
+    //   // this.User = { ...user };
+    //   this.User = {
+    //     firstName: user.firstName || user.given_name,
+    //     lastName: user.lastName || user.family_name,
+    //     ...user
+    //   };
+    // });
+    this.apiSer.getprofile().subscribe((res:any)=>{
+
       this.User = {
-        firstName: user.firstName || user.given_name,
-        lastName: user.lastName || user.family_name,
-        ...user
+        firstName: res.firstName || res.given_name,
+        lastName: res.lastName || res.family_name,
+        email: res.email || '',
+        universityId: res.universityId || null,
+        countryId: res.countryId || null,
+        facultyId: res.facultyId || null,
+        phoneNumber: res.phoneNumber || null,
+        gender: res.gender || null,
+        dateOfBirth: res.dateOfBirth || null,
+        languages: res.languages || null,
+        currency: res.currency || null,
+        bio: res.bio || null,
+        image: res.image || this.path
       };
-    });
+
+    })
   }
   initializeForm(): void  {
     const currentFormValues = this.myForm?.value;
@@ -72,9 +107,6 @@ export class DashboardContentComponent {
       country: ['', this.isTutor ? Validators.required : null],
       faculty: ['', this.isTutor ? Validators.required : null],
       phoneNumber: ['', this.isTutor ? Validators.required : ''],
-      // address:['',[ Validators.minLength(6)] ],
-      // state: [''],
-      // city: [''],
       gender: [ '', this.isTutor ? Validators.required :null],
       dateOfBirth: ['', this.isTutor ? Validators.required : ''],
       languages: ['', this.isTutor ? Validators.required : null],
@@ -82,6 +114,7 @@ export class DashboardContentComponent {
       bio: ['', this.isTutor ? [Validators.required, Validators.minLength(10)] : '']
 
     });
+
     if (currentFormValues) {
       this.myForm.patchValue(currentFormValues);
     }

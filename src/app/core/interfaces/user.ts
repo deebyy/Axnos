@@ -21,8 +21,27 @@ export interface User {
  }
 
 export interface SignupCredentials {
+    emailAddress: string;
     firstName: string;
     lastName: string;
-    email: string;
     password: string;
   }
+  export interface LoginCredentials {
+    emailAddress: string;
+    password: string;
+  }
+export interface UserProfile {
+  firstName: string;
+  lastName: string;
+  email: string;
+  universityId: string | null;
+  countryId: string | null;
+  facultyId: string | null;
+  phoneNumber: string | null;
+  gender: string | null;
+  dateOfBirth: string | null;
+  languages: string[] | null;
+  currency: string | null;
+  bio: string | null;
+  image: string | null;
+}
