@@ -47,9 +47,11 @@
                     <select class="form-select"
                             aria-label="Default select example"
                             formControlName="country"
+                            [(ngModel)]="selectedCountry"
+                            (onChange)="onCountryChange($event)"
                             [class.invalid]="myForm.get('country')?.invalid && isSubmited">
                       <option value="" selected disabled>Choose country</option>
-                      <option *ngFor="let countriy of countries" [value]="countriy">{{ countriy }}</option>
+                      <option *ngFor="let countriy of Countries" [value]="countriy.id">{{ countriy.name }}</option>
                     </select>
                   </div>
                 </div>
@@ -59,10 +61,12 @@
                     <select class="form-select "
                             aria-label="Default select example"
                             formControlName="university"
+                            [(ngModel)]="selectedUniversity"
+                            (onChange)="onUniversityChange($event)"
                             [class.invalid]="myForm.get('university')?.invalid && isSubmited"
                             >
                       <option value="" selected disabled >Choose university</option>
-                      <option *ngFor="let university of universites" [value]="university">{{ university }}</option>
+                      <option *ngFor="let university of Universites" [value]="university.universityId">{{ university.name }}</option>
                     </select>
                   </div>
                 </div>
@@ -74,7 +78,7 @@
                             formControlName="faculty"
                             [class.invalid]="myForm.get('faculty')?.invalid && isSubmited">
                       <option  value="" selected disabled>Choose faculty</option>
-                      <option *ngFor="let faculty of faculities" [value]="faculty">{{ faculty }}</option>
+                      <option *ngFor="let faculty of Faculties" [value]="faculty.faculityId">{{ faculty.name }}</option>
                     </select>
                   </div>
                 </div>

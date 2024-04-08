@@ -17,7 +17,9 @@ export class ApiService {
   getprofile() {
     return this._HttpClient.get(this.url + '/Auth/GetProfileInformation');
   }
-
+  UpdateUserProfile(data:any){
+    return this._HttpClient.put(this.url + '/Auth/UpdateUserProfile',data);
+  }
    /* Countries */
    getAllCountries() {
     return this._HttpClient.get<CountryInfo[]>(this.url + '/Country');
@@ -32,6 +34,9 @@ export class ApiService {
   }
 
  /* Faculties */
+ getAllFaculities() {
+  return this._HttpClient.get<Faculty[]>(this.url + '/Faculty');
+}
   getFaculityByUnivesityID(universityID:any) {
     return this._HttpClient.get<Faculty[]>(this.url + `/Faculty/${universityID}`);
   }

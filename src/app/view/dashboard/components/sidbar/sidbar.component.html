@@ -2,28 +2,32 @@
 <div class="container" >
     <div class="row">
 
-          <!-- <div class="d-flex justify-content-center">
-            <div class="user-image">
-              <span class="number">2</span>
-              <img src="assets/images/tutors/tutor1.png" alt="">
+
+          <form  [formGroup]="myForm" >
+
+            <div class="d-flex justify-content-center mt-5">
+              <div class="user-image2">
+                <circle-progress class="circl"
+                  [percent]="progressPercent"
+                  [radius]="50"
+                  [outerStrokeWidth]="4"
+                  [innerStrokeWidth]="2"
+                  [outerStrokeColor]="'#3361FF'"
+                  [innerStrokeColor]="'#9ca3af'"
+                  [animation]="true"
+                  [animationDuration]="300"
+                ></circle-progress>
+                <span class="progress-number">{{ progressPercent }}%</span>
+                <!-- <img src="assets/images/tutors/tutor1.png" (click)="do()" alt=""> -->
+                <img [src]="Userinfo.image" (click)="selectFileInput()" alt="User Image" />
+                <span class="add-img rounded-circle" (click)="selectFileInput()">+</span>
+                <input type="file" style="display: none;" id="b" class="form-control" accept=".png, .jpg, .jpeg , .gif"
+                  formControlName="image"  (change)="onFileSelected($event)" />
+
+              </div>
             </div>
-          </div> -->
-          <div class="d-flex justify-content-center mt-5">
-            <div class="user-image2">
-              <circle-progress class="circl"
-                [percent]="progressPercent"
-                [radius]="50"
-                [outerStrokeWidth]="4"
-                [innerStrokeWidth]="2"
-                [outerStrokeColor]="'#3361FF'"
-                [innerStrokeColor]="'#9ca3af'"
-                [animation]="true"
-                [animationDuration]="300"
-              ></circle-progress>
-              <span class="progress-number">{{ progressPercent }}%</span>
-              <img src="assets/images/tutors/tutor1.png" alt="">
-            </div>
-          </div>
+          </form>
+
           <div class="user-details mt-4">
             <p class="name text-center">Hello {{Userinfo.firstName}}</p>
             <p class="email text-center">{{Userinfo.email}}</p>

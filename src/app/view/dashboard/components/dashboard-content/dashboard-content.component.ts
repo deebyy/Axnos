@@ -7,6 +7,7 @@ import { CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import Swal from 'sweetalert2';
 import { UserProfile } from 'src/app/core/interfaces/user';
+import { CountryInfo, Faculty, University } from 'src/app/core/interfaces/models';
 @Component({
   selector: 'app-dashboard-content',
   templateUrl: './dashboard-content.component.html',
@@ -27,15 +28,20 @@ export class DashboardContentComponent {
   isSubmited = false;
   currency:any ={};
   currencyEntries: any[] = [];
-  universites=['Mansoura','assuit'];
-  countries=['Egypt','Palastin'];
-  faculities=['Computer Scince','medicin'];
   cities=['assuit','cairo'];
   states=['Bozorgi','Bozo'];
   gender=['Male','Fmale'];
   languages: string[] = ['English', 'Spanish', 'French', 'German'];
   myForm!: FormGroup;
   percent: number = 0;
+
+  Countries: CountryInfo[] = [];
+  Universites: University[] = [];
+  Faculties: Faculty[] = [];
+  selectedCountry: any
+  selectedUniversity: any;
+  selectedFaculity: any
+
   User: UserProfile = {
     firstName: '',
     lastName: '',
@@ -69,14 +75,18 @@ export class DashboardContentComponent {
       this.currency = res
       this.currencyEntries = Object.entries(res);
     })
-    // this.authService.user$.subscribe(user => {
-    //   // this.User = { ...user };
-    //   this.User = {
-    //     firstName: user.firstName || user.given_name,
-    //     lastName: user.lastName || user.family_name,
-    //     ...user
-    //   };
-    // });
+    this.apiSer.getAllCountries().subscribe((res: CountryInfo[]) => {
+      this.Countries = res
+      this.selectedCountry = "";
+    })
+    this.apiSer.getAllUniversities().subscribe((res: University[]) => {
+      this.Universites = res
+      this.selectedUniversity = "";
+    })
+    this.apiSer.getAllFaculities().subscribe((res: Faculty[]) => {
+      this.Faculties = res;
+      this.selectedFaculity = "";
+    })
     this.apiSer.getprofile().subscribe((res:any)=>{
 
       this.User = {
@@ -133,8 +143,38 @@ export class DashboardContentComponent {
   getObjectKeys(obj: any): string[] {
     return Object.keys(obj);
   }
+    // Fetch faculties based on the selected university ID
+    onUniversityChange(event: any): void {
+      if (this.selectedUniversity != null) {
+        this.apiSer.getFaculityByUnivesityID(this.selectedUniversity).subscribe((faculties: Faculty[]) => {
+          console.log("faculties", faculties);
+          this.Faculties = faculties;
+        })
+      } else {
+        this.Faculties = [];
+        console.log("faculties are empty now");
+      }
+    }
+   // Fetch Universities based on the selected Country ID
+    onCountryChange(event: any): void {
+      if (this.selectedCountry != null) {
+        this.apiSer.getUniversityByCountryID(this.selectedCountry).subscribe((Universities:University[]) => {
+          console.log("Universities", Universities);
+          this.Universites = Universities;
+        })
+      } else {
+        this.Faculties = [];
+        console.log("Universities are empty now");
+      }
+    }
   submitForm() {
-    this.isSubmited = true
+    this.isSubmited = true;
+    console.log(this.myForm.value);
+    let formdata= this.myForm.value
+    this.apiSer.UpdateUserProfile(formdata).subscribe(res=>{
+      console.log(res);
+    })
+
 
   }
 

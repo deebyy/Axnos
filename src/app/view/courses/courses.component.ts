@@ -186,6 +186,10 @@ export class CoursesComponent {
       console.log(res);
       this.Universites = res
     })
+    this.apiSer.getAllFaculities().subscribe((res: Faculty[]) => {
+      console.log(res);
+      this.Faculties = res;
+    })
   }
 
   // Fetch faculties based on the selected university ID
